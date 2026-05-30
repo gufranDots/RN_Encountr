@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1044209038635",
+    "project_id": "encountr-49f68",
+    "storage_bucket": "encountr-49f68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044209038635:android:e35ac90f130dad5729c16e",
+        "android_client_info": {
+          "package_name": "com.encountr.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044209038635-qlqqit4odrusoe32lv23ip2t0g5652mr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.encountr.app",
+            "certificate_hash": "57b09627af3ceb32e388fa84ce4db2ffa5601b1b"
+          }
+        },
+        {
+          "client_id": "1044209038635-o0ocrdu22i9nue8shbmsaaooige8287i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbo8SxDhQg63S6p-4VAIE9Q6c2ytNBlP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044209038635-o0ocrdu22i9nue8shbmsaaooige8287i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1044209038635-tnam1nac4ta81bfg7l0rooqbp551hr3m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.encountr.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

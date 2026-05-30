@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Encountr</string>
+    <string name="google_api_key_id">AIzaSyAbOOVcvW6QObCxDywVynr6vz6s5KuWzn0</string>
+    <string name="facebook_app_id">607549758601062</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">1baaf167d32b144dc19df3847df18834</string>
+
+
+
+</resources>

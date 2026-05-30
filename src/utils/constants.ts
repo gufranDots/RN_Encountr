@@ -1,0 +1,1 @@
+const SHARED_SECRET = "e33899dcbb10460b8373b4764ce118fd"
