@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
 
+    FirebaseApp.configure()
+
     // Google Maps
     if let apiKey = Bundle.main.object(forInfoDictionaryKey: "GMSApiKey") as? String {
       GMSServices.provideAPIKey(apiKey)
@@ -35,9 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     let delegate = ReactNativeDelegate()
     let factory = RCTReactNativeFactory(delegate: delegate)
     delegate.dependencyProvider = RCTAppDependencyProvider()
-    // Firebase
-    FirebaseApp.configure()
-    showSplashScreen() 
+
+    showSplashScreen()
 
     // Initialize Facebook SDK
     ApplicationDelegate.shared.application(

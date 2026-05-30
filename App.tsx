@@ -35,6 +35,7 @@ import {getCurrentLocation, showError} from './src/utils/helperFunctions';
 import {checkLocationSevice} from './src/utils/miscellaneous';
 import {
   notificationListener,
+  registerForegroundMessageHandler,
   requestUserPermission,
 } from './src/utils/notificationServices';
 import {getItem, getOnBoardData, getUserData} from './src/utils/utils';
@@ -151,9 +152,11 @@ const AppContent: FC = () => {
 
   useEffect(() => {
     requestUserPermission();
-    setTimeout(() => {
-      notificationListener();
-    }, 300);
+    notificationListener();
+    const unsubscribeForeground = registerForegroundMessageHandler();
+    return () => {
+      unsubscribeForeground?.();
+    };
   }, []);
 
   const updateProfile = async () => {

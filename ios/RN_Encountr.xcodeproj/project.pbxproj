@@ -10,7 +10,6 @@
 		0507734E226D476CB00FAE04 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCFE22F595CD420EABD9AF66 /* Montserrat-ExtraBold.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		1A79D0F02CEF3DA4009FA41F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A79D0EF2CEF3DA4009FA41F /* GoogleService-Info.plist */; };
-		1AED8E072CEF5F44000C1879 /* zego_incoming.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AED8E062CEF5F44000C1879 /* zego_incoming.mp3 */; };
 		1C58FB9023034DC6B24234CD /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F598182C65F14EECB6E4A435 /* Montserrat-Bold.ttf */; };
 		2F738EBA5A2CA050100C07F1 /* libPods-RN_Encountr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBCC8AA50CE54A28F81F23C /* libPods-RN_Encountr.a */; };
 		33E8FB28D92548E2BC7F6E5B /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F097B59C9D6444599807D42B /* Montserrat-Regular.ttf */; };
@@ -21,6 +20,7 @@
 		CEA9E5232F0AC2A200785636 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E5222F0AC2A200785636 /* AppDelegate.swift */; };
 		CEF45A452F28591D0020B500 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF45A442F28591D0020B500 /* LaunchScreen.storyboard */; };
 		EBF6996C1C6249E2AE44915A /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1132314C8D78468B9094B6FD /* Montserrat-SemiBold.ttf */; };
+		F2772A27AC2F8E005C48FB33 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,7 +203,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A79D0F02CEF3DA4009FA41F /* GoogleService-Info.plist in Resources */,
-				1AED8E072CEF5F44000C1879 /* zego_incoming.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1C58FB9023034DC6B24234CD /* Montserrat-Bold.ttf in Resources */,
 				0507734E226D476CB00FAE04 /* Montserrat-ExtraBold.ttf in Resources */,
@@ -214,6 +213,7 @@
 				33E8FB28D92548E2BC7F6E5B /* Montserrat-Regular.ttf in Resources */,
 				EBF6996C1C6249E2AE44915A /* Montserrat-SemiBold.ttf in Resources */,
 				4120EAC1C39C408DB0DBA6B6 /* dk-buttered-toast.ttf in Resources */,
+				F2772A27AC2F8E005C48FB33 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

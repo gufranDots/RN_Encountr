@@ -12,7 +12,6 @@ import store from './src/redux/store'
 import { Provider } from 'react-redux'
 import { updateChatCOunt } from './src/redux/reduxActions/homeActions'
 
-
 if (__DEV__) {
   require('./ReactotronConfig');
 }

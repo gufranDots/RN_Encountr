@@ -9,7 +9,6 @@ import { getItem, getUserData, setItem } from './utils';
 import NavigationService from '../Navigation/NavigationService';
 import navigationString from '../constants/navigationString';
 import notifee, {
-  AndroidBadgeIconType,
   AndroidImportance,
 } from '@notifee/react-native';
 import { updateProfileApi } from '../redux/reduxActions/profileActions';
@@ -17,7 +16,6 @@ import { useSelector } from 'react-redux';
 import { saveUserData } from '../redux/reduxReducers/authReducers';
 import { matchUserListApi } from '../redux/reduxActions/homeActions';
 import { showError } from './helperFunctions';
-import Sound from 'react-native-sound';
 
 export async function requestUserPermission(callback = () => { }) {
   if (Platform.OS === 'ios') {
@@ -153,58 +151,130 @@ const updateProfile = () => {
     });
 };
 
-async function onDisplayNotification(data) {
-  // Request permissions (required for iOS)
+const stringifyNotificationData = data => {
+  if (!data || typeof data !== 'object') {
+    return undefined;
+  }
+  return Object.fromEntries(
+    Object.entries(data).map(([key, value]) => [key, String(value ?? '')]),
+  );
+};
 
-  console.log(data, 'FCM onDisplayNotification datadatadatadata');
+const getNotificationContent = remoteMessage => {
+  const {notification, data} = remoteMessage || {};
+  const title =
+    notification?.title ||
+    data?.title ||
+    data?.notification_title ||
+    'Encountr';
+  const body =
+    notification?.body ||
+    data?.body ||
+    data?.content ||
+    data?.message ||
+    data?.notification_body ||
+    '';
+  return {title, body};
+};
 
-  if (Platform.OS === 'ios') {
-    await notifee.requestPermission();
+let defaultChannelId = null;
+
+const ensureDefaultChannel = async () => {
+  if (Platform.OS !== 'android') {
+    return null;
+  }
+  if (defaultChannelId) {
+    return defaultChannelId;
+  }
+  defaultChannelId = await notifee.createChannel({
+    id: 'encountr_notifications',
+    name: 'Encountr Notifications',
+    sound: 'zego_incoming',
+    importance: AndroidImportance.HIGH,
+    vibration: true,
+  });
+  return defaultChannelId;
+};
+
+export async function displayForegroundNotification(remoteMessage) {
+  console.log('[FCM] displayForegroundNotification', remoteMessage);
+
+  const {title, body} = getNotificationContent(remoteMessage);
+  const {data} = remoteMessage || {};
+
+  if (!body && !title) {
+    console.warn('[FCM] foreground message missing title/body', remoteMessage);
+    return;
   }
 
-  // Create a channel (required for Android)
-  const channelId = await notifee.createChannel({
-    id: 'default',
-    name: 'name',
-    sound: 'zego_incoming.mp3',
-    pressAction: { id: 'default' },
-    smallIcon: 'ic_launcher_round1',
-    largeIcon: 'ic_launcher_round1',
-    // badgeIconType: AndroidBadgeIconType.LARGE,
-    // importance: AndroidImportance.HIGH,
-    // vibration: true,
-  });
+  try {
+    const settings = await notifee.requestPermission();
+    if (Platform.OS === 'android' && settings.authorizationStatus === 0) {
+      console.warn('[FCM] notification permission denied on Android');
+      return;
+    }
 
-  // Display a notification
-  await notifee.displayNotification({
-    title: data?.notification?.title,
-    body: data?.notification?.body,
-    data: data?.data,
-    android: {
-      channelId,
-    },
-    ios: {
-      sound: 'zego_incoming.mp3',
-    },
-  });
+    const channelId = Platform.OS === 'android' ? await ensureDefaultChannel() : null;
+
+    await notifee.displayNotification({
+      title,
+      body,
+      data: stringifyNotificationData(data),
+      ...(Platform.OS === 'android' && channelId
+        ? {
+            android: {
+              channelId,
+              smallIcon: 'ic_notification',
+              pressAction: {id: 'default'},
+              importance: AndroidImportance.HIGH,
+              sound: 'zego_incoming',
+            },
+          }
+        : {}),
+      ...(Platform.OS === 'ios'
+        ? {
+            ios: {
+              sound: 'default',
+              foregroundPresentationOptions: {
+                alert: true,
+                badge: true,
+                sound: true,
+                list: true,
+              },
+            },
+          }
+        : {}),
+    });
+    console.log('[FCM] foreground notification displayed');
+  } catch (error) {
+    console.warn('[FCM] failed to display foreground notification', error);
+  }
 }
 
-export const notificationListener = async () => {
+export function registerForegroundMessageHandler() {
+  if (Platform.OS === 'android') {
+    ensureDefaultChannel().catch(error => {
+      console.warn('[FCM] failed to create default channel', error);
+    });
+  }
 
+  return messaging().onMessage(async remoteMessage => {
+    console.log('[FCM] onMessage (foreground)', remoteMessage);
 
-  const sound = new Sound('zego_incoming.mp3', Sound.MAIN_BUNDLE, (error) => {
-    if (error) {
-      console.log('Error loading sound:', error);
-    } else {
-      console.log('Sound loaded successfully');
+    if (remoteMessage?.data?.type === 'chat') {
+      getChatCount()
+        .then(res => {
+          saveChatCounter(res?.data);
+        })
+        .catch(error => {
+          console.log(error, 'CHAT_ID error');
+        });
     }
+
+    await displayForegroundNotification(remoteMessage);
   });
-  const unsubscribe = messaging().onMessage(async remoteMessage => {
-    console.log('A new FCM message arrived!', remoteMessage);
-    Platform.OS === "android" ? sound.play() : null
-    onDisplayNotification(remoteMessage);
-  });
-  //Backgorund
+}
+export const notificationListener = () => {
   messaging().onNotificationOpenedApp(remoteMessage => {
     const { notification } = remoteMessage;
     console.log(remoteMessage, 'background remoteMessageremoteMessage');
@@ -285,6 +355,4 @@ export const notificationListener = async () => {
         NavigationService.navigate(navigationString.CONTACT_US);
       }
     });
-
-  return unsubscribe;
 };
