@@ -43,6 +43,7 @@ export const LOGIN_API = getApiUrl('/api/login');
 export const GET_DRIVING_DISTANCE_API =
   'https://maps.googleapis.com/maps/api/distancematrix/json';
 export const LOGOUT_API = getApiUrl('/api/logout');
+export const CHECK_PHONE_NUMBER = getApiUrl('/api/check-phone-number');
 export const SEND_OTP = getApiUrl('/api/send-otp');
 export const VERIFY_OTP_TO_SIGNUP = getApiUrl('/api/verify-otp');
 export const CHECK_USER_EXIST = getApiUrl('/api/check-username');

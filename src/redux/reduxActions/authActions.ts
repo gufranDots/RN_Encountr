@@ -24,6 +24,7 @@ import {
   LOGOUT_API,
   RATING,
   SAVE_DATING_TAGS,
+  CHECK_PHONE_NUMBER,
   SEND_OTP,
   SET_PREFERENCES,
   SOCAIL_LOGIN_API,
@@ -345,11 +346,29 @@ export const ratingsApi = (apiPayload: object) => {
 };
 
 
-/////
+export const checkPhoneNumberApi = (apiPayload: object) => {
+  return new Promise((resolve, reject) => {
+    apiPost(CHECK_PHONE_NUMBER, apiPayload)
+      .then(res => {
+        if (res?.success === false) {
+          return reject(res);
+        }
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+};
+
 export const sendOtpApi = (apiPayload: object) => {
   return new Promise((resolve, reject) => {
-    apiPost(SEND_OTP, apiPayload)
+    checkPhoneNumberApi(apiPayload)
+      .then(() => apiPost(SEND_OTP, apiPayload))
       .then(res => {
+        if (res?.success === false) {
+          return reject(res);
+        }
         resolve(res);
       })
       .catch(error => {

@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import LinearGradient from 'react-native-linear-gradient';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagesPath from '../../constants/imagesPath';
@@ -33,12 +33,17 @@ import {useTheme} from '../../theme/ThemeProvider';
 import fontFamily from '../../styles/fontFamily';
 import {showError} from '../../utils/helperFunctions';
 
-const ORB_SIZE = Math.min(width * 0.62, 260);
-const RING_COLORS = ['#C300FF', '#8A4BFF', '#5B2BD9'];
-const STAR_COUNT = 28;
+const ORB_SIZE = Math.min(width * 0.52, 220);
+const STAGE_SIZE = Math.min(width * 0.88, 340);
+const ORBIT_CONFIGS = [
+  {scale: 1.72, scaleY: 0.36, duration: 24000, reverse: false, tilt: 12, opacity: 0.32},
+  {scale: 1.52, scaleY: 0.4, duration: 18000, reverse: true, tilt: -28, opacity: 0.38},
+  {scale: 1.34, scaleY: 0.44, duration: 14000, reverse: false, tilt: 48, opacity: 0.34},
+  {scale: 1.18, scaleY: 0.5, duration: 10000, reverse: true, tilt: -55, opacity: 0.3},
+  {scale: 1.04, scaleY: 0.56, duration: 7500, reverse: false, tilt: 72, opacity: 0.22},
+];
+const PARTICLE_COUNT = 36;
 
-// Map mic metering (in dB, -160..0) to a 0..1 intensity.
-// Anything below -45 dB is treated as silence so the orb stays calm.
 const meteringToIntensity = db => {
   if (db == null || Number.isNaN(db)) return 0;
   const min = -45;
@@ -48,37 +53,39 @@ const meteringToIntensity = db => {
   return (db - min) / (max - min);
 };
 
-const buildStars = () => {
-  const stars = [];
-  for (let i = 0; i < STAR_COUNT; i += 1) {
-    stars.push({
+const buildParticles = () => {
+  const particles = [];
+  for (let i = 0; i < PARTICLE_COUNT; i += 1) {
+    const angle = (i / PARTICLE_COUNT) * Math.PI * 2;
+    const radius = 0.35 + Math.random() * 0.55;
+    particles.push({
       id: i,
-      top: Math.random() * height,
-      left: Math.random() * width,
-      size: 1 + Math.random() * 2.4,
-      delay: Math.random() * 1800,
-      duration: 1400 + Math.random() * 2200,
+      x: Math.cos(angle) * radius,
+      y: Math.sin(angle) * radius * (0.35 + Math.random() * 0.45),
+      size: 1.5 + Math.random() * 2.5,
+      delay: Math.random() * 2000,
+      duration: 1200 + Math.random() * 1800,
     });
   }
-  return stars;
+  return particles;
 };
 
-const Star = ({star}) => {
+const OrbitParticle = ({particle, stageSize}) => {
   const opacity = useRef(new Animated.Value(0.2)).current;
 
   useEffect(() => {
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(opacity, {
-          toValue: 1,
-          duration: star.duration / 2,
-          delay: star.delay,
+          toValue: 0.95,
+          duration: particle.duration / 2,
+          delay: particle.delay,
           easing: Easing.inOut(Easing.quad),
           useNativeDriver: true,
         }),
         Animated.timing(opacity, {
           toValue: 0.15,
-          duration: star.duration / 2,
+          duration: particle.duration / 2,
           easing: Easing.inOut(Easing.quad),
           useNativeDriver: true,
         }),
@@ -86,46 +93,79 @@ const Star = ({star}) => {
     );
     loop.start();
     return () => loop.stop();
-  }, [opacity, star.delay, star.duration]);
+  }, [opacity, particle.delay, particle.duration]);
 
+  const half = stageSize / 2;
   return (
     <Animated.View
       pointerEvents="none"
       style={{
         position: 'absolute',
-        top: star.top,
-        left: star.left,
-        height: star.size,
-        width: star.size,
-        borderRadius: star.size / 2,
-        backgroundColor: '#FFFFFF',
+        left: half + particle.x * half - particle.size / 2,
+        top: half + particle.y * half - particle.size / 2,
+        height: particle.size,
+        width: particle.size,
+        borderRadius: particle.size / 2,
+        backgroundColor: '#C300FF',
         opacity,
+        shadowColor: '#C300FF',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 1,
+        shadowRadius: 4,
       }}
     />
+  );
+};
+
+const OrbitRing = ({config, spin}) => {
+  const ringSize = STAGE_SIZE * config.scale;
+  const offset = (STAGE_SIZE - ringSize) / 2;
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        styles.orbitRingWrap,
+        {
+          left: offset,
+          top: offset,
+          width: ringSize,
+          height: ringSize,
+          transform: [
+            {rotate: `${config.tilt}deg`},
+            {scaleY: config.scaleY},
+            {rotate: spin},
+          ],
+          opacity: config.opacity,
+        },
+      ]}>
+      <View style={styles.orbitRingLine} />
+      <View style={[styles.orbitDot, styles.orbitDotTop]} />
+      <View style={[styles.orbitDot, styles.orbitDotRight]} />
+      <View style={[styles.orbitDot, styles.orbitDotBottom]} />
+    </Animated.View>
   );
 };
 
 const CypherScreen = ({navigation}) => {
   const {theme} = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
+  const insets = useSafeAreaInsets();
 
   const [isListening, setIsListening] = useState(false);
   const [intensity, setIntensity] = useState(0);
-  const [statusText, setStatusText] = useState("...Talk to me");
 
   const audioRecorderPlayerRef = useRef(null);
   const recordPathRef = useRef(null);
   const isMountedRef = useRef(true);
 
-  const ringRotateOuter = useRef(new Animated.Value(0)).current;
-  const ringRotateMiddle = useRef(new Animated.Value(0)).current;
-  const ringRotateInner = useRef(new Animated.Value(0)).current;
+  const orbitAnims = useRef(ORBIT_CONFIGS.map(() => new Animated.Value(0))).current;
   const orbPulse = useRef(new Animated.Value(0)).current;
   const orbScale = useRef(new Animated.Value(1)).current;
   const orbGlow = useRef(new Animated.Value(0.6)).current;
-  const taglineFade = useRef(new Animated.Value(1)).current;
+  const promptFade = useRef(new Animated.Value(1)).current;
+  const statusFade = useRef(new Animated.Value(0)).current;
 
-  const stars = useMemo(buildStars, []);
+  const particles = useMemo(buildParticles, []);
 
   const _getRecorder = useCallback(() => {
     if (!audioRecorderPlayerRef.current) {
@@ -134,32 +174,21 @@ const CypherScreen = ({navigation}) => {
     return audioRecorderPlayerRef.current;
   }, []);
 
-  // Continuous orbital ring rotation
   useEffect(() => {
-    const spin = (animValue, duration, reverse = false) =>
+    const loops = ORBIT_CONFIGS.map((cfg, i) =>
       Animated.loop(
-        Animated.timing(animValue, {
-          toValue: reverse ? -1 : 1,
-          duration,
+        Animated.timing(orbitAnims[i], {
+          toValue: cfg.reverse ? -1 : 1,
+          duration: cfg.duration,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
-      );
+      ),
+    );
+    loops.forEach(l => l.start());
+    return () => loops.forEach(l => l.stop());
+  }, [orbitAnims]);
 
-    const a = spin(ringRotateOuter, 18000, false);
-    const b = spin(ringRotateMiddle, 12000, true);
-    const c = spin(ringRotateInner, 8000, false);
-    a.start();
-    b.start();
-    c.start();
-    return () => {
-      a.stop();
-      b.stop();
-      c.stop();
-    };
-  }, [ringRotateOuter, ringRotateMiddle, ringRotateInner]);
-
-  // Idle breathing pulse on the orb when not listening
   useEffect(() => {
     if (isListening) {
       orbPulse.setValue(0);
@@ -169,13 +198,13 @@ const CypherScreen = ({navigation}) => {
       Animated.sequence([
         Animated.timing(orbPulse, {
           toValue: 1,
-          duration: 1800,
+          duration: 2000,
           easing: Easing.inOut(Easing.quad),
           useNativeDriver: true,
         }),
         Animated.timing(orbPulse, {
           toValue: 0,
-          duration: 1800,
+          duration: 2000,
           easing: Easing.inOut(Easing.quad),
           useNativeDriver: true,
         }),
@@ -185,46 +214,23 @@ const CypherScreen = ({navigation}) => {
     return () => loop.stop();
   }, [isListening, orbPulse]);
 
-  // Cycle through tagline phrases when listening
   useEffect(() => {
-    if (!isListening) {
-      setStatusText('...Talk to me');
-      return undefined;
-    }
-    const phrases = ['I\u2019m listening...', 'Speak to me...', 'Go ahead...'];
-    let idx = 0;
-    setStatusText(phrases[0]);
-    const id = setInterval(() => {
-      idx = (idx + 1) % phrases.length;
-      Animated.sequence([
-        Animated.timing(taglineFade, {
-          toValue: 0,
-          duration: 220,
-          useNativeDriver: true,
-        }),
-        Animated.timing(taglineFade, {
-          toValue: 1,
-          duration: 320,
-          useNativeDriver: true,
-        }),
-      ]).start();
-      setTimeout(() => {
-        if (isMountedRef.current) setStatusText(phrases[idx]);
-      }, 220);
-    }, 3200);
-    return () => clearInterval(id);
-  }, [isListening, taglineFade]);
+    Animated.timing(statusFade, {
+      toValue: isListening ? 1 : 0,
+      duration: 350,
+      useNativeDriver: true,
+    }).start();
+  }, [isListening, statusFade]);
 
-  // React to mic intensity (monster / sound detection)
   useEffect(() => {
     Animated.spring(orbScale, {
-      toValue: 1 + intensity * 0.32,
+      toValue: 1 + intensity * 0.28,
       friction: 5,
       tension: 90,
       useNativeDriver: true,
     }).start();
     Animated.timing(orbGlow, {
-      toValue: 0.55 + intensity * 0.45,
+      toValue: 0.5 + intensity * 0.5,
       duration: 160,
       useNativeDriver: true,
     }).start();
@@ -289,12 +295,25 @@ const CypherScreen = ({navigation}) => {
   }, [_getRecorder, _requestMicPermission]);
 
   const _onTogglePress = useCallback(() => {
+    Animated.sequence([
+      Animated.timing(promptFade, {
+        toValue: 0.5,
+        duration: 120,
+        useNativeDriver: true,
+      }),
+      Animated.timing(promptFade, {
+        toValue: 1,
+        duration: 220,
+        useNativeDriver: true,
+      }),
+    ]).start();
+
     if (isListening) {
       _stopListening();
     } else {
       _startListening();
     }
-  }, [isListening, _startListening, _stopListening]);
+  }, [isListening, _startListening, _stopListening, promptFade]);
 
   useEffect(() => {
     isMountedRef.current = true;
@@ -312,32 +331,28 @@ const CypherScreen = ({navigation}) => {
     };
   }, []);
 
-  const outerSpin = ringRotateOuter.interpolate({
-    inputRange: [-1, 0, 1],
-    outputRange: ['-360deg', '0deg', '360deg'],
-  });
-  const middleSpin = ringRotateMiddle.interpolate({
-    inputRange: [-1, 0, 1],
-    outputRange: ['-360deg', '0deg', '360deg'],
-  });
-  const innerSpin = ringRotateInner.interpolate({
-    inputRange: [-1, 0, 1],
-    outputRange: ['-360deg', '0deg', '360deg'],
-  });
+  const orbitSpins = orbitAnims.map(anim =>
+    anim.interpolate({
+      inputRange: [-1, 0, 1],
+      outputRange: ['-360deg', '0deg', '360deg'],
+    }),
+  );
 
   const idlePulseScale = orbPulse.interpolate({
     inputRange: [0, 1],
-    outputRange: [1, 1.08],
+    outputRange: [1, 1.06],
   });
 
   const haloOpacity = orbGlow.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.2, 0.85],
+    outputRange: [0.25, 0.9],
   });
   const haloScale = orbGlow.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.95, 1.35],
+    outputRange: [1, 1.4],
   });
+
+  const bottomPad = Math.max(insets.bottom, Platform.OS === 'ios' ? 20 : 12);
 
   return (
     <WrapperContainer
@@ -345,20 +360,17 @@ const CypherScreen = ({navigation}) => {
       isWhiteStatusBar={false}
       statusbarcolorr={'#05010F'}>
       <LinearGradient
-        colors={['#0A0420', '#180A35', '#05010F']}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}
+        colors={['#0A0420', '#120830', '#05010F']}
+        start={{x: 0.5, y: 0}}
+        end={{x: 0.5, y: 1}}
         style={StyleSheet.absoluteFill}
       />
 
-      {/* twinkling stars */}
-      <View style={StyleSheet.absoluteFill} pointerEvents="none">
-        {stars.map(s => (
-          <Star key={`star-${s.id}`} star={s} />
-        ))}
-      </View>
-
-      <SafeAreaView edges={['top']} style={styles.headerSafe}>
+      <View
+        style={[
+          styles.screenRoot,
+          {paddingTop: insets.top, paddingBottom: bottomPad},
+        ]}>
         <View style={styles.headerRow}>
           <TouchableOpacity
             hitSlop={hitSlopProp}
@@ -368,7 +380,13 @@ const CypherScreen = ({navigation}) => {
             <Image source={imagesPath.ic_back} style={styles.backIcon} />
           </TouchableOpacity>
 
-          <Text style={styles.brandText}>CYPHER</Text>
+          <View style={styles.brandWrap}>
+            <Text style={styles.brandText}>
+              C
+              <Text style={styles.brandAccent}>Y</Text>
+              PHER
+            </Text>
+          </View>
 
           <View style={styles.crownBtn}>
             <View style={styles.crownShape}>
@@ -380,138 +398,126 @@ const CypherScreen = ({navigation}) => {
           </View>
         </View>
 
-        <Animated.Text style={[styles.greetingText, {opacity: taglineFade}]}>
-          {statusText}
-        </Animated.Text>
-      </SafeAreaView>
+        <View style={styles.centerArea}>
+          <Animated.Text style={[styles.promptText, {opacity: promptFade}]}>
+            ...Talk to me
+          </Animated.Text>
 
-      <View style={styles.orbStage}>
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            styles.haloRing,
-            {
-              transform: [{scale: haloScale}],
-              opacity: haloOpacity,
-            },
-          ]}
-        />
+          <TouchableOpacity
+            activeOpacity={0.95}
+            onPress={_onTogglePress}
+            style={styles.orbStage}>
+            <Animated.View
+              pointerEvents="none"
+              style={[
+                styles.ambientGlow,
+                {transform: [{scale: haloScale}], opacity: haloOpacity},
+              ]}
+            />
 
-        <Animated.View
-          style={[
-            styles.ringWrap,
-            styles.outerRing,
-            {transform: [{rotate: outerSpin}]},
-          ]}>
-          <View style={[styles.ringDot, {backgroundColor: RING_COLORS[0]}]} />
-          <View
-            style={[
-              styles.ringDot,
-              styles.ringDotOpposite,
-              {backgroundColor: RING_COLORS[2]},
-            ]}
-          />
-        </Animated.View>
+            <View style={styles.orbitField} pointerEvents="none">
+              {particles.map(p => (
+                <OrbitParticle
+                  key={`p-${p.id}`}
+                  particle={p}
+                  stageSize={STAGE_SIZE}
+                />
+              ))}
 
-        <Animated.View
-          style={[
-            styles.ringWrap,
-            styles.middleRing,
-            {transform: [{rotate: middleSpin}]},
-          ]}>
-          <View style={[styles.ringDot, {backgroundColor: RING_COLORS[1]}]} />
-          <View
-            style={[
-              styles.ringDot,
-              styles.ringDotOpposite,
-              {backgroundColor: RING_COLORS[0]},
-            ]}
-          />
-        </Animated.View>
+              {ORBIT_CONFIGS.map((cfg, i) => (
+                <OrbitRing
+                  key={`orbit-${i}`}
+                  config={cfg}
+                  spin={orbitSpins[i]}
+                />
+              ))}
+            </View>
 
-        <Animated.View
-          style={[
-            styles.ringWrap,
-            styles.innerRing,
-            {transform: [{rotate: innerSpin}]},
-          ]}>
-          <View style={[styles.ringDot, {backgroundColor: RING_COLORS[2]}]} />
-        </Animated.View>
+            <Animated.View
+              style={{
+                transform: [{scale: Animated.multiply(orbScale, idlePulseScale)}],
+              }}>
+              <LinearGradient
+                colors={['#FFFFFF', '#F0D4FF', '#B060FF', '#5B18C8', '#2A0870']}
+                start={{x: 0.35, y: 0.15}}
+                end={{x: 0.85, y: 0.95}}
+                style={styles.orb}>
+                <View style={styles.orbInnerGlow} />
+                <View style={styles.orbCore} />
+                <View style={styles.orbBurstH} />
+                <View style={styles.orbBurstV} />
+                <View style={styles.orbBurstD1} />
+                <View style={styles.orbBurstD2} />
+              </LinearGradient>
+            </Animated.View>
 
-        <Animated.View
-          style={{
-            transform: [{scale: Animated.multiply(orbScale, idlePulseScale)}],
-          }}>
-          <LinearGradient
-            colors={['#FFFFFF', '#E0B6FF', '#9B4DFF', '#3B1080']}
-            start={{x: 0.3, y: 0.2}}
-            end={{x: 1, y: 1}}
-            style={styles.orb}>
-            <View style={styles.orbCore} />
-            <View style={styles.orbStarA} />
-            <View style={styles.orbStarB} />
-            <View style={styles.orbStarC} />
-          </LinearGradient>
-        </Animated.View>
-
-        {/* reflection */}
-        <View pointerEvents="none" style={styles.orbReflection} />
-      </View>
-
-      <SafeAreaView edges={['bottom']} style={styles.footerSafe}>
-        <View style={styles.intensityTrack}>
-          <View
-            style={[
-              styles.intensityFill,
-              {width: `${Math.round(intensity * 100)}%`},
-            ]}
-          />
+            <View pointerEvents="none" style={styles.orbReflection} />
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.85}
-          onPress={_onTogglePress}
-          style={styles.listenBtnWrap}>
-          <LinearGradient
-            colors={
-              isListening
-                ? ['#FF5C8A', '#C300FF', '#5B2BD9']
-                : ['#C300FF', '#7A1AFF', '#3D108E']
-            }
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 1}}
-            style={styles.listenBtn}>
-            <Image source={imagesPath.mic} style={styles.listenIcon} />
-            <Text style={styles.listenText}>
-              {isListening ? 'Stop listening' : "I'm listening..."}
-            </Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      </SafeAreaView>
+        <Animated.View style={[styles.footerArea, {opacity: statusFade}]}>
+          <Text style={styles.listeningText}>I&apos;m listening...</Text>
+        </Animated.View>
+      </View>
     </WrapperContainer>
   );
 };
 
+const styles = StyleSheet.create({
+  orbitRingWrap: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  orbitRingLine: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 9999,
+    borderWidth: 1,
+    borderColor: 'rgba(195,0,255,0.55)',
+  },
+  orbitDot: {
+    position: 'absolute',
+    height: moderateScale(5),
+    width: moderateScale(5),
+    borderRadius: moderateScale(2.5),
+    backgroundColor: '#C300FF',
+    shadowColor: '#C300FF',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 6,
+  },
+  orbitDotTop: {
+    top: -moderateScale(2.5),
+  },
+  orbitDotRight: {
+    right: -moderateScale(2.5),
+  },
+  orbitDotBottom: {
+    bottom: -moderateScale(2.5),
+  },
+});
+
 const getStyles = theme =>
   StyleSheet.create({
-    headerSafe: {
-      paddingHorizontal: moderateScale(20),
+    screenRoot: {
+      flex: 1,
     },
     headerRow: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginTop: moderateScale(4),
+      paddingHorizontal: moderateScale(20),
+      paddingTop: moderateScale(4),
     },
     iconBtn: {
       height: moderateScale(36),
       width: moderateScale(36),
       borderRadius: moderateScale(18),
-      backgroundColor: 'rgba(255,255,255,0.08)',
+      backgroundColor: 'rgba(255,255,255,0.06)',
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 1,
-      borderColor: 'rgba(255,255,255,0.12)',
+      borderColor: 'rgba(255,255,255,0.1)',
     },
     backIcon: {
       height: moderateScale(14),
@@ -519,19 +525,26 @@ const getStyles = theme =>
       tintColor: '#FFFFFF',
       resizeMode: 'contain',
     },
+    brandWrap: {
+      flex: 1,
+      alignItems: 'center',
+    },
     brandText: {
       color: '#FFFFFF',
-      fontSize: textScale(20),
+      fontSize: textScale(22),
       fontFamily: fontFamily.bold,
-      letterSpacing: moderateScale(6),
+      letterSpacing: moderateScale(5),
+    },
+    brandAccent: {
+      color: '#C300FF',
     },
     crownBtn: {
       height: moderateScale(36),
       width: moderateScale(36),
       borderRadius: moderateScale(18),
-      backgroundColor: 'rgba(195,0,255,0.18)',
+      backgroundColor: 'rgba(195,0,255,0.15)',
       borderWidth: 1,
-      borderColor: 'rgba(195,0,255,0.35)',
+      borderColor: 'rgba(195,0,255,0.3)',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -570,65 +583,37 @@ const getStyles = theme =>
       borderRadius: moderateScale(1.5),
       backgroundColor: '#C300FF',
     },
-    greetingText: {
-      marginTop: moderateScale(28),
-      textAlign: 'center',
-      color: 'rgba(255,255,255,0.65)',
-      fontSize: textScale(18),
-      fontFamily: fontFamily.medium,
-      letterSpacing: 0.5,
-    },
-    orbStage: {
+    centerArea: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      paddingBottom: moderateScale(8),
     },
-    haloRing: {
-      position: 'absolute',
-      height: ORB_SIZE * 1.6,
-      width: ORB_SIZE * 1.6,
-      borderRadius: ORB_SIZE * 0.8,
-      backgroundColor: 'rgba(155, 77, 255, 0.18)',
+    promptText: {
+      marginBottom: moderateScale(18),
+      textAlign: 'center',
+      color: 'rgba(255,255,255,0.45)',
+      fontSize: textScale(17),
+      fontFamily: fontFamily.medium,
+      letterSpacing: 0.3,
     },
-    ringWrap: {
-      position: 'absolute',
-      borderWidth: 1,
+    orbStage: {
+      height: STAGE_SIZE,
+      width: STAGE_SIZE,
       alignItems: 'center',
+      justifyContent: 'center',
     },
-    outerRing: {
-      height: ORB_SIZE * 1.55,
-      width: ORB_SIZE * 1.55,
-      borderRadius: ORB_SIZE * 0.78,
-      borderColor: 'rgba(195,0,255,0.30)',
-      transform: [{rotate: '0deg'}],
-    },
-    middleRing: {
-      height: ORB_SIZE * 1.3,
-      width: ORB_SIZE * 1.3,
-      borderRadius: ORB_SIZE * 0.65,
-      borderColor: 'rgba(154,77,255,0.45)',
-    },
-    innerRing: {
-      height: ORB_SIZE * 1.08,
-      width: ORB_SIZE * 1.08,
-      borderRadius: ORB_SIZE * 0.54,
-      borderColor: 'rgba(255,255,255,0.18)',
-    },
-    ringDot: {
+    ambientGlow: {
       position: 'absolute',
-      top: -moderateScale(3),
-      height: moderateScale(6),
-      width: moderateScale(6),
-      borderRadius: moderateScale(3),
-      shadowColor: '#C300FF',
-      shadowOffset: {width: 0, height: 0},
-      shadowOpacity: 1,
-      shadowRadius: 6,
-      elevation: 6,
+      height: ORB_SIZE * 1.85,
+      width: ORB_SIZE * 1.85,
+      borderRadius: ORB_SIZE * 0.925,
+      backgroundColor: 'rgba(155, 77, 255, 0.16)',
     },
-    ringDotOpposite: {
-      top: undefined,
-      bottom: -moderateScale(3),
+    orbitField: {
+      ...StyleSheet.absoluteFillObject,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     orb: {
       height: ORB_SIZE,
@@ -638,105 +623,77 @@ const getStyles = theme =>
       justifyContent: 'center',
       shadowColor: '#C300FF',
       shadowOffset: {width: 0, height: 0},
-      shadowOpacity: 0.9,
-      shadowRadius: 30,
+      shadowOpacity: 0.95,
+      shadowRadius: 35,
       elevation: 24,
     },
+    orbInnerGlow: {
+      position: 'absolute',
+      height: ORB_SIZE * 0.7,
+      width: ORB_SIZE * 0.7,
+      borderRadius: ORB_SIZE * 0.35,
+      backgroundColor: 'rgba(255,255,255,0.12)',
+    },
     orbCore: {
-      height: ORB_SIZE * 0.22,
-      width: ORB_SIZE * 0.22,
-      borderRadius: ORB_SIZE * 0.11,
+      height: ORB_SIZE * 0.18,
+      width: ORB_SIZE * 0.18,
+      borderRadius: ORB_SIZE * 0.09,
       backgroundColor: '#FFFFFF',
       shadowColor: '#FFFFFF',
       shadowOffset: {width: 0, height: 0},
       shadowOpacity: 1,
-      shadowRadius: 20,
+      shadowRadius: 22,
       elevation: 20,
     },
-    orbStarA: {
+    orbBurstH: {
       position: 'absolute',
-      top: ORB_SIZE * 0.18,
-      left: ORB_SIZE * 0.32,
-      height: 3,
-      width: 3,
-      borderRadius: 1.5,
-      backgroundColor: '#FFFFFF',
-      opacity: 0.9,
-    },
-    orbStarB: {
-      position: 'absolute',
-      bottom: ORB_SIZE * 0.22,
-      right: ORB_SIZE * 0.26,
-      height: 2.5,
-      width: 2.5,
-      borderRadius: 1.25,
-      backgroundColor: '#FFFFFF',
-      opacity: 0.7,
-    },
-    orbStarC: {
-      position: 'absolute',
-      top: ORB_SIZE * 0.5,
-      right: ORB_SIZE * 0.18,
       height: 2,
+      width: ORB_SIZE * 0.35,
+      borderRadius: 1,
+      backgroundColor: 'rgba(255,255,255,0.85)',
+    },
+    orbBurstV: {
+      position: 'absolute',
+      height: ORB_SIZE * 0.35,
       width: 2,
       borderRadius: 1,
-      backgroundColor: '#FFFFFF',
-      opacity: 0.6,
+      backgroundColor: 'rgba(255,255,255,0.85)',
+    },
+    orbBurstD1: {
+      position: 'absolute',
+      height: ORB_SIZE * 0.22,
+      width: 2,
+      borderRadius: 1,
+      backgroundColor: 'rgba(255,255,255,0.5)',
+      transform: [{rotate: '45deg'}],
+    },
+    orbBurstD2: {
+      position: 'absolute',
+      height: ORB_SIZE * 0.22,
+      width: 2,
+      borderRadius: 1,
+      backgroundColor: 'rgba(255,255,255,0.5)',
+      transform: [{rotate: '-45deg'}],
     },
     orbReflection: {
       position: 'absolute',
-      bottom: ORB_SIZE * 0.05,
-      height: ORB_SIZE * 0.55,
-      width: ORB_SIZE * 0.55,
-      borderRadius: ORB_SIZE * 0.275,
-      backgroundColor: 'rgba(155, 77, 255, 0.14)',
+      bottom: ORB_SIZE * 0.02,
+      height: ORB_SIZE * 0.45,
+      width: ORB_SIZE * 0.45,
+      borderRadius: ORB_SIZE * 0.225,
+      backgroundColor: 'rgba(155, 77, 255, 0.12)',
     },
-    footerSafe: {
-      paddingHorizontal: moderateScale(24),
-      paddingBottom: moderateScale(12),
-      alignItems: 'center',
-    },
-    intensityTrack: {
-      width: '70%',
-      height: moderateScale(4),
-      borderRadius: moderateScale(2),
-      backgroundColor: 'rgba(255,255,255,0.10)',
-      overflow: 'hidden',
-      marginBottom: moderateScale(14),
-    },
-    intensityFill: {
-      height: '100%',
-      borderRadius: moderateScale(2),
-      backgroundColor: '#C300FF',
-    },
-    listenBtnWrap: {
-      width: '85%',
-      borderRadius: moderateScale(32),
-      shadowColor: '#C300FF',
-      shadowOffset: {width: 0, height: 6},
-      shadowOpacity: 0.55,
-      shadowRadius: 14,
-      elevation: 10,
-    },
-    listenBtn: {
-      flexDirection: 'row',
+    footerArea: {
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: moderateScale(32),
-      paddingVertical: moderateScale(14),
+      minHeight: moderateScale(44),
+      paddingBottom: moderateScale(4),
     },
-    listenIcon: {
-      height: moderateScale(18),
-      width: moderateScale(18),
-      tintColor: '#FFFFFF',
-      resizeMode: 'contain',
-      marginRight: moderateScale(10),
-    },
-    listenText: {
-      color: '#FFFFFF',
-      fontSize: textScale(15),
-      fontFamily: fontFamily.SemiBold,
-      letterSpacing: 0.5,
+    listeningText: {
+      color: '#C300FF',
+      fontSize: textScale(16),
+      fontFamily: fontFamily.medium,
+      letterSpacing: 0.4,
     },
   });
 

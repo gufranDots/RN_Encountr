@@ -104,7 +104,6 @@ import HomeComponent from '../../Components/HomeComponent';
 import HomeSearchComponent from '../../Components/HomeSearchComponent';
 import { useTheme } from '../../theme/ThemeProvider';
 import LinearGradient from 'react-native-linear-gradient';
-
 enableFreeze();
 
 const CATEGORY_LIST_DATA = [
