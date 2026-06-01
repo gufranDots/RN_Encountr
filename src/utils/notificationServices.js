@@ -1,8 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging from '@react-native-firebase/messaging';
-import { Alert, PermissionsAndroid, Platform } from 'react-native';
-
-import { PERMISSIONS } from 'react-native-permissions';
+import { Alert, Platform } from 'react-native';
 import { getChatCount, saveChatCounter } from '../redux/reduxActions/chatActions';
 import { saveAllHomeData, saveFcmTokenToRedux } from '../redux/reduxActions/authActions';
 import { getItem, getUserData, setItem } from './utils';
@@ -24,28 +22,9 @@ export async function requestUserPermission(callback = () => { }) {
   }
   if (Platform.Version >= 33 && Platform.OS === 'android') {
     try {
-      const granted = await PermissionsAndroid.request(
-        PERMISSIONS.ANDROID.POST_NOTIFICATIONS,
-        {
-          title: 'Notification Permission',
-          message: 'Allow this app to post notifications?',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        const token = await getFcmToken();
-        callback(false);
-        return token;
-      } else {
-        // Even if user denied the notification permission, we can still
-        // obtain an FCM token on Android (POST_NOTIFICATIONS only gates
-        // displaying notifications, not receiving data messages / tokens).
-        const token = await getFcmToken();
-        callback(true);
-        return token;
-      }
+      const token = await getFcmToken();
+      callback(false);
+      return token;
     } catch (err) {
       console.warn(err);
     }

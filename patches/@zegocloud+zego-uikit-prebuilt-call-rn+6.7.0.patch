@@ -1,0 +1,65 @@
+diff --git a/node_modules/@zegocloud/zego-uikit-prebuilt-call-rn/android/src/main/java/com/zegouikitprebuiltcallrn/ZegoUIKitPrebuiltCallRNModule.java b/node_modules/@zegocloud/zego-uikit-prebuilt-call-rn/android/src/main/java/com/zegouikitprebuiltcallrn/ZegoUIKitPrebuiltCallRNModule.java
+index ad220df..a4f66f1 100644
+--- a/node_modules/@zegocloud/zego-uikit-prebuilt-call-rn/android/src/main/java/com/zegouikitprebuiltcallrn/ZegoUIKitPrebuiltCallRNModule.java
++++ b/node_modules/@zegocloud/zego-uikit-prebuilt-call-rn/android/src/main/java/com/zegouikitprebuiltcallrn/ZegoUIKitPrebuiltCallRNModule.java
+@@ -16,6 +16,7 @@ import com.zegouikitprebuiltcallrn.customview.CustomCallNotificationManager;
+ import com.zegouikitprebuiltcallrn.utils.XLogWrapper;
+ 
+ import android.app.AlertDialog;
++import android.content.SharedPreferences;
+ import android.content.Context;
+ import android.content.DialogInterface;
+ import android.content.Intent;
+@@ -86,6 +87,22 @@ public class ZegoUIKitPrebuiltCallRNModule extends ReactContextBaseJavaModule {
+         });
+     }
+ 
++    private static final String PREFS_NAME = "zego_call_permissions";
++    private static final String KEY_NOTIFICATION_PROMPT_SHOWN = "notification_prompt_shown";
++    private static final String KEY_FULL_INTENT_PROMPT_SHOWN = "full_intent_prompt_shown";
++
++    private SharedPreferences getPermissionPrefs() {
++        return reactContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
++    }
++
++    private boolean wasPermissionPromptShown(String key) {
++        return getPermissionPrefs().getBoolean(key, false);
++    }
++
++    private void markPermissionPromptShown(String key) {
++        getPermissionPrefs().edit().putBoolean(key, true).apply();
++    }
++
+     @ReactMethod
+     public void requestNotificationPermission(String message, String allow, String deny) {
+         if (alertDialog != null && alertDialog.isShowing()) {
+@@ -94,10 +111,14 @@ public class ZegoUIKitPrebuiltCallRNModule extends ReactContextBaseJavaModule {
+         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+             return;
+         }
++        if (wasPermissionPromptShown(KEY_NOTIFICATION_PROMPT_SHOWN)) {
++            return;
++        }
+         if (ActivityCompat.checkSelfPermission(reactContext, android.Manifest.permission.POST_NOTIFICATIONS)
+                 == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+             return;
+         }
++        markPermissionPromptShown(KEY_NOTIFICATION_PROMPT_SHOWN);
+         mainHandler.post(() -> {
+             AlertDialog.Builder builder = new AlertDialog.Builder(reactContext.getCurrentActivity());
+             builder.setMessage(message);
+@@ -161,10 +182,14 @@ public class ZegoUIKitPrebuiltCallRNModule extends ReactContextBaseJavaModule {
+         if (alertDialog != null && alertDialog.isShowing()) {
+             return;
+         }
++        if (wasPermissionPromptShown(KEY_FULL_INTENT_PROMPT_SHOWN)) {
++            return;
++        }
+         if (Build.VERSION.SDK_INT >= 34) {
+             android.app.NotificationManager notificationManager =
+                 (android.app.NotificationManager) reactContext.getSystemService(Context.NOTIFICATION_SERVICE);
+             if (notificationManager != null && !notificationManager.canUseFullScreenIntent()) {
++                markPermissionPromptShown(KEY_FULL_INTENT_PROMPT_SHOWN);
+                 AlertDialog.Builder builder = new AlertDialog.Builder(reactContext.getCurrentActivity());
+                 builder.setMessage(message);
+                 builder.setPositiveButton(allow, new DialogInterface.OnClickListener() {
