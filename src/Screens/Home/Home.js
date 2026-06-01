@@ -1642,7 +1642,7 @@ const Home = ({ navigation, route }) => {
         onKeepSwiping={_onKeepSwiping}
       />
 
-      {/* <View pointerEvents="box-none" style={enCounterHomestyles.cypherFabWrap}>
+      <View pointerEvents="box-none" style={enCounterHomestyles.cypherFabWrap}>
         <Animated.View
           pointerEvents="none"
           style={[
@@ -1677,7 +1677,7 @@ const Home = ({ navigation, route }) => {
           </LinearGradient>
           <Text style={enCounterHomestyles.cypherFabLabel}>CYPHER</Text>
         </TouchableOpacity>
-      </View> */}
+      </View>
     </WrapperContainer>
   );
 };
