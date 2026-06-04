@@ -84,6 +84,8 @@
 	<string>$(PRODUCT_NAME) need app location to show you results for nearby users and events based on your location.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) need access to the microphone for audio access in video and voice call.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Cypher needs speech recognition to understand you</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This allows you to send photos and videos from your library and saves the one you capture.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

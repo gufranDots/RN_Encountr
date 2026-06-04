@@ -507,6 +507,8 @@ const Home = ({ navigation, route }) => {
   useEffect(() => {
     if (route?.params?.location) {
       const { latitude, longitude } = route?.params?.location;
+      console.log('latitude', latitude);
+      console.log('longitude', longitude);
       _getMoreUser({ latitude, longitude });
     }
   }, [route]);

@@ -190,7 +190,9 @@ const MainStack = userData => {
       />
       <Stack.Screen
         name={navigationString.CYPHER_SCREEN}
-        component={ScreenName.CypherScreen}
+        getComponent={() =>
+          require('../Screens/CypherScreen/CypherScreen').default
+        }
       />
       <Stack.Screen
         options={{ headerShown: false }}

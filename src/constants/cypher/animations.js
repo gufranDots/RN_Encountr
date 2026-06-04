@@ -1,0 +1,43 @@
+export const ANIM = {
+  ring: {
+    IDLE: {r1: 12000, r2: 9000, r3: 14000, r4: 8000},
+    LISTENING: {r1: 5000, r2: 4000, r3: 6000, r4: 3500},
+    THINKING: {r1: 5000, r2: 3500, r3: 6500, r4: 2800},
+    SPEAKING: {r1: 3000, r2: 2200, r3: 4000, r4: 1800},
+    QUESTIONS: {r1: 14000, r2: 10000, r3: 16000, r4: 9000},
+  },
+  glowPulse: {
+    IDLE: 3500,
+    LISTENING: 1400,
+    THINKING: 3000,
+    SPEAKING: 900,
+    QUESTIONS: 4000,
+  },
+  arc: {
+    IDLE: 9000,
+    LISTENING: 3000,
+    THINKING: 5000,
+    SPEAKING: 2500,
+    QUESTIONS: 10000,
+  },
+  starFlash: {
+    IDLE: 4500,
+    LISTENING: 1600,
+    THINKING: 3000,
+    SPEAKING: 1200,
+    QUESTIONS: 4500,
+  },
+  particleFloat: 2200,
+  waveBar: 500,
+  dotBounce: 1000,
+  scanLine: {IDLE: 5500, LISTENING: 2200, THINKING: 5500, SPEAKING: 1800, QUESTIONS: 5500},
+  hudBlink: {LISTENING: 900, THINKING: 2000, SPEAKING: 800},
+};
+
+export const STATE_LABELS = {
+  IDLE: 'STANDBY',
+  LISTENING: 'LISTENING',
+  THINKING: 'PROCESSING',
+  SPEAKING: 'RESPONDING',
+  QUESTIONS: 'FOLLOW-UP',
+};

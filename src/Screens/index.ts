@@ -67,4 +67,3 @@ export {default as ProfilePermissions} from './SettingScreen/ProfilePermissions'
 export {default as FavoriteChat} from './ChatScreen/FavoriteChat';
 export {default as AdminContact} from './SettingScreen/AdminContact';
 export {default as TapsHistory} from './TappedHistory/TapsHistory';
-export {default as CypherScreen} from './CypherScreen/CypherScreen';

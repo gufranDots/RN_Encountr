@@ -8,9 +8,9 @@ export const GET_CITIES: string =
 export const SOCKET_URL = 'https://socket.encountr.net'; // Release
 // export const SOCKET_URL = "https://encountr-socket.netsolutionindia.com" // Test
 
-// export const API_BASE_URL = 'http://192.168.101.221:8007'; // Dev
 export const API_BASE_URL = 'https://encountr.net'; // Release
-// export const API_BASE_URL = 'http://192.168.103.21:8001'; // local
+// export const API_BASE_URL = 'http://10.38.120.138:8000'; // local
+
 
 export const ZEGOCLOUD_APP_ID = 212302449
 export const ZEGOCLOUD_APP_SIGN = '4b530cf96f80d1b2b7784538e23c26693ac96929ffd75361b40f84fcd4947244'
@@ -173,3 +173,5 @@ export const GET_SUPPORT_DATA = getApiUrl('/api/get-support-data');
 export const GET_MY_SENT_REQUESTS = getApiUrl('/api/my-sent-requests');
 export const GET_MEMEBER_LIST = getApiUrl('/api/get-group-member-list');
 export const GET_STATIC_DATA = getApiUrl('/api/get-static-data');
+export const CYPHER_CHAT_API = getApiUrl('/api/chat');
+export const CYPHER_VOICE_API = getApiUrl('/api/cypher/voice');

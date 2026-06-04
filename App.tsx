@@ -60,10 +60,15 @@ const AppContent: FC = () => {
   const commonStyles = getCommonStyles(theme);
 
   useEffect(() => {
-    setTimeout(() => {
-      hideSplash()
+    const timer = setTimeout(() => {
+      try {
+        hideSplash();
+      } catch (e) {
+        console.warn('hideSplash failed:', e);
+      }
     }, 1500);
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const subscription = Appearance.addChangeListener(({ colorScheme }) => {

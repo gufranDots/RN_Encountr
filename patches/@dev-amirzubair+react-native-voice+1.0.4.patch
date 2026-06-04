@@ -1,0 +1,1886 @@
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/results.bin b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/results.bin
+new file mode 100644
+index 0000000..7ed749e
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/results.bin
+@@ -0,0 +1 @@
++o/bundleLibRuntimeToDirDebug
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/BuildConfig.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/BuildConfig.dex
+new file mode 100644
+index 0000000..772647e
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/BuildConfig.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/NativeVoiceAndroidSpec.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/NativeVoiceAndroidSpec.dex
+new file mode 100644
+index 0000000..ebecf2d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/NativeVoiceAndroidSpec.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/Voice.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/Voice.dex
+new file mode 100644
+index 0000000..3b0f3ef
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/Voice.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceModule$Companion.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceModule$Companion.dex
+new file mode 100644
+index 0000000..8111284
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceModule$Companion.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceModule.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceModule.dex
+new file mode 100644
+index 0000000..b944c70
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceModule.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoicePackage.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoicePackage.dex
+new file mode 100644
+index 0000000..c27a10d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoicePackage.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceSpec$Companion.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceSpec$Companion.dex
+new file mode 100644
+index 0000000..f5918ef
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceSpec$Companion.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceSpec.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceSpec.dex
+new file mode 100644
+index 0000000..1e94bb7
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/wenkesj/voice/VoiceSpec.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin
+new file mode 100644
+index 0000000..601f245
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/af1a55af3018b0922dbd13d19f16fe38/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/ddde9545e4c87b49fd9c7d8e8f6e256e/results.bin b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/ddde9545e4c87b49fd9c7d8e8f6e256e/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/ddde9545e4c87b49fd9c7d8e8f6e256e/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/ddde9545e4c87b49fd9c7d8e8f6e256e/transformed/classes/classes_dex/classes.dex b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/ddde9545e4c87b49fd9c7d8e8f6e256e/transformed/classes/classes_dex/classes.dex
+new file mode 100644
+index 0000000..644f81d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/.transforms/ddde9545e4c87b49fd9c7d8e8f6e256e/transformed/classes/classes_dex/classes.dex differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/buildConfig/debug/com/wenkesj/voice/BuildConfig.java b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/buildConfig/debug/com/wenkesj/voice/BuildConfig.java
+new file mode 100644
+index 0000000..b257142
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/buildConfig/debug/com/wenkesj/voice/BuildConfig.java
+@@ -0,0 +1,12 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package com.wenkesj.voice;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String LIBRARY_PACKAGE_NAME = "com.wenkesj.voice";
++  public static final String BUILD_TYPE = "debug";
++  // Field from default config.
++  public static final boolean IS_NEW_ARCHITECTURE_ENABLED = true;
++}
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/java/com/wenkesj/voice/NativeVoiceAndroidSpec.java b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/java/com/wenkesj/voice/NativeVoiceAndroidSpec.java
+new file mode 100644
+index 0000000..d0d747f
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/java/com/wenkesj/voice/NativeVoiceAndroidSpec.java
+@@ -0,0 +1,72 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateModuleJavaSpec.js
++ *
++ * @nolint
++ */
++
++package com.wenkesj.voice;
++
++import com.facebook.proguard.annotations.DoNotStrip;
++import com.facebook.react.bridge.Callback;
++import com.facebook.react.bridge.Promise;
++import com.facebook.react.bridge.ReactApplicationContext;
++import com.facebook.react.bridge.ReactContextBaseJavaModule;
++import com.facebook.react.bridge.ReactMethod;
++import com.facebook.react.bridge.ReadableMap;
++import com.facebook.react.turbomodule.core.interfaces.TurboModule;
++import javax.annotation.Nonnull;
++
++public abstract class NativeVoiceAndroidSpec extends ReactContextBaseJavaModule implements TurboModule {
++  public static final String NAME = "Voice";
++
++  public NativeVoiceAndroidSpec(ReactApplicationContext reactContext) {
++    super(reactContext);
++  }
++
++  @Override
++  public @Nonnull String getName() {
++    return NAME;
++  }
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void destroySpeech(Callback callback);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void startSpeech(String locale, ReadableMap opts, Callback callback);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void stopSpeech(Callback callback);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void cancelSpeech(Callback callback);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void isSpeechAvailable(Callback callback);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void getSpeechRecognitionServices(Promise promise);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void isRecognizing(Callback callback);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void addListener(String eventType);
++
++  @ReactMethod
++  @DoNotStrip
++  public abstract void removeListeners(double count);
++}
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/CMakeLists.txt b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/CMakeLists.txt
+new file mode 100644
+index 0000000..d1508b6
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/CMakeLists.txt
+@@ -0,0 +1,36 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++#
++# This source code is licensed under the MIT license found in the
++# LICENSE file in the root directory of this source tree.
++
++cmake_minimum_required(VERSION 3.13)
++set(CMAKE_VERBOSE_MAKEFILE on)
++
++file(GLOB react_codegen_SRCS CONFIGURE_DEPENDS *.cpp react/renderer/components/RNVoiceSpec/*.cpp)
++
++add_library(
++  react_codegen_RNVoiceSpec
++  OBJECT
++  ${react_codegen_SRCS}
++)
++
++target_include_directories(react_codegen_RNVoiceSpec PUBLIC . react/renderer/components/RNVoiceSpec)
++
++target_link_libraries(
++  react_codegen_RNVoiceSpec
++  fbjni
++  jsi
++  # We need to link different libraries based on whether we are building rncore or not, that's necessary
++  # because we want to break a circular dependency between react_codegen_rncore and reactnative
++  reactnative
++)
++
++target_compile_options(
++  react_codegen_RNVoiceSpec
++  PRIVATE
++  -DLOG_TAG=\"ReactNative\"
++  -fexceptions
++  -frtti
++  -std=c++20
++  -Wall
++)
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/RNVoiceSpec-generated.cpp b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/RNVoiceSpec-generated.cpp
+new file mode 100644
+index 0000000..c60e92d
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/RNVoiceSpec-generated.cpp
+@@ -0,0 +1,80 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateModuleJniCpp.js
++ */
++
++#include "RNVoiceSpec.h"
++
++namespace facebook::react {
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_destroySpeech(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "destroySpeech", "(Lcom/facebook/react/bridge/Callback;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_startSpeech(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "startSpeech", "(Ljava/lang/String;Lcom/facebook/react/bridge/ReadableMap;Lcom/facebook/react/bridge/Callback;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_stopSpeech(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "stopSpeech", "(Lcom/facebook/react/bridge/Callback;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_cancelSpeech(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "cancelSpeech", "(Lcom/facebook/react/bridge/Callback;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_isSpeechAvailable(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "isSpeechAvailable", "(Lcom/facebook/react/bridge/Callback;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_getSpeechRecognitionServices(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, PromiseKind, "getSpeechRecognitionServices", "(Lcom/facebook/react/bridge/Promise;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_isRecognizing(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "isRecognizing", "(Lcom/facebook/react/bridge/Callback;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_addListener(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "addListener", "(Ljava/lang/String;)V", args, count, cachedMethodId);
++}
++
++static facebook::jsi::Value __hostFunction_NativeVoiceAndroidSpecJSI_removeListeners(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
++  static jmethodID cachedMethodId = nullptr;
++  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, VoidKind, "removeListeners", "(D)V", args, count, cachedMethodId);
++}
++
++NativeVoiceAndroidSpecJSI::NativeVoiceAndroidSpecJSI(const JavaTurboModule::InitParams &params)
++  : JavaTurboModule(params) {
++  methodMap_["destroySpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidSpecJSI_destroySpeech};
++  methodMap_["startSpeech"] = MethodMetadata {3, __hostFunction_NativeVoiceAndroidSpecJSI_startSpeech};
++  methodMap_["stopSpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidSpecJSI_stopSpeech};
++  methodMap_["cancelSpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidSpecJSI_cancelSpeech};
++  methodMap_["isSpeechAvailable"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidSpecJSI_isSpeechAvailable};
++  methodMap_["getSpeechRecognitionServices"] = MethodMetadata {0, __hostFunction_NativeVoiceAndroidSpecJSI_getSpeechRecognitionServices};
++  methodMap_["isRecognizing"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidSpecJSI_isRecognizing};
++  methodMap_["addListener"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidSpecJSI_addListener};
++  methodMap_["removeListeners"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidSpecJSI_removeListeners};
++}
++
++std::shared_ptr<TurboModule> RNVoiceSpec_ModuleProvider(const std::string &moduleName, const JavaTurboModule::InitParams &params) {
++  if (moduleName == "Voice") {
++    return std::make_shared<NativeVoiceAndroidSpecJSI>(params);
++  }
++  return nullptr;
++}
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/RNVoiceSpec.h b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/RNVoiceSpec.h
+new file mode 100644
+index 0000000..3facd1e
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/RNVoiceSpec.h
+@@ -0,0 +1,31 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateModuleJniH.js
++ */
++
++#pragma once
++
++#include <ReactCommon/JavaTurboModule.h>
++#include <ReactCommon/TurboModule.h>
++#include <jsi/jsi.h>
++
++namespace facebook::react {
++
++/**
++ * JNI C++ class for module 'NativeVoiceAndroid'
++ */
++class JSI_EXPORT NativeVoiceAndroidSpecJSI : public JavaTurboModule {
++public:
++  NativeVoiceAndroidSpecJSI(const JavaTurboModule::InitParams &params);
++};
++
++
++JSI_EXPORT
++std::shared_ptr<TurboModule> RNVoiceSpec_ModuleProvider(const std::string &moduleName, const JavaTurboModule::InitParams &params);
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ComponentDescriptors.cpp b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ComponentDescriptors.cpp
+new file mode 100644
+index 0000000..f13bf70
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ComponentDescriptors.cpp
+@@ -0,0 +1,22 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateComponentDescriptorCpp.js
++ */
++
++#include <react/renderer/components/RNVoiceSpec/ComponentDescriptors.h>
++#include <react/renderer/core/ConcreteComponentDescriptor.h>
++#include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
++
++namespace facebook::react {
++
++void RNVoiceSpec_registerComponentDescriptorsFromCodegen(
++  std::shared_ptr<const ComponentDescriptorProviderRegistry> registry) {
++
++}
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ComponentDescriptors.h b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ComponentDescriptors.h
+new file mode 100644
+index 0000000..a389023
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ComponentDescriptors.h
+@@ -0,0 +1,24 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateComponentDescriptorH.js
++ */
++
++#pragma once
++
++#include <react/renderer/components/RNVoiceSpec/ShadowNodes.h>
++#include <react/renderer/core/ConcreteComponentDescriptor.h>
++#include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
++
++namespace facebook::react {
++
++
++
++void RNVoiceSpec_registerComponentDescriptorsFromCodegen(
++  std::shared_ptr<const ComponentDescriptorProviderRegistry> registry);
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/EventEmitters.cpp b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/EventEmitters.cpp
+new file mode 100644
+index 0000000..ad3c1f9
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/EventEmitters.cpp
+@@ -0,0 +1,16 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateEventEmitterCpp.js
++ */
++
++#include <react/renderer/components/RNVoiceSpec/EventEmitters.h>
++
++
++namespace facebook::react {
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/EventEmitters.h b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/EventEmitters.h
+new file mode 100644
+index 0000000..2845a63
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/EventEmitters.h
+@@ -0,0 +1,17 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateEventEmitterH.js
++ */
++#pragma once
++
++#include <react/renderer/components/view/ViewEventEmitter.h>
++
++
++namespace facebook::react {
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/Props.cpp b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/Props.cpp
+new file mode 100644
+index 0000000..128ad92
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/Props.cpp
+@@ -0,0 +1,19 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GeneratePropsCpp.js
++ */
++
++#include <react/renderer/components/RNVoiceSpec/Props.h>
++#include <react/renderer/core/PropsParserContext.h>
++#include <react/renderer/core/propsConversions.h>
++
++namespace facebook::react {
++
++
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/Props.h b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/Props.h
+new file mode 100644
+index 0000000..870864b
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/Props.h
+@@ -0,0 +1,18 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GeneratePropsH.js
++ */
++#pragma once
++
++
++
++namespace facebook::react {
++
++
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/RNVoiceSpecJSI-generated.cpp b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/RNVoiceSpecJSI-generated.cpp
+new file mode 100644
+index 0000000..bbb50ad
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/RNVoiceSpecJSI-generated.cpp
+@@ -0,0 +1,195 @@
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateModuleCpp.js
++ */
++
++#include "RNVoiceSpecJSI.h"
++
++namespace facebook::react {
++
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_destroySpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->destroySpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_startSpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->startSpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt),
++    count <= 1 ? throw jsi::JSError(rt, "Expected argument in position 1 to be passed") : args[1].asObject(rt),
++    count <= 2 ? throw jsi::JSError(rt, "Expected argument in position 2 to be passed") : args[2].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_stopSpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->stopSpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_cancelSpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->cancelSpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_isSpeechAvailable(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->isSpeechAvailable(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_getSpeechRecognitionServices(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  return static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->getSpeechRecognitionServices(
++    rt
++  );
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_isRecognizing(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->isRecognizing(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_addListener(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->addListener(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceAndroidCxxSpecJSI_removeListeners(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceAndroidCxxSpecJSI *>(&turboModule)->removeListeners(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asNumber()
++  );
++  return jsi::Value::undefined();
++}
++
++NativeVoiceAndroidCxxSpecJSI::NativeVoiceAndroidCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker)
++  : TurboModule("Voice", jsInvoker) {
++  methodMap_["destroySpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidCxxSpecJSI_destroySpeech};
++  methodMap_["startSpeech"] = MethodMetadata {3, __hostFunction_NativeVoiceAndroidCxxSpecJSI_startSpeech};
++  methodMap_["stopSpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidCxxSpecJSI_stopSpeech};
++  methodMap_["cancelSpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidCxxSpecJSI_cancelSpeech};
++  methodMap_["isSpeechAvailable"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidCxxSpecJSI_isSpeechAvailable};
++  methodMap_["getSpeechRecognitionServices"] = MethodMetadata {0, __hostFunction_NativeVoiceAndroidCxxSpecJSI_getSpeechRecognitionServices};
++  methodMap_["isRecognizing"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidCxxSpecJSI_isRecognizing};
++  methodMap_["addListener"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidCxxSpecJSI_addListener};
++  methodMap_["removeListeners"] = MethodMetadata {1, __hostFunction_NativeVoiceAndroidCxxSpecJSI_removeListeners};
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_destroySpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->destroySpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_startSpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->startSpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt),
++    count <= 1 ? throw jsi::JSError(rt, "Expected argument in position 1 to be passed") : args[1].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_startTranscription(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->startTranscription(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt),
++    count <= 1 ? throw jsi::JSError(rt, "Expected argument in position 1 to be passed") : args[1].asString(rt),
++    count <= 2 ? throw jsi::JSError(rt, "Expected argument in position 2 to be passed") : args[2].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_stopSpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->stopSpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_stopTranscription(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->stopTranscription(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_cancelSpeech(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->cancelSpeech(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_cancelTranscription(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->cancelTranscription(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_isSpeechAvailable(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->isSpeechAvailable(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_isRecognizing(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->isRecognizing(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_addListener(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->addListener(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt)
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_removeListeners(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->removeListeners(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asNumber()
++  );
++  return jsi::Value::undefined();
++}
++static jsi::Value __hostFunction_NativeVoiceIOSCxxSpecJSI_destroyTranscription(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
++  static_cast<NativeVoiceIOSCxxSpecJSI *>(&turboModule)->destroyTranscription(
++    rt,
++    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asObject(rt).asFunction(rt)
++  );
++  return jsi::Value::undefined();
++}
++
++NativeVoiceIOSCxxSpecJSI::NativeVoiceIOSCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker)
++  : TurboModule("Voice", jsInvoker) {
++  methodMap_["destroySpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_destroySpeech};
++  methodMap_["startSpeech"] = MethodMetadata {2, __hostFunction_NativeVoiceIOSCxxSpecJSI_startSpeech};
++  methodMap_["startTranscription"] = MethodMetadata {3, __hostFunction_NativeVoiceIOSCxxSpecJSI_startTranscription};
++  methodMap_["stopSpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_stopSpeech};
++  methodMap_["stopTranscription"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_stopTranscription};
++  methodMap_["cancelSpeech"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_cancelSpeech};
++  methodMap_["cancelTranscription"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_cancelTranscription};
++  methodMap_["isSpeechAvailable"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_isSpeechAvailable};
++  methodMap_["isRecognizing"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_isRecognizing};
++  methodMap_["addListener"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_addListener};
++  methodMap_["removeListeners"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_removeListeners};
++  methodMap_["destroyTranscription"] = MethodMetadata {1, __hostFunction_NativeVoiceIOSCxxSpecJSI_destroyTranscription};
++}
++
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/RNVoiceSpecJSI.h b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/RNVoiceSpecJSI.h
+new file mode 100644
+index 0000000..d2c2b81
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/RNVoiceSpecJSI.h
+@@ -0,0 +1,401 @@
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateModuleH.js
++ */
++
++#pragma once
++
++#include <ReactCommon/TurboModule.h>
++#include <react/bridging/Bridging.h>
++
++namespace facebook::react {
++
++
++  
++#pragma mark - NativeVoiceAndroidSpeechOptions
++
++template <typename P0, typename P1, typename P2, typename P3, typename P4, typename P5, typename P6, typename P7>
++struct NativeVoiceAndroidSpeechOptions {
++  P0 EXTRA_LANGUAGE_MODEL;
++  P1 EXTRA_MAX_RESULTS;
++  P2 EXTRA_PARTIAL_RESULTS;
++  P3 REQUEST_PERMISSIONS_AUTO;
++  P4 RECOGNIZER_ENGINE;
++  P5 EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS;
++  P6 EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS;
++  P7 EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS;
++  bool operator==(const NativeVoiceAndroidSpeechOptions &other) const {
++    return EXTRA_LANGUAGE_MODEL == other.EXTRA_LANGUAGE_MODEL && EXTRA_MAX_RESULTS == other.EXTRA_MAX_RESULTS && EXTRA_PARTIAL_RESULTS == other.EXTRA_PARTIAL_RESULTS && REQUEST_PERMISSIONS_AUTO == other.REQUEST_PERMISSIONS_AUTO && RECOGNIZER_ENGINE == other.RECOGNIZER_ENGINE && EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS == other.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS && EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS == other.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS && EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS == other.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS;
++  }
++};
++
++template <typename T>
++struct NativeVoiceAndroidSpeechOptionsBridging {
++  static T types;
++
++  static T fromJs(
++      jsi::Runtime &rt,
++      const jsi::Object &value,
++      const std::shared_ptr<CallInvoker> &jsInvoker) {
++    T result{
++      bridging::fromJs<decltype(types.EXTRA_LANGUAGE_MODEL)>(rt, value.getProperty(rt, "EXTRA_LANGUAGE_MODEL"), jsInvoker),
++      bridging::fromJs<decltype(types.EXTRA_MAX_RESULTS)>(rt, value.getProperty(rt, "EXTRA_MAX_RESULTS"), jsInvoker),
++      bridging::fromJs<decltype(types.EXTRA_PARTIAL_RESULTS)>(rt, value.getProperty(rt, "EXTRA_PARTIAL_RESULTS"), jsInvoker),
++      bridging::fromJs<decltype(types.REQUEST_PERMISSIONS_AUTO)>(rt, value.getProperty(rt, "REQUEST_PERMISSIONS_AUTO"), jsInvoker),
++      bridging::fromJs<decltype(types.RECOGNIZER_ENGINE)>(rt, value.getProperty(rt, "RECOGNIZER_ENGINE"), jsInvoker),
++      bridging::fromJs<decltype(types.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS)>(rt, value.getProperty(rt, "EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS"), jsInvoker),
++      bridging::fromJs<decltype(types.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS)>(rt, value.getProperty(rt, "EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS"), jsInvoker),
++      bridging::fromJs<decltype(types.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS)>(rt, value.getProperty(rt, "EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS"), jsInvoker)};
++    return result;
++  }
++
++#ifdef DEBUG
++  static jsi::String EXTRA_LANGUAGE_MODELToJs(jsi::Runtime &rt, decltype(types.EXTRA_LANGUAGE_MODEL) value) {
++    return bridging::toJs(rt, value);
++  }
++
++  static double EXTRA_MAX_RESULTSToJs(jsi::Runtime &rt, decltype(types.EXTRA_MAX_RESULTS) value) {
++    return bridging::toJs(rt, value);
++  }
++
++  static bool EXTRA_PARTIAL_RESULTSToJs(jsi::Runtime &rt, decltype(types.EXTRA_PARTIAL_RESULTS) value) {
++    return bridging::toJs(rt, value);
++  }
++
++  static bool REQUEST_PERMISSIONS_AUTOToJs(jsi::Runtime &rt, decltype(types.REQUEST_PERMISSIONS_AUTO) value) {
++    return bridging::toJs(rt, value);
++  }
++
++  static jsi::String RECOGNIZER_ENGINEToJs(jsi::Runtime &rt, decltype(types.RECOGNIZER_ENGINE) value) {
++    return bridging::toJs(rt, value);
++  }
++
++  static double EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLISToJs(jsi::Runtime &rt, decltype(types.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS) value) {
++    return bridging::toJs(rt, value);
++  }
++
++  static double EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLISToJs(jsi::Runtime &rt, decltype(types.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS) value) {
++    return bridging::toJs(rt, value);
++  }
++
++  static double EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLISToJs(jsi::Runtime &rt, decltype(types.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS) value) {
++    return bridging::toJs(rt, value);
++  }
++#endif
++
++  static jsi::Object toJs(
++      jsi::Runtime &rt,
++      const T &value,
++      const std::shared_ptr<CallInvoker> &jsInvoker) {
++    auto result = facebook::jsi::Object(rt);
++    if (value.EXTRA_LANGUAGE_MODEL) {
++      result.setProperty(rt, "EXTRA_LANGUAGE_MODEL", bridging::toJs(rt, value.EXTRA_LANGUAGE_MODEL.value(), jsInvoker));
++    }
++    if (value.EXTRA_MAX_RESULTS) {
++      result.setProperty(rt, "EXTRA_MAX_RESULTS", bridging::toJs(rt, value.EXTRA_MAX_RESULTS.value(), jsInvoker));
++    }
++    if (value.EXTRA_PARTIAL_RESULTS) {
++      result.setProperty(rt, "EXTRA_PARTIAL_RESULTS", bridging::toJs(rt, value.EXTRA_PARTIAL_RESULTS.value(), jsInvoker));
++    }
++    if (value.REQUEST_PERMISSIONS_AUTO) {
++      result.setProperty(rt, "REQUEST_PERMISSIONS_AUTO", bridging::toJs(rt, value.REQUEST_PERMISSIONS_AUTO.value(), jsInvoker));
++    }
++    if (value.RECOGNIZER_ENGINE) {
++      result.setProperty(rt, "RECOGNIZER_ENGINE", bridging::toJs(rt, value.RECOGNIZER_ENGINE.value(), jsInvoker));
++    }
++    if (value.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS) {
++      result.setProperty(rt, "EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS", bridging::toJs(rt, value.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS.value(), jsInvoker));
++    }
++    if (value.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS) {
++      result.setProperty(rt, "EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS", bridging::toJs(rt, value.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS.value(), jsInvoker));
++    }
++    if (value.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS) {
++      result.setProperty(rt, "EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS", bridging::toJs(rt, value.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS.value(), jsInvoker));
++    }
++    return result;
++  }
++};
++
++class JSI_EXPORT NativeVoiceAndroidCxxSpecJSI : public TurboModule {
++protected:
++  NativeVoiceAndroidCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
++
++public:
++  virtual void destroySpeech(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void startSpeech(jsi::Runtime &rt, jsi::String locale, jsi::Object opts, jsi::Function callback) = 0;
++  virtual void stopSpeech(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void cancelSpeech(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void isSpeechAvailable(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual jsi::Value getSpeechRecognitionServices(jsi::Runtime &rt) = 0;
++  virtual void isRecognizing(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void addListener(jsi::Runtime &rt, jsi::String eventType) = 0;
++  virtual void removeListeners(jsi::Runtime &rt, double count) = 0;
++
++};
++
++template <typename T>
++class JSI_EXPORT NativeVoiceAndroidCxxSpec : public TurboModule {
++public:
++  jsi::Value create(jsi::Runtime &rt, const jsi::PropNameID &propName) override {
++    return delegate_.create(rt, propName);
++  }
++
++  std::vector<jsi::PropNameID> getPropertyNames(jsi::Runtime& runtime) override {
++    return delegate_.getPropertyNames(runtime);
++  }
++
++  static constexpr std::string_view kModuleName = "Voice";
++
++protected:
++  NativeVoiceAndroidCxxSpec(std::shared_ptr<CallInvoker> jsInvoker)
++    : TurboModule(std::string{NativeVoiceAndroidCxxSpec::kModuleName}, jsInvoker),
++      delegate_(reinterpret_cast<T*>(this), jsInvoker) {}
++
++
++private:
++  class Delegate : public NativeVoiceAndroidCxxSpecJSI {
++  public:
++    Delegate(T *instance, std::shared_ptr<CallInvoker> jsInvoker) :
++      NativeVoiceAndroidCxxSpecJSI(std::move(jsInvoker)), instance_(instance) {
++
++    }
++
++    void destroySpeech(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::destroySpeech) == 2,
++          "Expected destroySpeech(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::destroySpeech, jsInvoker_, instance_, std::move(callback));
++    }
++    void startSpeech(jsi::Runtime &rt, jsi::String locale, jsi::Object opts, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::startSpeech) == 4,
++          "Expected startSpeech(...) to have 4 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::startSpeech, jsInvoker_, instance_, std::move(locale), std::move(opts), std::move(callback));
++    }
++    void stopSpeech(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::stopSpeech) == 2,
++          "Expected stopSpeech(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::stopSpeech, jsInvoker_, instance_, std::move(callback));
++    }
++    void cancelSpeech(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::cancelSpeech) == 2,
++          "Expected cancelSpeech(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::cancelSpeech, jsInvoker_, instance_, std::move(callback));
++    }
++    void isSpeechAvailable(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::isSpeechAvailable) == 2,
++          "Expected isSpeechAvailable(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::isSpeechAvailable, jsInvoker_, instance_, std::move(callback));
++    }
++    jsi::Value getSpeechRecognitionServices(jsi::Runtime &rt) override {
++      static_assert(
++          bridging::getParameterCount(&T::getSpeechRecognitionServices) == 1,
++          "Expected getSpeechRecognitionServices(...) to have 1 parameters");
++
++      return bridging::callFromJs<jsi::Value>(
++          rt, &T::getSpeechRecognitionServices, jsInvoker_, instance_);
++    }
++    void isRecognizing(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::isRecognizing) == 2,
++          "Expected isRecognizing(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::isRecognizing, jsInvoker_, instance_, std::move(callback));
++    }
++    void addListener(jsi::Runtime &rt, jsi::String eventType) override {
++      static_assert(
++          bridging::getParameterCount(&T::addListener) == 2,
++          "Expected addListener(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::addListener, jsInvoker_, instance_, std::move(eventType));
++    }
++    void removeListeners(jsi::Runtime &rt, double count) override {
++      static_assert(
++          bridging::getParameterCount(&T::removeListeners) == 2,
++          "Expected removeListeners(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::removeListeners, jsInvoker_, instance_, std::move(count));
++    }
++
++  private:
++    friend class NativeVoiceAndroidCxxSpec;
++    T *instance_;
++  };
++
++  Delegate delegate_;
++};
++
++
++  class JSI_EXPORT NativeVoiceIOSCxxSpecJSI : public TurboModule {
++protected:
++  NativeVoiceIOSCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
++
++public:
++  virtual void destroySpeech(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void startSpeech(jsi::Runtime &rt, jsi::String locale, jsi::Function callback) = 0;
++  virtual void startTranscription(jsi::Runtime &rt, jsi::String filePath, jsi::String locale, jsi::Function callback) = 0;
++  virtual void stopSpeech(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void stopTranscription(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void cancelSpeech(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void cancelTranscription(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void isSpeechAvailable(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void isRecognizing(jsi::Runtime &rt, jsi::Function callback) = 0;
++  virtual void addListener(jsi::Runtime &rt, jsi::String eventType) = 0;
++  virtual void removeListeners(jsi::Runtime &rt, double count) = 0;
++  virtual void destroyTranscription(jsi::Runtime &rt, jsi::Function callback) = 0;
++
++};
++
++template <typename T>
++class JSI_EXPORT NativeVoiceIOSCxxSpec : public TurboModule {
++public:
++  jsi::Value create(jsi::Runtime &rt, const jsi::PropNameID &propName) override {
++    return delegate_.create(rt, propName);
++  }
++
++  std::vector<jsi::PropNameID> getPropertyNames(jsi::Runtime& runtime) override {
++    return delegate_.getPropertyNames(runtime);
++  }
++
++  static constexpr std::string_view kModuleName = "Voice";
++
++protected:
++  NativeVoiceIOSCxxSpec(std::shared_ptr<CallInvoker> jsInvoker)
++    : TurboModule(std::string{NativeVoiceIOSCxxSpec::kModuleName}, jsInvoker),
++      delegate_(reinterpret_cast<T*>(this), jsInvoker) {}
++
++
++private:
++  class Delegate : public NativeVoiceIOSCxxSpecJSI {
++  public:
++    Delegate(T *instance, std::shared_ptr<CallInvoker> jsInvoker) :
++      NativeVoiceIOSCxxSpecJSI(std::move(jsInvoker)), instance_(instance) {
++
++    }
++
++    void destroySpeech(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::destroySpeech) == 2,
++          "Expected destroySpeech(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::destroySpeech, jsInvoker_, instance_, std::move(callback));
++    }
++    void startSpeech(jsi::Runtime &rt, jsi::String locale, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::startSpeech) == 3,
++          "Expected startSpeech(...) to have 3 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::startSpeech, jsInvoker_, instance_, std::move(locale), std::move(callback));
++    }
++    void startTranscription(jsi::Runtime &rt, jsi::String filePath, jsi::String locale, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::startTranscription) == 4,
++          "Expected startTranscription(...) to have 4 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::startTranscription, jsInvoker_, instance_, std::move(filePath), std::move(locale), std::move(callback));
++    }
++    void stopSpeech(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::stopSpeech) == 2,
++          "Expected stopSpeech(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::stopSpeech, jsInvoker_, instance_, std::move(callback));
++    }
++    void stopTranscription(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::stopTranscription) == 2,
++          "Expected stopTranscription(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::stopTranscription, jsInvoker_, instance_, std::move(callback));
++    }
++    void cancelSpeech(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::cancelSpeech) == 2,
++          "Expected cancelSpeech(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::cancelSpeech, jsInvoker_, instance_, std::move(callback));
++    }
++    void cancelTranscription(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::cancelTranscription) == 2,
++          "Expected cancelTranscription(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::cancelTranscription, jsInvoker_, instance_, std::move(callback));
++    }
++    void isSpeechAvailable(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::isSpeechAvailable) == 2,
++          "Expected isSpeechAvailable(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::isSpeechAvailable, jsInvoker_, instance_, std::move(callback));
++    }
++    void isRecognizing(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::isRecognizing) == 2,
++          "Expected isRecognizing(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::isRecognizing, jsInvoker_, instance_, std::move(callback));
++    }
++    void addListener(jsi::Runtime &rt, jsi::String eventType) override {
++      static_assert(
++          bridging::getParameterCount(&T::addListener) == 2,
++          "Expected addListener(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::addListener, jsInvoker_, instance_, std::move(eventType));
++    }
++    void removeListeners(jsi::Runtime &rt, double count) override {
++      static_assert(
++          bridging::getParameterCount(&T::removeListeners) == 2,
++          "Expected removeListeners(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::removeListeners, jsInvoker_, instance_, std::move(count));
++    }
++    void destroyTranscription(jsi::Runtime &rt, jsi::Function callback) override {
++      static_assert(
++          bridging::getParameterCount(&T::destroyTranscription) == 2,
++          "Expected destroyTranscription(...) to have 2 parameters");
++
++      return bridging::callFromJs<void>(
++          rt, &T::destroyTranscription, jsInvoker_, instance_, std::move(callback));
++    }
++
++  private:
++    friend class NativeVoiceIOSCxxSpec;
++    T *instance_;
++  };
++
++  Delegate delegate_;
++};
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ShadowNodes.cpp b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ShadowNodes.cpp
+new file mode 100644
+index 0000000..66f4669
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ShadowNodes.cpp
+@@ -0,0 +1,17 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateShadowNodeCpp.js
++ */
++
++#include <react/renderer/components/RNVoiceSpec/ShadowNodes.h>
++
++namespace facebook::react {
++
++
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ShadowNodes.h b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ShadowNodes.h
+new file mode 100644
+index 0000000..c4e857c
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/ShadowNodes.h
+@@ -0,0 +1,23 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateShadowNodeH.js
++ */
++
++#pragma once
++
++#include <react/renderer/components/RNVoiceSpec/EventEmitters.h>
++#include <react/renderer/components/RNVoiceSpec/Props.h>
++#include <react/renderer/components/RNVoiceSpec/States.h>
++#include <react/renderer/components/view/ConcreteViewShadowNode.h>
++#include <jsi/jsi.h>
++
++namespace facebook::react {
++
++
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/States.cpp b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/States.cpp
+new file mode 100644
+index 0000000..1238e01
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/States.cpp
+@@ -0,0 +1,16 @@
++
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateStateCpp.js
++ */
++#include <react/renderer/components/RNVoiceSpec/States.h>
++
++namespace facebook::react {
++
++
++
++} // namespace facebook::react
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/States.h b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/States.h
+new file mode 100644
+index 0000000..c011ed8
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/jni/react/renderer/components/RNVoiceSpec/States.h
+@@ -0,0 +1,19 @@
++/**
++ * This code was generated by [react-native-codegen](https://www.npmjs.com/package/react-native-codegen).
++ *
++ * Do not edit this file as changes may cause incorrect behavior and will be lost
++ * once the code is regenerated.
++ *
++ * @generated by codegen project: GenerateStateH.js
++ */
++#pragma once
++
++#ifdef ANDROID
++#include <folly/dynamic.h>
++#endif
++
++namespace facebook::react {
++
++
++
++} // namespace facebook::react
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/schema.json b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/schema.json
+new file mode 100644
+index 0000000..8d8ae2f
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/source/codegen/schema.json
+@@ -0,0 +1 @@
++{"modules":{"NativeVoiceAndroid":{"type":"NativeModule","aliasMap":{"SpeechOptions":{"type":"ObjectTypeAnnotation","properties":[{"name":"EXTRA_LANGUAGE_MODEL","optional":true,"typeAnnotation":{"type":"StringTypeAnnotation"}},{"name":"EXTRA_MAX_RESULTS","optional":true,"typeAnnotation":{"type":"NumberTypeAnnotation"}},{"name":"EXTRA_PARTIAL_RESULTS","optional":true,"typeAnnotation":{"type":"BooleanTypeAnnotation"}},{"name":"REQUEST_PERMISSIONS_AUTO","optional":true,"typeAnnotation":{"type":"BooleanTypeAnnotation"}},{"name":"RECOGNIZER_ENGINE","optional":true,"typeAnnotation":{"type":"StringTypeAnnotation"}},{"name":"EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS","optional":true,"typeAnnotation":{"type":"NumberTypeAnnotation"}},{"name":"EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS","optional":true,"typeAnnotation":{"type":"NumberTypeAnnotation"}},{"name":"EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS","optional":true,"typeAnnotation":{"type":"NumberTypeAnnotation"}}]}},"enumMap":{},"spec":{"eventEmitters":[],"methods":[{"name":"destroySpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"startSpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"locale","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}},{"name":"opts","optional":false,"typeAnnotation":{"type":"TypeAliasTypeAnnotation","name":"SpeechOptions"}},{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"stopSpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"cancelSpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"isSpeechAvailable","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"isAvailable","optional":false,"typeAnnotation":{"type":"BooleanTypeAnnotation"}},{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"getSpeechRecognitionServices","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"PromiseTypeAnnotation","elementType":{"type":"ArrayTypeAnnotation","elementType":{"type":"StringTypeAnnotation"}}},"params":[]}},{"name":"isRecognizing","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"isRecognizing","optional":false,"typeAnnotation":{"type":"BooleanTypeAnnotation"}}]}}]}},{"name":"addListener","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"eventType","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}},{"name":"removeListeners","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"count","optional":false,"typeAnnotation":{"type":"NumberTypeAnnotation"}}]}}]},"moduleName":"Voice","excludedPlatforms":["iOS"]},"NativeVoiceIOS":{"type":"NativeModule","aliasMap":{},"enumMap":{},"spec":{"eventEmitters":[],"methods":[{"name":"destroySpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"startSpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"locale","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}},{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"startTranscription","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"filePath","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}},{"name":"locale","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}},{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"stopSpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"stopTranscription","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"cancelSpeech","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"cancelTranscription","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"isSpeechAvailable","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"isAvailable","optional":false,"typeAnnotation":{"type":"BooleanTypeAnnotation"}},{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}},{"name":"isRecognizing","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"isRecognizing","optional":false,"typeAnnotation":{"type":"BooleanTypeAnnotation"}}]}}]}},{"name":"addListener","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"eventType","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}},{"name":"removeListeners","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"count","optional":false,"typeAnnotation":{"type":"NumberTypeAnnotation"}}]}},{"name":"destroyTranscription","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"callback","optional":false,"typeAnnotation":{"type":"FunctionTypeAnnotation","returnTypeAnnotation":{"type":"VoidTypeAnnotation"},"params":[{"name":"error","optional":false,"typeAnnotation":{"type":"StringTypeAnnotation"}}]}}]}}]},"moduleName":"Voice","excludedPlatforms":["android"]}}}
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..9f6fc44
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    package="com.wenkesj.voice" >
++
++    <uses-sdk
++        android:minSdkVersion="24"
++        tools:overrideLibrary="com.facebook.react" />
++
++    <uses-permission android:name="android.permission.RECORD_AUDIO" />
++    <uses-permission android:name="android.permission.INTERNET" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json
+new file mode 100644
+index 0000000..635eb61
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "com.wenkesj.voice",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties
+new file mode 100644
+index 0000000..1211b1e
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties
+@@ -0,0 +1,6 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
++coreLibraryDesugaringEnabled=false
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar
+new file mode 100644
+index 0000000..15ca73f
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar
+new file mode 100644
+index 0000000..9bf9a98
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..acece3a
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Wed Jun 03 22:34:32 IST 2026
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..2567529
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/build/generated/res/resValues/debug"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugAssets/merger.xml b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugAssets/merger.xml
+new file mode 100644
+index 0000000..4f603b5
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/assets"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/debug/assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/shader_assets/debug/compileDebugShaders/out"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..c636719
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/debug/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+new file mode 100644
+index 0000000..8bd0dc3
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/debug/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module
+new file mode 100644
+index 0000000..9dbc290
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/wenkesj/voice/BuildConfig.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/wenkesj/voice/BuildConfig.class
+new file mode 100644
+index 0000000..7bc5ae4
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/wenkesj/voice/BuildConfig.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/wenkesj/voice/NativeVoiceAndroidSpec.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/wenkesj/voice/NativeVoiceAndroidSpec.class
+new file mode 100644
+index 0000000..6f3f13d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/wenkesj/voice/NativeVoiceAndroidSpec.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt
+new file mode 100644
+index 0000000..2a49e66
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt
+@@ -0,0 +1,19 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    xmlns:tools="http://schemas.android.com/tools"
++4    package="com.wenkesj.voice" >
++5
++6    <uses-sdk
++6-->/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:5:5-60
++7        android:minSdkVersion="24"
++8        tools:overrideLibrary="com.facebook.react" />
++8-->/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:5:15-57
++9
++10    <uses-permission android:name="android.permission.RECORD_AUDIO" />
++10-->/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:6:5-71
++10-->/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:6:22-68
++11    <uses-permission android:name="android.permission.INTERNET" />
++11-->/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:7:5-67
++11-->/Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:7:22-64
++12
++13</manifest>
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml
+new file mode 100644
+index 0000000..9f6fc44
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    package="com.wenkesj.voice" >
++
++    <uses-sdk
++        android:minSdkVersion="24"
++        tools:overrideLibrary="com.facebook.react" />
++
++    <uses-permission android:name="android.permission.RECORD_AUDIO" />
++    <uses-permission android:name="android.permission.INTERNET" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/navigation_json/debug/extractDeepLinksDebug/navigation.json b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/navigation_json/debug/extractDeepLinksDebug/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/navigation_json/debug/extractDeepLinksDebug/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt
+new file mode 100644
+index 0000000..08f4ebe
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt
+@@ -0,0 +1 @@
++0 Warning/Error
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module
+new file mode 100644
+index 0000000..9dbc290
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/BuildConfig.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/BuildConfig.class
+new file mode 100644
+index 0000000..7bc5ae4
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/BuildConfig.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/NativeVoiceAndroidSpec.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/NativeVoiceAndroidSpec.class
+new file mode 100644
+index 0000000..6f3f13d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/NativeVoiceAndroidSpec.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/Voice.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/Voice.class
+new file mode 100644
+index 0000000..0903817
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/Voice.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceModule$Companion.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceModule$Companion.class
+new file mode 100644
+index 0000000..b5d8444
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceModule$Companion.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceModule.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceModule.class
+new file mode 100644
+index 0000000..b9f1beb
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceModule.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoicePackage.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoicePackage.class
+new file mode 100644
+index 0000000..237337f
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoicePackage.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceSpec$Companion.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceSpec$Companion.class
+new file mode 100644
+index 0000000..b14e22b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceSpec$Companion.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceSpec.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceSpec.class
+new file mode 100644
+index 0000000..1ed0e94
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/wenkesj/voice/VoiceSpec.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar
+new file mode 100644
+index 0000000..400daeb
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
+new file mode 100644
+index 0000000..739957e
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
+@@ -0,0 +1 @@
++com.wenkesj.voice
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab
+new file mode 100644
+index 0000000..0708a22
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream
+new file mode 100644
+index 0000000..860f20c
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len
+new file mode 100644
+index 0000000..9b00474
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at
+new file mode 100644
+index 0000000..f6ddf91
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i
+new file mode 100644
+index 0000000..86a4b37
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab
+new file mode 100644
+index 0000000..7c9c7cd
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream
+new file mode 100644
+index 0000000..6217267
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len
+new file mode 100644
+index 0000000..26579f8
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len
+new file mode 100644
+index 0000000..9e27f73
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at
+new file mode 100644
+index 0000000..d89ba7a
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i
+new file mode 100644
+index 0000000..acc5334
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab
+new file mode 100644
+index 0000000..7009a35
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream
+new file mode 100644
+index 0000000..6217267
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len
+new file mode 100644
+index 0000000..26579f8
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len
+new file mode 100644
+index 0000000..9e27f73
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at
+new file mode 100644
+index 0000000..3e4300f
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i
+new file mode 100644
+index 0000000..acc5334
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab
+new file mode 100644
+index 0000000..0c29c2a
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.keystream
+new file mode 100644
+index 0000000..4bea88c
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.keystream.len
+new file mode 100644
+index 0000000..e5009a4
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.len
+new file mode 100644
+index 0000000..01bdaa1
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.values.at
+new file mode 100644
+index 0000000..00dc16d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab_i
+new file mode 100644
+index 0000000..dc68261
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab
+new file mode 100644
+index 0000000..7009a35
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream
+new file mode 100644
+index 0000000..2f97862
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len
+new file mode 100644
+index 0000000..26579f8
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len
+new file mode 100644
+index 0000000..9e27f73
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at
+new file mode 100644
+index 0000000..3e4300f
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i
+new file mode 100644
+index 0000000..3d9eba9
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab
+new file mode 100644
+index 0000000..08c6491
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream
+new file mode 100644
+index 0000000..8c52f8b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len
+new file mode 100644
+index 0000000..bab82df
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len
+new file mode 100644
+index 0000000..817b326
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at
+new file mode 100644
+index 0000000..591f735
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i
+new file mode 100644
+index 0000000..721c068
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab
+new file mode 100644
+index 0000000..90e9770
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream
+new file mode 100644
+index 0000000..860f20c
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len
+new file mode 100644
+index 0000000..9b00474
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at
+new file mode 100644
+index 0000000..3da9faf
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i
+new file mode 100644
+index 0000000..86a4b37
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab
+new file mode 100644
+index 0000000..38a5fc8
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream
+new file mode 100644
+index 0000000..b65948e
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len
+new file mode 100644
+index 0000000..905e671
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at
+new file mode 100644
+index 0000000..07d9cfe
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i
+new file mode 100644
+index 0000000..ad7046d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab
+new file mode 100644
+index 0000000..0f3528a
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream
+new file mode 100644
+index 0000000..dcee680
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len
+new file mode 100644
+index 0000000..a747334
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at
+new file mode 100644
+index 0000000..bd7775b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i
+new file mode 100644
+index 0000000..2d112cd
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab
+new file mode 100644
+index 0000000..26d3b09
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab
+@@ -0,0 +1,2 @@
++4
++0
+\ No newline at end of file
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab
+new file mode 100644
+index 0000000..5cb3cf9
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream
+new file mode 100644
+index 0000000..860f20c
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len
+new file mode 100644
+index 0000000..9b00474
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at
+new file mode 100644
+index 0000000..3e23c2a
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i
+new file mode 100644
+index 0000000..86a4b37
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab
+new file mode 100644
+index 0000000..0a72490
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream
+new file mode 100644
+index 0000000..6e7a926
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len
+new file mode 100644
+index 0000000..eb52963
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at
+new file mode 100644
+index 0000000..d45451a
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i
+new file mode 100644
+index 0000000..6936967
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab
+new file mode 100644
+index 0000000..2999b27
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream
+new file mode 100644
+index 0000000..2d2ba1c
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len
+new file mode 100644
+index 0000000..a096199
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len
+new file mode 100644
+index 0000000..b858b97
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at
+new file mode 100644
+index 0000000..7908e8d
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i
+new file mode 100644
+index 0000000..f70733b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin
+new file mode 100644
+index 0000000..f3b8fa0
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin
+new file mode 100644
+index 0000000..4270fb6
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin
+new file mode 100644
+index 0000000..97ce41f
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/@dev-amirzubair/react-native-voice/android/build/outputs/logs/manifest-merger-debug-report.txt
+new file mode 100644
+index 0000000..5767354
+--- /dev/null
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/build/outputs/logs/manifest-merger-debug-report.txt
+@@ -0,0 +1,29 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:1:1-8:12
++INJECTED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:1:1-8:12
++	package
++		ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:2:5-32
++		INJECTED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml
++	xmlns:tools
++		ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:3:5-51
++	xmlns:android
++		ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:1:11-69
++uses-sdk
++ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:5:5-60
++INJECTED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:5:5-60
++INJECTED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:5:5-60
++	tools:overrideLibrary
++		ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:5:15-57
++	android:targetSdkVersion
++		INJECTED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml
++uses-permission#android.permission.RECORD_AUDIO
++ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:6:5-71
++	android:name
++		ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:6:22-68
++uses-permission#android.permission.INTERNET
++ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:7:5-67
++	android:name
++		ADDED from /Users/mohammedgufran/Desktop/RN_Encountr/node_modules/@dev-amirzubair/react-native-voice/android/src/main/AndroidManifest.xml:7:22-64
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..56c9aad
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module
+new file mode 100644
+index 0000000..9dbc290
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/META-INF/dev-amirzubair_react-native-voice_debug.kotlin_module differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/Voice.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/Voice.class
+new file mode 100644
+index 0000000..0903817
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/Voice.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceModule$Companion.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceModule$Companion.class
+new file mode 100644
+index 0000000..b5d8444
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceModule$Companion.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceModule.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceModule.class
+new file mode 100644
+index 0000000..b9f1beb
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceModule.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoicePackage.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoicePackage.class
+new file mode 100644
+index 0000000..237337f
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoicePackage.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceSpec$Companion.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceSpec$Companion.class
+new file mode 100644
+index 0000000..b14e22b
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceSpec$Companion.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceSpec.class b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceSpec.class
+new file mode 100644
+index 0000000..1ed0e94
+Binary files /dev/null and b/node_modules/@dev-amirzubair/react-native-voice/android/build/tmp/kotlin-classes/debug/com/wenkesj/voice/VoiceSpec.class differ
+diff --git a/node_modules/@dev-amirzubair/react-native-voice/android/src/main/java/com/wenkesj/voice/Voice.kt b/node_modules/@dev-amirzubair/react-native-voice/android/src/main/java/com/wenkesj/voice/Voice.kt
+index 086f395..9f26e36 100644
+--- a/node_modules/@dev-amirzubair/react-native-voice/android/src/main/java/com/wenkesj/voice/Voice.kt
++++ b/node_modules/@dev-amirzubair/react-native-voice/android/src/main/java/com/wenkesj/voice/Voice.kt
+@@ -304,17 +304,22 @@ class Voice(context: ReactApplicationContext) : RecognitionListener {
+   }
+ 
+   /**
+-   * Send an event to JavaScript via RCTDeviceEventEmitter
+-   * Works with both Bridge mode and Bridgeless mode (new architecture)
++   * Send an event to JavaScript via RCTDeviceEventEmitter.
++   * Prefer ReactContext.emitDeviceEvent for Bridgeless / New Architecture compatibility.
+    */
+   private fun sendEvent(eventName: String, params: WritableMap) {
+     val mainHandler = Handler(reactContext.mainLooper)
+     mainHandler.post {
+       try {
+-        val deviceEventEmitter = reactContext.getJSModule(RCTDeviceEventEmitter::class.java)
+-        deviceEventEmitter?.emit(eventName, params)
++        reactContext.emitDeviceEvent(eventName, params)
+       } catch (e: Exception) {
+-        // Silently ignore event emission errors
++        try {
++          val deviceEventEmitter =
++            reactContext.getJSModule(RCTDeviceEventEmitter::class.java)
++          deviceEventEmitter?.emit(eventName, params)
++        } catch (fallbackError: Exception) {
++          android.util.Log.w("Voice", "Failed to emit $eventName: ${fallbackError.message}")
++        }
+       }
+     }
+   }
