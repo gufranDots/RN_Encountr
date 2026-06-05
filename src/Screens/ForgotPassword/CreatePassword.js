@@ -30,7 +30,10 @@ import BorderTextInput from '../../Components/BorderTextInput';
 import fontFamily from '../../styles/fontFamily';
 import {CopyIcon, TickIcon} from '../../assets/svgs';
 import { getCommonStyles } from '../../styles/commonStyles';
+import { useTheme } from '../../theme/ThemeProvider';
 enableFreeze();
+
+
 const CreatePassword = props => {
   const {route, navigation} = props;
   const { theme } = useTheme();
@@ -85,14 +88,7 @@ const CreatePassword = props => {
         showError(ApiError(error));
       });
   };
-  // const onClickCopy = () => {
-  //   setCopy(true);
-  //   Clipboard.setString(ParamDataa?.response?.user_name);
-  //   showSuccess('Username Copied');
-  //   setTimeout(() => {
-  //     setCopy(false);
-  //   }, 2000);
-  // };
+
   return (
     <WrapperContainer>
       <HeaderComp

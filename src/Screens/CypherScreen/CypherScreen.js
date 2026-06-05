@@ -19,11 +19,9 @@ import {
 } from '../../Components/cypher/voice/VoiceButton';
 
 
-import ArcLine from '../../Components/cypher/orbit/ArcLine';
-import FloatingParticles from '../../Components/cypher/orbit/FloatingParticles';
 import HudCorners from '../../Components/cypher/orbit/HudCorners';
+import OrbitAnimation from '../../Components/cypher/orbit/OrbitAnimation';
 import WaveformBars from '../../Components/cypher/voice/WaveformBars';
-import OrbitRings from '../../Components/cypher/orbit/OrbitRings';
 import QuestionList from '../../Components/cypher/questions/QuestionList';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -47,13 +45,11 @@ import imagesPath from '../../constants/imagesPath';
 import { WrapperContainer } from '../../Components';
 const ORBIT_HEIGHT = height * 0.42;
 
-const CypherOrbitSection = React.memo(({state}) => (
+const ORBIT_SIZE = width * 0.72;
+
+const CypherOrbitSection = React.memo(() => (
   <View style={styles.orbitSection}>
-    <View style={styles.orbitWrap}>
-      <OrbitRings state={state} />
-      <FloatingParticles state={state} />
-      <ArcLine state={state} />
-    </View>
+    <OrbitAnimation size={ORBIT_SIZE} hue="purple" idSuffix="cypher" />
   </View>
 ));
 
@@ -368,7 +364,7 @@ const CypherScreen = ({navigation}) => {
               ) : users?.length > 0 ? (
                 <UserResultsCarousel users={users} />
               ) : (
-                <CypherOrbitSection state={state} />
+                <CypherOrbitSection />
               )}
             </ScrollView>
 
@@ -450,12 +446,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: moderateScale(8),
-  },
-  orbitWrap: {
-    width: width * 0.72,
-    height: ORBIT_HEIGHT * 0.85,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   footer: {
     justifyContent: 'flex-end',
