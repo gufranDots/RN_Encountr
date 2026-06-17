@@ -6,7 +6,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import {
+  createVoicePlayer,
+  resetVoicePlayer,
+  startVoiceMessage,
+  stopVoiceMessage,
+} from '../../utils/voiceMessagePlayer';
 import {
   Alert,
   Image,
@@ -158,6 +163,8 @@ const Home = ({ navigation, route }) => {
   const [playingVoiceId, setPlayingVoiceId] = useState(null);
   const audioPlayerRef = useRef(null);
   const playingVoiceIdRef = useRef(null);
+  const pendingVoiceIdRef = useRef(null);
+  const voicePlaybackTokenRef = useRef(0);
   const flatListRef = useRef(null);
   const cypherPulseAnim = useRef(new Animated.Value(0)).current;
 
@@ -187,26 +194,17 @@ const Home = ({ navigation, route }) => {
 
   const _getAudioPlayer = useCallback(() => {
     if (!audioPlayerRef.current) {
-      audioPlayerRef.current = new AudioRecorderPlayer();
+      audioPlayerRef.current = createVoicePlayer();
     }
     return audioPlayerRef.current;
   }, []);
 
   const _stopVoiceMessage = useCallback(async () => {
-    const player = audioPlayerRef.current;
-    if (!player) {
-      setPlayingVoiceId(null);
-      playingVoiceIdRef.current = null;
-      return;
-    }
-    try {
-      await player.stopPlayer();
-    } catch (e) {}
-    try {
-      player.removePlayBackListener();
-    } catch (e) {}
-    setPlayingVoiceId(null);
+    voicePlaybackTokenRef.current += 1;
     playingVoiceIdRef.current = null;
+    pendingVoiceIdRef.current = null;
+    setPlayingVoiceId(null);
+    await stopVoiceMessage(audioPlayerRef.current);
   }, []);
 
   const _onSpeakerPress = useCallback(
@@ -214,34 +212,53 @@ const Home = ({ navigation, route }) => {
       const url =
         typeof item?.voice_message === 'string' ? item.voice_message.trim() : '';
       if (!url) return;
-      const itemId = item?.id ?? item?._id;
+      const rawId = item?.id ?? item?._id;
+      const itemId = rawId == null ? null : String(rawId);
 
-      if (playingVoiceIdRef.current && playingVoiceIdRef.current === itemId) {
+      if (
+        (playingVoiceIdRef.current && playingVoiceIdRef.current === itemId) ||
+        (pendingVoiceIdRef.current && pendingVoiceIdRef.current === itemId)
+      ) {
         await _stopVoiceMessage();
         return;
       }
 
-      if (playingVoiceIdRef.current) {
+      if (playingVoiceIdRef.current || pendingVoiceIdRef.current) {
         await _stopVoiceMessage();
       }
 
+      const playbackToken = voicePlaybackTokenRef.current;
+      pendingVoiceIdRef.current = itemId;
+      setPlayingVoiceId(itemId);
+
       try {
         const player = _getAudioPlayer();
+        await startVoiceMessage(player, url);
+
+        if (playbackToken !== voicePlaybackTokenRef.current) {
+          await stopVoiceMessage(player);
+          return;
+        }
+
+        pendingVoiceIdRef.current = null;
         playingVoiceIdRef.current = itemId;
         setPlayingVoiceId(itemId);
-        await player.startPlayer(url);
         player.addPlayBackListener(e => {
           if (
-            e?.duration > 0 &&
-            e?.currentPosition >= e?.duration
+            e?.isFinished ||
+            (e?.duration > 0 && e?.currentPosition >= e?.duration)
           ) {
             _stopVoiceMessage();
           }
         });
       } catch (err) {
-        playingVoiceIdRef.current = null;
-        setPlayingVoiceId(null);
-        showError(err?.message || 'Unable to play voice message');
+        if (playbackToken === voicePlaybackTokenRef.current) {
+          resetVoicePlayer(audioPlayerRef);
+          playingVoiceIdRef.current = null;
+          pendingVoiceIdRef.current = null;
+          setPlayingVoiceId(null);
+          showError(err?.message || 'Unable to play voice message');
+        }
       }
     },
     [_getAudioPlayer, _stopVoiceMessage],
@@ -515,15 +532,7 @@ const Home = ({ navigation, route }) => {
 
   useEffect(() => {
     return () => {
-      const player = audioPlayerRef.current;
-      if (player) {
-        try {
-          player.stopPlayer();
-        } catch (e) {}
-        try {
-          player.removePlayBackListener();
-        } catch (e) {}
-      }
+      stopVoiceMessage(audioPlayerRef.current);
       playingVoiceIdRef.current = null;
     };
   }, []);
@@ -1010,13 +1019,16 @@ const Home = ({ navigation, route }) => {
 
   const renderProfileListItem = useCallback(
     ({ item }) => {
-      const itemId = item?.id ?? item?._id;
+      const rawId = item?.id ?? item?._id;
+      const itemId = rawId == null ? null : String(rawId);
+      const isVoiceActive =
+        playingVoiceId != null && itemId != null && playingVoiceId === itemId;
       return (
         <HomeComponent
           item={item}
           onPress={onUserCardPress}
           onSpeakerPress={_onSpeakerPress}
-          isPlayingVoice={playingVoiceId != null && playingVoiceId === itemId}
+          isPlayingVoice={isVoiceActive}
         />
       );
     },
@@ -1644,7 +1656,7 @@ const Home = ({ navigation, route }) => {
         onKeepSwiping={_onKeepSwiping}
       />
 
-      <View pointerEvents="box-none" style={enCounterHomestyles.cypherFabWrap}>
+      {/* <View pointerEvents="box-none" style={enCounterHomestyles.cypherFabWrap}>
         <Animated.View
           pointerEvents="none"
           style={[
@@ -1679,7 +1691,7 @@ const Home = ({ navigation, route }) => {
           </LinearGradient>
           <Text style={enCounterHomestyles.cypherFabLabel}>CYPHER</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </WrapperContainer>
   );
 };

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -24,6 +23,7 @@ import strings from '../../constants/Languages';
 import navigationString from '../../constants/navigationString';
 import {
   loginApi,
+  getUserProfile,
   saveLoginToStore,
   saveProfileSetupDoneToStore,
   socailLogin,
@@ -43,6 +43,7 @@ import { ensureFcmToken, requestUserPermission } from '../../utils/notificationS
 import { fbLogin, googleLogin, handleAppleLogin } from '../../utils/socialLogin';
 import { getItem, setItem, setUserData } from '../../utils/utils';
 import { checkIsEmpty, checkLength } from '../../utils/validations';
+import { isUserProfileComplete } from '../../utils/profileCompletion';
 import { useTheme } from '../../theme/ThemeProvider';
 
 enableFreeze();
@@ -122,7 +123,8 @@ const LoginScreen = ({ navigation }) => {
     loginApi(apiData)
       .then(res => {
         resetStates();
-        if (res?.data?.filters && res?.data?.photos?.length > 0) {
+        const profileData = res?.data || {};
+        if (isUserProfileComplete(profileData)) {
           saveProfileSetupDoneToStore(true);
         } else {
           saveLoginToStore(false);
@@ -157,11 +159,11 @@ const LoginScreen = ({ navigation }) => {
 
     socailLogin(data)
       .then(res => {
-
         setLoading(false);
         if (res.data) {
           setUserData(res.data)
             .then(() => saveUserDataToStore(res.data))
+            .then(() => getUserProfile())
             .catch(console.log);
         }
       })
@@ -247,17 +249,22 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <WrapperContainer paddingAvailable={moderateScale(24)} isSafeAreaAvailable={true}>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={{ flex: 1 }}>
-          <HeaderComp
-            leftIcon={imagesPath.ic_back}
-            onPressBack={() => navigation.goBack()}
-          />
-          <KeyboardAwareScrollView
-            bounces={false}
-            keyboardShouldPersistTaps="always"
-            showsVerticalScrollIndicator={false}>
+    <WrapperContainer isSafeAreaAvailable={true}>
+      <View style={{ flex: 1 }}>
+        <HeaderComp
+          viewStyle={{  marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
+          leftIcon={imagesPath.ic_back}
+          onPressBack={() => navigation.goBack()}
+        />
+        <KeyboardAwareScrollView
+          style={{ flex: 1 }}
+          enableOnAndroid
+          extraScrollHeight={Platform.OS === 'android' ? moderateScaleVertical(24) : 0}
+          keyboardDismissMode="on-drag"
+          bounces={false}
+          keyboardShouldPersistTaps="always"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: moderateScaleVertical(24) }}>
             <View style={styles.firstView}>
               <GradientText
                 text={strings.LOG_IN}
@@ -361,9 +368,8 @@ const LoginScreen = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
             </View>
-          </KeyboardAwareScrollView>
-        </View>
-      </TouchableWithoutFeedback>
+        </KeyboardAwareScrollView>
+      </View>
       <Loader isLoading={isLoading} />
     </WrapperContainer>
   );

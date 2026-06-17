@@ -58,6 +58,7 @@ const CypherFooterPanel = React.memo(
     state,
     transcript,
     recordTime,
+    isRecording,
     response,
     questions,
     questionHelp,
@@ -114,7 +115,7 @@ const CypherFooterPanel = React.memo(
                 onStopSpeech={stopSpeaking}
               />
             )}
-            {!!recordTime && recordTime !== '00:00' && (
+            {isRecording && (
               <TranscriptCard
                 text={`Recording ${recordTime}`}
                 visible
@@ -257,6 +258,7 @@ const CypherScreen = ({navigation}) => {
     isInitialLoad,
     highlightWordIndex,
     recordTime,
+    isRecording,
     startListening,
     stopListening,
     retryListening,
@@ -373,6 +375,7 @@ const CypherScreen = ({navigation}) => {
                 state={state}
                 transcript={transcript}
                 recordTime={recordTime}
+                isRecording={isRecording}
                 response={response}
                 questions={questions}
                 questionHelp={questionHelp}

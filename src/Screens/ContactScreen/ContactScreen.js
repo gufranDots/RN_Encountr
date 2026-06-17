@@ -7,6 +7,7 @@ import {
   View,
   TouchableOpacity,
   Alert,
+  Platform,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import WrapperContainer from '../../Components/WrapperContainer';
@@ -135,13 +136,6 @@ const ContactScreen = props => {
   };
 
 
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  };
 
   const _renderItem = ({ item, index }) => {
     return (
@@ -247,8 +241,9 @@ const ContactScreen = props => {
   }
 
   return (
-    <WrapperContainer isSafeAreaAvailable>
+    <WrapperContainer isSafeAreaAvailable={true}>
       <HeaderComp
+        viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         leftIcon={imagesPath.ic_back}
         onPressBack={() => navigation.goBack()}
         leftBackTxt={strings.notifications}

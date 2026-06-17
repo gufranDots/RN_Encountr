@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -267,19 +266,22 @@ const Signup = ({ navigation }) => {
 
   return (
     <WrapperContainer isSafeAreaAvailable={true} >
-      <TouchableWithoutFeedback style={{ flex: moderateScale(1) }} onPress={() => Keyboard.dismiss()}>
-        <View style={{ flex: moderateScale(9) }}>
-          <HeaderComp
-            viewStyle={{ marginTop: moderateScaleVertical(20) }}
-            // rightText="Skip"
-            leftIcon={imagesPath.ic_back}
-            onPressBack={() => navigation.goBack()}
-          />
-          <KeyboardAwareScrollView
-            bounces={false}
-            keyboardShouldPersistTaps={'always'}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.container}>
+      <View style={{ flex: 1 }}>
+        <HeaderComp
+          viewStyle={{ marginTop: moderateScaleVertical(20) }}
+          // rightText="Skip"
+          leftIcon={imagesPath.ic_back}
+          onPressBack={() => navigation.goBack()}
+        />
+        <KeyboardAwareScrollView
+          style={{ flex: 1 }}
+          enableOnAndroid
+          extraScrollHeight={Platform.OS === 'android' ? moderateScaleVertical(24) : 0}
+          keyboardDismissMode="on-drag"
+          bounces={false}
+          keyboardShouldPersistTaps={'always'}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.container}>
             {/* <Text style={styles.txtStyle}>{strings.CreateProfile}</Text> */}
             <GradientText
               text={strings.Sign_UP}
@@ -436,9 +438,8 @@ const Signup = ({ navigation }) => {
                 </Text>
               </TouchableOpacity>
             </View>
-          </KeyboardAwareScrollView>
-        </View>
-      </TouchableWithoutFeedback>
+        </KeyboardAwareScrollView>
+      </View>
       <Loader isLoading={isLoading} />
     </WrapperContainer>
   );
@@ -448,6 +449,7 @@ const Signup = ({ navigation }) => {
 const getStyles = (theme, commonStyles) => StyleSheet.create({
   container: {
     flexGrow: 1,
+    paddingBottom: moderateScaleVertical(24),
   },
   underLineTxt:{
     ...commonStyles.font_12_regular, 

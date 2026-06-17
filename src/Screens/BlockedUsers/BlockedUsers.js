@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Alert, FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, Image, Platform, StyleSheet, Text, View } from 'react-native';
 
 import BlockedUser from '../../Components/BlockedUser';
 import HeaderComp from '../../Components/HeaderComp';
@@ -86,6 +86,7 @@ const BlockedUsers = (props) => {
     return (
         <WrapperContainer isSafeAreaAvailable={true}>
             <HeaderComp
+                viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
                 leftIcon={imagesPath.ic_back}
                 onPressBack={() => navigation.goBack()}
                 centerText={strings.blockedUsers}

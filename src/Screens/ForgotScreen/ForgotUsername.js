@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Keyboard, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import ButtonComp from '../../Components/ButtonComp';
@@ -21,7 +21,7 @@ import {
   verifyOtpGetLoginDetails,
 } from '../../redux/reduxActions/authActions';
 import colors from '../../styles/colors';
-import {moderateScale} from '../../styles/responsiveSize';
+import {moderateScale, moderateScaleVertical} from '../../styles/responsiveSize';
 import {ApiError, showError, showSuccess} from '../../utils/helperFunctions';
 import {
   checkIsEmpty,
@@ -76,6 +76,7 @@ const ForgotUsername = props => {
   return (
     <WrapperContainer isSafeAreaAvailable={true}>
       <HeaderComp
+      viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(20) : 0 }}
         leftIcon={imagesPath.ic_back}
         onPressBack={() => navigation.goBack()}
       />

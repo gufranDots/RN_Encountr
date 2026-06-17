@@ -100,7 +100,7 @@
     "zego-callkit-react-native": "^1.0.6-alpha",
     "zego-express-engine-reactnative": "^3.17.1",
     "zego-zim-react-native": "^2.18.2",
-    "zego-zpns-react-native": "^2.8.0-beta"
+    "zego-zpns-react-native": "2.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

@@ -1,6 +1,6 @@
 // import liraries
 import React, {useEffect, useRef, useState} from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Button, Platform, StyleSheet, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import CustomOTPInput from '../../Components/CustomOTPInput';
@@ -15,11 +15,12 @@ import {
   verifyOtpToSignupApi,
 } from '../../redux/reduxActions/authActions';
 import {getCommonStyles} from '../../styles/commonStyles';
-import {moderateScale} from '../../styles/responsiveSize';
+import {moderateScale, moderateScaleVertical} from '../../styles/responsiveSize';
 import {ApiError, showError, showSuccess} from '../../utils/helperFunctions';
 import {checkIsEmpty, checkLength} from '../../utils/validations';
 import {clearAsyncStorate} from '../../utils/utils';
 import { useTheme } from '../../theme/ThemeProvider';
+import imagesPath from '../../constants/imagesPath';
 
 const CELL_COUNT = 4;
 
@@ -152,8 +153,8 @@ const OtpScreen = props => {
   };
 
   return (
-    <WrapperContainer isSafeAreaAvailable={true} paddingAvailable={moderateScale(24)}>
-      <HeaderComp leftIcon onPressBack={() => navigation.goBack()} />
+    <WrapperContainer isSafeAreaAvailable={true} >
+      <HeaderComp viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }} leftIcon={imagesPath.ic_back} onPressBack={() => navigation.goBack()} />
       <KeyboardAwareScrollView
         bounces={false}
         style={{flex: 1}}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import ButtonComp from '../../Components/ButtonComp'
@@ -13,7 +13,7 @@ import strings from '../../constants/Languages'
 import { changePasswordApi } from '../../redux/reduxActions/profileActions'
 
 import colors from '../../styles/colors'
-import { moderateScale } from '../../styles/responsiveSize'
+import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSize'
 import { ApiError, showError, showSuccess } from '../../utils/helperFunctions'
 import { checkPasswordValidations } from '../../utils/validations'
 import { getCommonStyles } from '../../styles/commonStyles'
@@ -80,6 +80,7 @@ const ChangePassword = props => {
   return (
     <WrapperContainer isSafeAreaAvailable={true}>
       <HeaderComp
+        viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         leftIcon={imagesPath.ic_back}
         onPressBack={() => navigation.goBack()}
         centerText={strings.changePassword}

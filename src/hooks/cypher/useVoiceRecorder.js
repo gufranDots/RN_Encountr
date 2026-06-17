@@ -87,6 +87,9 @@ export default function useVoiceRecorder() {
   const clearError = useCallback(() => setLastError(null), []);
 
   const startRecording = useCallback(async () => {
+    setRecordTime('00:00');
+    setIsRecording(false);
+
     const micOk = await requestMicPermission();
     if (!micOk) {
       throw new Error('Microphone permission is required');
@@ -108,7 +111,6 @@ export default function useVoiceRecorder() {
       const path = buildRecordPath();
       const result = await recorder.startRecorder(path, getAudioSet(), false);
       recordPathRef.current = result || path;
-      setRecordTime('00:00');
       setIsRecording(true);
 
       recorder.addRecordBackListener(event => {
@@ -143,9 +145,11 @@ export default function useVoiceRecorder() {
       const finalPath = result || recordPathRef.current;
       recordPathRef.current = finalPath;
       setIsRecording(false);
+      setRecordTime('00:00');
       return finalPath || '';
     } catch (err) {
       setIsRecording(false);
+      setRecordTime('00:00');
       const fallbackPath = recordPathRef.current;
       if (fallbackPath) {
         return fallbackPath;

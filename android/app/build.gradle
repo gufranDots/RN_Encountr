@@ -83,7 +83,7 @@ android {
         applicationId "com.encountr.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 46
+        versionCode 49
         versionName "1.0"
         missingDimensionStrategy "store", "play"
     }

@@ -389,8 +389,12 @@ export const setBonkFiltersApi = (apiPayload: any) => {
 
                 // resolve(res)
                 getUserData().then(cb => {
-                    let userData = res?.data;
-                    userData.token = cb.token
+                    let userData = {
+                        ...cb,
+                        ...res?.data,
+                        token: cb.token,
+                        photos: res?.data?.photos?.length ? res.data.photos : cb.photos,
+                    };
                     setUserData(userData).then(() => {
                         saveUserDataToStore(userData);
                         setTimeout(() => {
@@ -424,18 +428,20 @@ export const setBonkersFiltersApi = (apiPayload: any) => {
         apiPost(SET_BONKERS_FILTERS, apiPayload, headers)
             .then((res) => {
                 console.log(res, "resresresresresres")
-                resolve(res)
                 getUserData().then(cb => {
-                    let userData = res?.data;
-                    userData.token = cb.token
+                    let userData = {
+                        ...cb,
+                        ...res?.data,
+                        token: cb.token,
+                        photos: res?.data?.photos?.length ? res.data.photos : cb.photos,
+                    };
                     setUserData(userData).then(() => {
                         saveUserDataToStore(userData);
                         setTimeout(() => {
                             resolve(res)
                         }, 500);
                     });
-                }
-                ).catch((error) => {
+                }).catch((error) => {
                     reject(error)
                 })
 

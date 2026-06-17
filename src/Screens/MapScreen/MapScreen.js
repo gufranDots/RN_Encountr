@@ -1,7 +1,7 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, Platform } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { WrapperContainer } from '../../Components'
-import { moderateScale, textScale } from '../../styles/responsiveSize'
+import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize'
 import MapView, { Marker } from 'react-native-maps'
 import imagesPath from '../../constants/imagesPath'
 import HeaderComp from '../../Components/HeaderComp'
@@ -30,11 +30,13 @@ const MapScreen = ({ navigation, route }) => {
 
 
     return (
-        <WrapperContainer paddingAvailable={moderateScale(0)}>
+        <WrapperContainer paddingAvailable={false} isSafeAreaAvailable={true}>
+            <View style={{ flex: 1 }}>
             <HeaderComp
+            viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
                 leftIcon={imagesPath.ic_back}
-                onPressBack={() => navigation.goBack()}
                 leftIconStyle={{ marginLeft: moderateScale(10) }}
+                onPressBack={() => navigation.goBack()}
                 centerText={strings.SelectLocation}
                 centertextstyle={{ fontSize: textScale(18), fontFamily: fontFamily.bold }}
             />
@@ -67,6 +69,7 @@ const MapScreen = ({ navigation, route }) => {
                     image={imagesPath.icLocationNew}>
                 </Marker>
             </MapView>
+            </View>
         </WrapperContainer>
     )
 }

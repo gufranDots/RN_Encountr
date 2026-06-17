@@ -404,7 +404,7 @@ const MessageScreen = props => {
 
   return (
     <WrapperContainer>
-      <SafeAreaView style={styles.headerStyle}>
+      <SafeAreaView style={styles.headerStyle} edges={['top']}>
         {headerList.map(item => (
           <TouchableOpacity
             key={item.index}
@@ -444,6 +444,7 @@ const MessageScreen = props => {
         {selectedIndex == 0
           ? (
             <FlatList
+              contentInsetAdjustmentBehavior="never"
               refreshControl={
                 <RefreshControl
                   refreshing={!isLoading && isRefreshing}
@@ -456,6 +457,7 @@ const MessageScreen = props => {
                     placeholder={strings.search}
                     placeholderTextColor={theme.colors.likePink}
                     onChangeText={_onChangeSearchText}
+                    inputView={{ marginTop: moderateScale(8) }}
                     textInputStyle={{ paddingVertical: moderateScale(16) }}
                   />
                   {!isLoading &&
@@ -536,6 +538,7 @@ const MessageScreen = props => {
             ? (
               <>
                 <FlatList
+                  contentInsetAdjustmentBehavior="never"
                   data={tapData}
                   extraData={tapData}
                   renderItem={renderAllTaps}
@@ -543,7 +546,7 @@ const MessageScreen = props => {
                   contentContainerStyle={{
                     paddingBottom: moderateScale(60)
                   }}
-                  style={{ marginTop: moderateScale(10) }}
+                  style={{ marginTop: moderateScale(8) }}
                   showsVerticalScrollIndicator={false}
                   ListEmptyComponent={
                     !isLoading && (

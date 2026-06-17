@@ -1,6 +1,6 @@
 import notifee from '@notifee/react-native';
 import moment from 'moment';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {
   Alert,
   Animated,
@@ -9,6 +9,7 @@ import {
   Easing,
   FlatList,
   Image,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -82,9 +83,9 @@ import {stableKeyExtractor} from '../../utils/stableKeyExtractor';
 import FastImage from '../../utils/FastImageCompat';
 import ItsAMatchModal from '../../Components/ItsAMatchModal';
 import {configureZegoCloud} from '../../utils/zegoConfigureFile';
-import SoundPlayer from 'react-native-sound-player';
 import CustomImage from '../../Components/CustomImage';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {BottomTabBarHeightContext} from '@react-navigation/bottom-tabs';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import { getCommonStyles, hitSlopProp } from '../../styles/commonStyles';
 import { useTheme } from '../../theme/ThemeProvider';
 import { ImageEnum } from '../../constants';
@@ -97,6 +98,14 @@ const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const ChatScreen = props => {
   const {theme} = useTheme();
+  const insets = useSafeAreaInsets();
+  const tabBarHeight = useContext(BottomTabBarHeightContext) ?? 0;
+  const keyboardBottomOffset =
+    Platform.OS === 'ios'
+      ? tabBarHeight > 0
+        ? -(insets.bottom + moderateScale(8))
+        : moderateScale(10)
+      : 0;
   const commonStyles = getCommonStyles(theme);
   const styles = getStyles(theme, commonStyles)
   const {navigation, route} = props;
@@ -188,23 +197,6 @@ const ChatScreen = props => {
       }).start();
     }
   }, [showGroupImage, scaleAnim]);
-
-  const playNotificationSound = async () => {
-    try {
-      // Ensure the sound is loaded before trying to play it
-      SoundPlayer.loadSoundFile('zego_incoming', 'mp3');
-      SoundPlayer.playSoundFile('zego_incoming', 'mp3');
-      SoundPlayer.onFinishedPlaying(success => {
-        if (success) {
-          console.log('Sound played successfully');
-        } else {
-          console.log('Failed to play the sound');
-        }
-      });
-    } catch (error) {
-      console.log('Failed to load or play the sound', error);
-    }
-  };
 
   useEffect(() => {
     console.log('Starting location service...');
@@ -460,9 +452,10 @@ const ChatScreen = props => {
   };
 
   const normalizeReplyMeta = item => {
+    const rawReplyTo = item?.reply_to;
     const replyObj =
       item?.reply ||
-      item?.reply_to ||
+      (rawReplyTo && typeof rawReplyTo === 'object' ? rawReplyTo : null) ||
       item?.replied_message ||
       item?.quoted_message ||
       item?.parent_message ||
@@ -473,6 +466,7 @@ const ChatScreen = props => {
       item?.reply_message_id ||
       item?.reply_id ||
       item?.parent_message_id ||
+      (typeof rawReplyTo === 'object' ? rawReplyTo?.id : rawReplyTo) ||
       replyObj?.id ||
       null;
 
@@ -482,6 +476,7 @@ const ChatScreen = props => {
       item?.quoted_text ||
       item?.reply_text ||
       replyObj?.message ||
+      replyObj?.text ||
       '';
 
     const reply_type =
@@ -666,21 +661,6 @@ const ChatScreen = props => {
       const oldMessages = messages.map(item => item);
 
       socketRef.emit('sendMessage', socketMessage, (response, err) => {
-        if (response) {
-          try {
-            if (Platform.OS === 'ios') {
-              SoundPlayer.playAsset(
-                require('../../assets/audios/zego_incoming.mp3'),
-              );
-              SoundPlayer.stop();
-            } else {
-              playNotificationSound();
-            }
-          } catch (error) {
-            console.log('sound error', error);
-          }
-        }
-
         const sentMsgRes = response?.data;
         if (response.status === 'error') {
           showError(response?.message || 'Error');
@@ -841,6 +821,7 @@ const ChatScreen = props => {
             setShowGroupImage(true);
           }
         }}
+        publicRoom={publicRoom}
       />
     );
   };
@@ -973,11 +954,15 @@ const ChatScreen = props => {
             setReplyMessage({
               id: messageData?.id,
               sender_id: messageData?.sender_id,
-              message: messageData?.message,
+              message:
+                messageData?.message ||
+                messageData?.text ||
+                '',
               type: messageData?.type || 'text',
               sender_name: senderName,
             });
           }}
+          allMessages={messages}
         />
       );
     },
@@ -1131,7 +1116,16 @@ const ChatScreen = props => {
   };
 
   const _stopRec = async () => {
-    await audioRecorderPlayer.stopRecorder();
+    try {
+      await audioRecorderPlayer.stopRecorder();
+      audioRecorderPlayer.removeRecordBackListener();
+    } catch (error) {
+      console.log('stop recorder error', error);
+    }
+  };
+
+  const _cancelRecording = async () => {
+    await _stopRec();
   };
 
   const onSendCameraImage = () => {
@@ -1418,12 +1412,18 @@ const ChatScreen = props => {
     };
 
     return (
-      <View style={{alignItems: 'center',}}>
+      <View
+        style={{
+          alignItems: 'center',
+        }}>
         {replyMessage ? (
           <View style={styles.replyPreviewContainer}>
+            <View style={styles.replyPreviewAccent} />
             <View style={{flex: 1}}>
               <Text style={styles.replyPreviewTitle}>
-                Replying to {'this message'}
+                {replyMessage?.sender_name
+                  ? `Replying to ${replyMessage.sender_name}`
+                  : 'Replying to message'}
               </Text>
               <Text
                 numberOfLines={1}
@@ -1433,9 +1433,13 @@ const ChatScreen = props => {
               </Text>
             </View>
             <TouchableOpacity
+              style={styles.replyCloseBtn}
               hitSlop={hitSlopProp}
               onPress={() => setReplyMessage(null)}>
-              <Text style={styles.replyCloseText}>Close</Text>
+              <Image
+                source={imagesPath.ic_cross}
+                style={styles.replyCloseIcon}
+              />
             </TouchableOpacity>
           </View>
         ) : null}
@@ -1481,6 +1485,7 @@ const ChatScreen = props => {
           textValue={props?.text || ''}
           onStartRecAudio={_startRecording}
           onStopRecAudio={_stopRecording}
+          onCancelRecAudio={_cancelRecording}
           onSendImage={sendImageInChat}
           onSendCameraImage={onSendCameraImage}
           onSendLiveLocation={onSendLiveLocation}
@@ -1715,21 +1720,6 @@ const ChatScreen = props => {
 
     // Send the message through socket
     socketRef.emit('sendMessage', obj, (response, err) => {
-      if (response) {
-        try {
-          if (Platform.OS === 'ios') {
-            SoundPlayer.playAsset(
-              require('../../assets/audios/zego_incoming.mp3'),
-            );
-            SoundPlayer.stop();
-          } else {
-            playNotificationSound();
-          }
-        } catch (error) {
-          console.log('sound error', error);
-        }
-      }
-
       const sentMsgRes = response?.data;
       if (response.status === 'error') {
         showError(response?.message || 'Error');
@@ -1850,9 +1840,12 @@ const ChatScreen = props => {
   // console.log('jaskjasjkdakjshdjashdjkahskjdashdahs',messages)
 
   return (    
-    <WrapperContainer paddingAvailable={false}>
+    <WrapperContainer
+      paddingAvailable={false}
+      statusBarAvailable={false}
+      mainViewStyle={{backgroundColor: theme.colors.white}}>
       {chatHeader()}
-      <SafeAreaView edges={['bottom', 'left', 'right']} style={styles.chatContainer}>
+      <SafeAreaView edges={['left', 'right']} style={styles.chatContainer}>
         <GiftedChat
           onSend={messages => onSend(messages, 'text')}
           renderMessage={renderMessages}
@@ -1861,8 +1854,8 @@ const ChatScreen = props => {
           renderDay={() => null}
           keyboardShouldPersistTaps={'always'}
           renderInputToolbar={renderInputToolbar}
-          // renderInputToolbar={(props) => <ChatInputToolBar {...props} />} 
           wrapInSafeArea={false}
+          bottomOffset={keyboardBottomOffset}
           user={{_id: userData?.id}}
           loadEarlier={hasMoreData}
           onLoadEarlier={_onLoadEarlier}
@@ -1897,7 +1890,6 @@ const ChatScreen = props => {
               }, 250);
             },
           }}
-          bottomOffset={Platform.OS === 'ios' ? moderateScale(-100) : 0}
         />
       </SafeAreaView>
       <Modal isVisible={actionModal} style={{margin: 0}}>
@@ -2210,33 +2202,57 @@ const getStyles = (theme, commonStyles) => StyleSheet.create({
     backgroundColor: theme.colors.white,
   },
   replyPreviewContainer: {
-    width: '90%',
+    width: '94%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    // borderWidth: 1,
-    borderColor: theme.colors.activeTintColor,
-    borderTopLeftRadius: moderateScale(10),
-    borderTopRightRadius: moderateScale(10),
+    borderRadius: moderateScale(14),
     paddingHorizontal: moderateScale(12),
-    paddingVertical: moderateScale(8),
-    marginBottom: moderateScale(-4),
-    backgroundColor: theme.colors.blackOpacity10
-    // backgroundColor: theme.colors.blackOpacity50,
+    paddingVertical: moderateScale(10),
+    marginBottom: moderateScale(8),
+    backgroundColor: theme.colors.lightGray,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: theme.colors.blackOpacity20,
+    shadowColor: theme.colors.black,
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
+    overflow: 'hidden',
+  },
+  replyPreviewAccent: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: moderateScale(4),
+    backgroundColor: theme.colors.florsentTheme,
+    borderTopLeftRadius: moderateScale(14),
+    borderBottomLeftRadius: moderateScale(14),
   },
   replyPreviewTitle: {
     ...commonStyles.font_12_SemiBold,
     color: theme.colors.florsentTheme,
+    paddingLeft: moderateScale(4),
   },
   replyPreviewText: {
     ...commonStyles.font_12_regular,
-    color: theme.colors.activeTintColor,
+    color: theme.colors.black,
     marginTop: moderateScale(2),
+    paddingLeft: moderateScale(4),
   },
-  replyCloseText: {
-    ...commonStyles.font_12_SemiBold,
-    color: theme.colors.red,
-    marginLeft: moderateScale(10),
+  replyCloseBtn: {
+    height: moderateScale(28),
+    width: moderateScale(28),
+    borderRadius: moderateScale(14),
+    backgroundColor: theme.colors.blackOpacity20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: moderateScale(8),
+  },
+  replyCloseIcon: {
+    height: moderateScale(12),
+    width: moderateScale(12),
+    tintColor: theme.colors.blackOpacity70,
   },
   keyboardContainer:{
     flex:1,

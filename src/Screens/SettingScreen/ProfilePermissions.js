@@ -1,6 +1,6 @@
 // import liraries
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import HeaderComp from '../../Components/HeaderComp';
 import { Loader } from '../../Components/Loader';
@@ -9,7 +9,7 @@ import imagesPath from '../../constants/imagesPath';
 import strings from '../../constants/Languages';
 import { changeNotificationApi } from '../../redux/reduxActions/profileActions';
 import {getCommonStyles} from '../../styles/commonStyles';
-import { moderateScale, textScale, moderateScaleVertical } from '../../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { ApiError, showError, showSuccess } from '../../utils/helperFunctions';
 import { enableFreeze } from 'react-native-screens';
 import fontFamily from '../../styles/fontFamily';
@@ -124,6 +124,7 @@ const ProfilePermissions = ({ navigation }) => {
         
         <WrapperContainer isSafeAreaAvailable={true}>
             <HeaderComp
+                viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
                 leftIcon={imagesPath.ic_back}
                 onPressBack={() => navigation.goBack()}
                 centerText={strings.PROFILE_PERMISSIONS}

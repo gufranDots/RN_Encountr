@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
+import React, {FC, useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -13,6 +13,7 @@ import {
   PanResponder,
   Platform,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -44,6 +45,7 @@ import {ApplyEaseOutAnimation, showError} from '../utils/helperFunctions';
 import {canSendImages, canSendVoiceNotes} from '../utils/subscriptionFunctions';
 import {useSelector} from 'react-redux';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {BottomTabBarHeightContext} from '@react-navigation/bottom-tabs';
 import navigationString from '../constants/navigationString';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import MapView, {Marker} from 'react-native-maps';
@@ -94,6 +96,7 @@ interface ChatBubbleProps {
   onReplyPress?: (replyToId: number | string | null) => void;
   isHighlighted?: boolean;
   roomType?: number;
+  allMessages?: any[];
 }
 
 const ChatBubble: FC<ChatBubbleProps> = ({
@@ -118,6 +121,7 @@ const ChatBubble: FC<ChatBubbleProps> = ({
   onReplyPress,
   isHighlighted = false,
   roomType,
+  allMessages = [],
 }) => {
   const {theme} = useTheme();
   const styles= getStyles(theme);
@@ -156,18 +160,77 @@ const ChatBubble: FC<ChatBubbleProps> = ({
   });
 
   const userData = useSelector((state: any) => state?.authReducers?.userData || {});
+
+  const findMessageById = (messageId: number | string | null) => {
+    if (!messageId || !allMessages?.length) {
+      return null;
+    }
+    return (
+      allMessages.find(
+        msg =>
+          String(msg?.id) === String(messageId) ||
+          String(msg?._id) === String(messageId),
+      ) || null
+    );
+  };
+
+  const nestedReplyObj =
+    currentMessage?.reply ||
+    (currentMessage?.reply_to &&
+    typeof currentMessage.reply_to === 'object'
+      ? currentMessage.reply_to
+      : null) ||
+    currentMessage?.replied_message ||
+    currentMessage?.quoted_message ||
+    currentMessage?.parent_message ||
+    null;
+
+  const replyToId =
+    currentMessage?.reply_to_id ||
+    currentMessage?.reply_message_id ||
+    (typeof currentMessage?.reply_to === 'object'
+      ? currentMessage?.reply_to?.id
+      : currentMessage?.reply_to) ||
+    nestedReplyObj?.id ||
+    null;
+
+  const repliedMessage = findMessageById(replyToId);
+
   const replyText =
     currentMessage?.reply_message ||
-    currentMessage?.reply?.message ||
     currentMessage?.reply_to_message ||
+    currentMessage?.quoted_text ||
+    currentMessage?.reply_text ||
+    nestedReplyObj?.message ||
+    nestedReplyObj?.text ||
+    repliedMessage?.message ||
+    repliedMessage?.text ||
     '';
-  const replyType = currentMessage?.reply_type || currentMessage?.reply?.type;
+
+  const replyType =
+    currentMessage?.reply_type ||
+    currentMessage?.quoted_type ||
+    currentMessage?.reply_message_type ||
+    nestedReplyObj?.type ||
+    repliedMessage?.type ||
+    null;
+
+  const replySenderName =
+    currentMessage?.reply_sender_name ||
+    currentMessage?.quoted_sender_name ||
+    nestedReplyObj?.senders?.first_name ||
+    nestedReplyObj?.users?.first_name ||
+    nestedReplyObj?.user?.name ||
+    (repliedMessage?.sender_id === myId
+      ? 'You'
+      : repliedMessage?.senders?.first_name ||
+        repliedMessage?.users?.first_name ||
+        repliedMessage?.user?.name ||
+        '');
+
   const hasReply =
-    !!currentMessage?.reply_to_id ||
-    !!currentMessage?.reply_message_id ||
-    !!replyText;
-  const replyToId =
-    currentMessage?.reply_to_id || currentMessage?.reply_message_id || null;
+    !!replyToId ||
+    !!String(replyText || '').trim();
   // console.log('readMessage', readMessage, myDeleteMes, sender_id, myId,currentMessage);
 
   // useEffect(() => {
@@ -321,8 +384,30 @@ const ChatBubble: FC<ChatBubbleProps> = ({
     if (replyType === 'image') return 'Image';
     if (replyType === 'voice_message') return 'Voice message';
     if (replyType === 'location') return 'Location';
-    return String(replyText);
+    const preview = String(replyText || '').trim();
+    return preview || 'Message';
   };
+
+  const isSentByMe = sender_id == myId;
+  const sentTextColor = theme.colors.primaryWhite;
+  const sentReplyLabelColor = theme.colors.primaryWhite;
+  const sentReplyTextColor = theme.colors.primaryWhiteOpacity70;
+  const sentReplyBorderColor = theme.colors.primaryWhite;
+  const receivedTextColor = theme.colors.black;
+  const receivedReplyLabelColor = theme.colors.florsentTheme;
+  const receivedReplyTextColor = theme.colors.activeTintColor;
+  const receivedReplyBorderColor = theme.colors.florsentTheme;
+  const bubbleTextColor = isSentByMe ? sentTextColor : receivedTextColor;
+  const isVoicePlaying = activeIndex === itemData?.id;
+  const isVoiceUploading = !!itemData?.loading;
+  const isVoiceBuffering =
+    !!onLoadPlay?.isLoading && onLoadPlay?.url === text;
+  const voiceAccentColor = isSentByMe
+    ? theme.colors.primaryWhite
+    : theme.colors.florsentTheme;
+  const voiceLabelColor = isSentByMe
+    ? theme.colors.primaryWhite
+    : theme.colors.florsentTheme;
 
   const panResponder = useRef(
     PanResponder.create({
@@ -498,23 +583,37 @@ const ChatBubble: FC<ChatBubbleProps> = ({
               style={[
                 styles.replyMessageContainer,
                 {
-                  borderLeftColor:
-                    sender_id == myId ? theme.colors.white : theme.colors.themecolor2,
+                  borderLeftColor: isSentByMe
+                    ? sentReplyBorderColor
+                    : receivedReplyBorderColor,
+                  backgroundColor: isSentByMe
+                    ? theme.colors.blackOpacity20
+                    : theme.colors.blackOpacity10,
+                  borderRadius: moderateScale(6),
+                  paddingVertical: moderateScale(4),
                 },
               ]}>
               <Text
                 style={[
                   styles.replyMessageLabel,
-                  {color: sender_id == myId ? theme.colors.white : theme.colors.activeTintColor},
+                  {
+                    color: isSentByMe
+                      ? sentReplyLabelColor
+                      : receivedReplyLabelColor,
+                  },
                 ]}>
-                Reply
+                {replySenderName || 'Reply'}
               </Text>
               <Text
-                numberOfLines={1}
+                numberOfLines={2}
                 ellipsizeMode="tail"
                 style={[
                   styles.replyMessageText,
-                  {color: sender_id == myId ? theme.colors.white : theme.colors.activeTintColor},
+                  {
+                    color: isSentByMe
+                      ? sentReplyTextColor
+                      : receivedReplyTextColor,
+                  },
                 ]}>
                 {replyPreviewText()}
               </Text>
@@ -550,34 +649,45 @@ const ChatBubble: FC<ChatBubbleProps> = ({
           {/* ============++++========++======+++++===+++++++== */}
 
           {type == 'voice_message' && (
-            <View style={{width: moderateScale(30), height: moderateScale(22)}}>
-              {itemData?.loading === true ? (
-                <ActivityIndicator
-                  size={'small'}
-                  color={sender_id == myId ? theme.colors.white : theme.colors.white}
-                  animating={itemData?.loading}
-                  style={{right: moderateScale(6)}}
-                />
-              ) : !onLoadPlay?.isLoading && itemData?.loading === false ? (
-                <Image
-                  source={
-                    activeIndex === itemData?.id
-                      ? imagesPath.ic_play
-                      : imagesPath.ic_pause
-                  }
-                  style={[commonStyles.iconStyle18,{
-                    tintColor: sender_id == myId ? theme.colors.black : theme.colors.black,
-                  }]}
-                  resizeMode={'contain'}
-                />
-              ) : (
-                <ActivityIndicator
-                  size={'small'}
-                  color={sender_id == myId ? theme.colors.white : theme.colors.white}
-                  animating={onLoadPlay?.isLoading}
-                  style={{right: moderateScale(6)}}
-                />
-              )}
+            <View style={styles.voiceMessageRow}>
+              <View
+                style={[
+                  styles.voicePlayButton,
+                  {
+                    backgroundColor: isSentByMe
+                      ? theme.colors.primaryWhite + '22'
+                      : theme.colors.florsentTheme + '22',
+                    borderColor: voiceAccentColor + '55',
+                  },
+                ]}>
+                {isVoiceUploading || isVoiceBuffering ? (
+                  <ActivityIndicator
+                    size="small"
+                    color={voiceAccentColor}
+                  />
+                ) : (
+                  <Image
+                    source={
+                      isVoicePlaying
+                        ? imagesPath.ic_play
+                        : imagesPath.ic_pause
+                    }
+                    style={[
+                      styles.voicePlayIcon,
+                      {tintColor: voiceAccentColor},
+                    ]}
+                    resizeMode="contain"
+                  />
+                )}
+              </View>
+              <Text
+                style={[styles.voiceMessageLabel, {color: voiceLabelColor}]}>
+                {isVoiceUploading
+                  ? 'Sending...'
+                  : isVoicePlaying
+                  ? 'Playing'
+                  : 'Voice message'}
+              </Text>
             </View>
           )}
 
@@ -592,10 +702,12 @@ const ChatBubble: FC<ChatBubbleProps> = ({
                   }}>
                   <Image
                     resizeMode="contain"
-                    style={{tintColor: theme.colors.black, height: moderateScale(25)}}
+                    style={{tintColor: bubbleTextColor, height: moderateScale(25)}}
                     source={imagesPath.oneTime}
                   />
-                  <Text style={{marginLeft: moderateScale(5), color: theme.colors.black}}>Image</Text>
+                  <Text style={{marginLeft: moderateScale(5), color: bubbleTextColor}}>
+                    Image
+                  </Text>
                 </View>
               ) : (
                 <View style={{height: moderateScale(80), width: moderateScale(120)}}>
@@ -637,7 +749,7 @@ const ChatBubble: FC<ChatBubbleProps> = ({
                 style={{
                   ...commonStyles.font_16_medium, //////////
                   marginLeft: moderateScale(6),
-                  color: sender_id == myId ? theme.colors.white : theme.colors.black,
+                  color: isSentByMe ? sentTextColor : receivedTextColor,
                 }}>
                 {type === 'text'
                   ? text
@@ -814,23 +926,17 @@ const ChatBubble: FC<ChatBubbleProps> = ({
                           </TouchableOpacity>
                         )}
                       </View>
-                    ) : (
+                    ) : type !== 'voice_message' ? (
                       <Text
                         style={
                           urlPattern1.test(text) && text.includes('.com/maps')
                             ? {
-                                ...commonStyles.font_12_medium, //////
-                                color:
-                                  sender_id == myId
-                                    ? theme.colors.florsentTheme
-                                    : colors.white,
+                                ...commonStyles.font_12_medium,
+                                color: bubbleTextColor,
                               }
                             : {
-                                ...commonStyles.font_12_medium, /////
-                                color:
-                                  sender_id == myId
-                                    ? theme.colors.florsentTheme
-                                    : colors.white,
+                                ...commonStyles.font_12_medium,
+                                color: bubbleTextColor,
                               }
                         }>
                         {!showFullText ? (
@@ -870,7 +976,7 @@ const ChatBubble: FC<ChatBubbleProps> = ({
                           text
                         )}
                       </Text>
-                    )}
+                    ) : null}
                   </View>
                 ) : (
                   <View
@@ -999,6 +1105,7 @@ interface ChatInputComponentProps {
   sender_id: any;
   onStartRecAudio: () => void;
   onStopRecAudio: () => void;
+  onCancelRecAudio?: () => void;
   onSendImage: () => void;
   onSendCameraImage: () => void;
   onEndEditing: () => void;
@@ -1033,6 +1140,7 @@ export const ChatInputComponent: FC<ChatInputComponentProps> = React.memo(
     sender_id,
     onStartRecAudio,
     onStopRecAudio,
+    onCancelRecAudio,
     onSendImage,
     onSendCameraImage,
     onSendLiveLocation,
@@ -1053,23 +1161,110 @@ export const ChatInputComponent: FC<ChatInputComponentProps> = React.memo(
   const commonStyles = getCommonStyles(theme);
     const navigation = useNavigation();
     const [isRecording, setIsRecording] = useState(false);
+    const [recordSeconds, setRecordSeconds] = useState(0);
+    const isRecordingRef = useRef(false);
+    const recordSecondsRef = useRef(0);
+    const recordTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
     const userData = useSelector((state: any) => state?.authReducers?.userData || {});
-    const scaleAnim = useRef(new Animated.Value(1)).current; // Initial scale is set to 1
+    const recordPulseAnim = useRef(new Animated.Value(1)).current;
+    const insets = useSafeAreaInsets();
+    const tabBarHeight = useContext(BottomTabBarHeightContext) ?? 0;
+    const hasText = Boolean(textValue?.trim()?.length);
+
+    const formatRecordTime = (totalSeconds: number) => {
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    };
+
+    const resetRecordingState = () => {
+      isRecordingRef.current = false;
+      recordSecondsRef.current = 0;
+      setRecordSeconds(0);
+      setIsRecording(false);
+      if (recordTimerRef.current) {
+        clearInterval(recordTimerRef.current);
+        recordTimerRef.current = null;
+      }
+    };
+
+    const handleCancelRecording = () => {
+      if (!isRecordingRef.current) {
+        return;
+      }
+      resetRecordingState();
+      onCancelRecAudio?.();
+    };
+
+    const handleStopRecording = () => {
+      if (!isRecordingRef.current) {
+        return;
+      }
+      const duration = recordSecondsRef.current;
+      resetRecordingState();
+      if (duration < 1) {
+        onCancelRecAudio?.();
+        return;
+      }
+      onStopRecAudio();
+    };
 
     const onPressRecording = () => {
       onStartRecAudio();
+      isRecordingRef.current = true;
+      recordSecondsRef.current = 0;
+      setRecordSeconds(0);
       setIsRecording(true);
     };
 
     const onPressRecordingOut = () => {
-      if (isRecording) {
-        onStopRecAudio();
-        setIsRecording(false);
+      if (isRecordingRef.current) {
+        handleStopRecording();
       }
     };
 
+    useEffect(() => {
+      if (!isRecording) {
+        return;
+      }
+      recordTimerRef.current = setInterval(() => {
+        recordSecondsRef.current += 1;
+        setRecordSeconds(recordSecondsRef.current);
+      }, 1000);
+      return () => {
+        if (recordTimerRef.current) {
+          clearInterval(recordTimerRef.current);
+          recordTimerRef.current = null;
+        }
+      };
+    }, [isRecording]);
+
+    useEffect(() => {
+      if (!isRecording) {
+        recordPulseAnim.setValue(1);
+        return;
+      }
+      const pulse = Animated.loop(
+        Animated.sequence([
+          Animated.timing(recordPulseAnim, {
+            toValue: 1.35,
+            duration: 600,
+            useNativeDriver: true,
+          }),
+          Animated.timing(recordPulseAnim, {
+            toValue: 1,
+            duration: 600,
+            useNativeDriver: true,
+          }),
+        ]),
+      );
+      pulse.start();
+      return () => pulse.stop();
+    }, [isRecording, recordPulseAnim]);
+
     const [showMap, setshowMap] = useState<boolean>(false);
     const [showExtra, setshowExtra] = useState<boolean>(false);
+    const [isKeyboardVisible, setIsKeyboardVisible] = useState<boolean>(false);
     const [showPreviouslySentPhotos, setShowPreviouslySentPhotos] =
       useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
@@ -1160,25 +1355,21 @@ export const ChatInputComponent: FC<ChatInputComponentProps> = React.memo(
     }, []);
 
     useEffect(() => {
-      // Create a loop that zooms in and out
-      const zoomIn = () => {
-        Animated.timing(scaleAnim, {
-          toValue: 1.2, // Zoom in to 1.2x the original size
-          duration: 500,
-          useNativeDriver: true,
-        }).start(() => {
-          Animated.timing(scaleAnim, {
-            toValue: 1, // Zoom out to the original size
-            duration: 500,
-            useNativeDriver: true,
-          }).start(() => {
-            zoomIn(); // Repeat the animation
-          });
-        });
+      const showEvent =
+        Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+      const hideEvent =
+        Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+      const showSub = Keyboard.addListener(showEvent, () =>
+        setIsKeyboardVisible(true),
+      );
+      const hideSub = Keyboard.addListener(hideEvent, () =>
+        setIsKeyboardVisible(false),
+      );
+      return () => {
+        showSub.remove();
+        hideSub.remove();
       };
-
-      zoomIn(); // Start the animation
-    }, [showExtra]);
+    }, []);
 
     useEffect(() => {
       if (!textValue) {
@@ -1417,344 +1608,223 @@ export const ChatInputComponent: FC<ChatInputComponentProps> = React.memo(
       );
     };
 
+    const renderAttachmentOption = (
+      icon: any,
+      label: string,
+      onPress: () => void,
+      iconBg: string,
+    ) => (
+      <TouchableOpacity
+        style={styles.attachmentOptionStyle}
+        onPress={onPress}
+        activeOpacity={0.75}>
+        <View
+          style={[
+            styles.attachmentIconCircle,
+            {backgroundColor: iconBg},
+          ]}>
+          <Image style={styles.attachmentIconImage} source={icon} />
+        </View>
+        <Text style={styles.attachmentLabel}>{label}</Text>
+      </TouchableOpacity>
+    );
+
     return (
       <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          width: '100%',
-          paddingHorizontal: moderateScale(20),
-          // paddingVertical: moderateScale(10),
-          // position: 'absolute',
-          // bottom: -50,
-        }}>
-        {/* <View>
-            <Text>hello</Text>
-          </View> */}
-
-        {/* <View style = {{flexDirection:'row'}}> */}
-
-        {isRecording ? (
-          <TouchableOpacity
-            style={{
-              borderColor: theme.colors.white,
-              borderWidth: 1,
-              width: canSendImages(userData?.subscription?.subscription_id)
-                ? '62%'
-                : '72%',
-              borderRadius: moderateScale(8),
-              alignItems: 'center',
-              flexDirection: 'row',
-            }}
-            onPress={() => {
-              onStopRecAudio();
-              // setIsRecording(false)
-            }}>
-            <AnimatedLottieView
-              source={lottiePath.recordingAudio}
-              autoPlay
-              loop
-              style={{
-                height: moderateScale(34),
-                width: moderateScale(34),
-                marginStart: moderateScale(2),
-              }}
-            />
-            <Text
-              style={{
-                ...commonStyles.font_12_SemiBold,
-                marginStart: moderateScale(6),
-                color: theme.colors.red_09,
-              }}>
-              {'Recording Audio...'}
-            </Text>
-          </TouchableOpacity>
-        ) : settingUpLiveLocation ? (
-          <View
-            style={{
-              borderColor: theme.colors.themecolor2,
-              borderWidth: 1,
-              width: canSendImages(userData?.subscription?.subscription_id)
-                ? '62%'
-                : '72%',
-              borderRadius: moderateScale(8),
-              alignItems: 'center',
-              flexDirection: 'row',
-              backgroundColor: theme.colors.themecolor2 + '10',
-              paddingVertical: moderateScale(10),
-            }}>
-            <ActivityIndicator
-              size="small"
-              color={theme.colors.themecolor2}
-              style={{marginRight: moderateScale(8)}}
-            />
-            <Text
-              style={{
-                ...commonStyles.font_12_SemiBold,
-                color: theme.colors.themecolor2,
-              }}>
-              {'Setting up live location...'}
-            </Text>
-          </View>
-        ) : (
-          <View
-            style={{
-              marginTop: 0,
-              width: '60%',
-              backgroundColor: theme.colors.blackOpacity10,
-              borderTopLeftRadius: moderateScale(8),
-              borderBottomLeftRadius: moderateScale(8),
-              paddingHorizontal: moderateScale(12),
-              paddingVertical: moderateScale(8),
-            }}>
-            <TextInput
-              placeholder={hasActiveReply ? 'Reply' : 'Write message'}
-              style={{
-                paddingVertical: moderateScale(10),
-                width: '100%',
-                fontSize: moderateScale(16),
-                color: theme.colors.black,
-                minHeight: minInputHeight,
-                maxHeight: maxInputHeight,
-              }}
-              multiline={true}
-              onContentSizeChange={onMessageInputSizeChange}
-              onEndEditing={onEndEditing}
-              value={textValue}
-              onChangeText={onChangeText}
-              keyboardType="default"
-              secureTextEntry={false}
-              placeholderTextColor={theme.colors.primaryWhiteOpacity70}
-            />
-          </View>
-        )}
-        <View
-          style={{
-            flexDirection: 'row',
-            minHeight: moderateScale(60),
-            borderTopRightRadius: moderateScale(8),
-            borderBottomRightRadius: moderateScale(8),
-            paddingHorizontal: moderateScale(20),
-            backgroundColor: theme.colors.blackOpacity10,
-            alignItems: 'flex-end',
-            paddingBottom: moderateScale(10)
-          }}>
-          <TouchableOpacity
-            style={styles.chatOptionStyle}
-            onLongPress={onPressRecording}
-            onPressOut={onPressRecordingOut}
-            activeOpacity={0.4}>
-            <Image
-              style={{
-                height: moderateScale(18),
-                width: moderateScale(18),
-                tintColor: theme.colors.florsentTheme,
-              }}
-              source={imagesPath.ic_microphone}
-            />
-            {/* <Text style={styles.txtStyle}>
-              {'Mic'}
-            </Text> */}
-          </TouchableOpacity>
-
-          {/* share Images button */}
-          {showExtra ? (
-            <Animated.View
-              style={{
-                // position: 'absolute',
-                flexDirection: 'row',
-                borderColor: theme.colors.black,
-                padding: moderateScale(10),
-                borderRadius: moderateScale(8),
-                zIndex: 5000,
-                right: moderateScale(250),
-                // bottom: inputHeight,
-                transform: [{scale: scaleAnim}],
-              }}>
-              <TouchableOpacity
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderColor: theme.colors.black,
-                  padding: moderateScale(10),
-                  borderRadius: moderateScale(8),
-                }}
-                onPress={() => {
-                  setshowExtra(false);
-                  if (roomType === 2) {
-                    if (publicRoom) {
-                      showAlert('gallery');
-                    } else {
-                      onSendImage();
-                    }
+        style={[
+          styles.inputToolbarWrapper,
+          {
+            paddingBottom: isKeyboardVisible
+              ? tabBarHeight > 0
+                ? 0
+                : moderateScale(6)
+              : Math.max(insets.bottom, moderateScale(4)),
+            marginBottom:
+              isKeyboardVisible && tabBarHeight > 0 ? moderateScale(-10) : 0,
+          },
+        ]}>
+        {showExtra ? (
+          <View style={styles.attachmentGrid}>
+            {renderAttachmentOption(
+              imagesPath.ic_gallery,
+              strings.galleryChat,
+              () => {
+                setshowExtra(false);
+                if (roomType === 2) {
+                  if (publicRoom) {
+                    showAlert('gallery');
                   } else {
                     onSendImage();
                   }
-                }}
-                activeOpacity={0.8}>
-                <Image
-                  style={{
-                    height: moderateScale(30),
-                    width: moderateScale(30),
-                    tintColor: theme.colors.activeTintColor,
-                  }}
-                  source={imagesPath.ic_gallery}
-                />
-                <Text style={styles.txtStyle}>
-                  {strings.galleryChat}
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderColor: theme.colors.black,
-                  padding: moderateScale(10),
-                  borderRadius: moderateScale(8),
-                }}
-                onPress={() => {
-                  setshowExtra(false);
-                  if (roomType === 2) {
-                    if (publicRoom) {
-                      showAlert('camera');
-                    } else {
-                      onSendCameraImage();
-                    }
+                } else {
+                  onSendImage();
+                }
+              },
+              theme.colors.themecolor2 + '18',
+            )}
+            {renderAttachmentOption(
+              imagesPath.camera,
+              strings.cameraChat,
+              () => {
+                setshowExtra(false);
+                if (roomType === 2) {
+                  if (publicRoom) {
+                    showAlert('camera');
                   } else {
                     onSendCameraImage();
                   }
-                }}
-                activeOpacity={0.8}>
-                <Image
-                  style={{
-                    height: moderateScale(30),
-                    width: moderateScale(30),
-                    tintColor: theme.colors.activeTintColor,
-                  }}
-                  source={imagesPath.camera}
-                />
-                <Text style={styles.txtStyle}>
-                  {strings.cameraChat}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderColor: theme.colors.black,
-                  padding: moderateScale(10),
-                  borderRadius: moderateScale(8),
-                }}
-                onPress={() => {
-                  setshowExtra(false);
-                  // Check if there are previously sent photos
-                  // const imageMessages = messages?.filter(
-                  //   message =>
-                  //     message.type === 'image' &&
-                  //     message.sender_id === userData?.id &&
-                  //     message.message
-                  // ) || [];
+                } else {
+                  onSendCameraImage();
+                }
+              },
+              theme.colors.florsentTheme + '18',
+            )}
+            {renderAttachmentOption(
+              imagesPath.ic_photoReuse,
+              strings.sharedFolder,
+              () => {
+                setshowExtra(false);
+                setShowPreviouslySentPhotos(true);
+              },
+              theme.colors.activeTintColor + '18',
+            )}
+            {renderAttachmentOption(
+              imagesPath.ic_location,
+              strings.sendLocation,
+              () => {
+                setshowExtra(false);
+                setshowMap(true);
+              },
+              theme.colors.red_09 + '18',
+            )}
+          </View>
+        ) : null}
 
-                  // if (imageMessages.length > 0) {
-                  //   // Show previously sent photos
-                  //   setShowPreviouslySentPhotos(true);
-                  // } else {
-                  //   // No previously sent photos, open gallery directly
-                  //   if (roomType === 2) {
-                  //     if (publicRoom) {
-                  //       showAlert('gallery');
-                  //     } else {
-                  //       onSendImage();
-                  //     }
-                  //   } else {
-                  //     onSendImage();
-                  //   }
-                  // }
-                  setShowPreviouslySentPhotos(true);
-                }}
-                activeOpacity={0.8}>
-                <Image
-                  style={{
-                    height: moderateScale(30),
-                    width: moderateScale(30),
-                    tintColor: theme.colors.activeTintColor,
-                  }}
-                  source={imagesPath.ic_photoReuse}
-                />
-                <Text style={styles.txtStyle}>
-                  {strings.sharedFolder}
+        <View style={styles.inputBarContainer}>
+          {isRecording ? (
+            <TouchableOpacity
+              style={styles.recordingCancelBtn}
+              onPress={handleCancelRecording}
+              hitSlop={hitSlopProp}
+              activeOpacity={0.7}>
+              <Image
+                source={imagesPath.ic_cross}
+                style={styles.recordingCancelIcon}
+              />
+            </TouchableOpacity>
+          ) : !settingUpLiveLocation ? (
+            <TouchableOpacity
+              style={styles.chatOptionStyle}
+              onPress={() => {
+                if (!showExtra) {
+                  Keyboard.dismiss();
+                }
+                setshowExtra(!showExtra);
+              }}
+              activeOpacity={0.75}>
+              <View
+                style={[
+                  styles.attachIconCircle,
+                  showExtra && styles.attachBtnActive,
+                ]}>
+                <Text
+                  style={[
+                    styles.attachPlusText,
+                    showExtra && {transform: [{rotate: '45deg'}]},
+                  ]}>
+                  +
                 </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderColor: theme.colors.black,
-                  padding: moderateScale(10),
-                  borderRadius: moderateScale(8),
-                }}
-                onPress={() => {
-                  setshowExtra(false);
-                  setshowMap(true);
-                }}
-                activeOpacity={0.8}>
-                <Image
-                  style={{
-                    height: moderateScale(30),
-                    width: moderateScale(30),
-                    tintColor: theme.colors.activeTintColor,
-                  }}
-                  source={imagesPath.ic_location}
-                />
-                <Text style={styles.txtStyle}>
-                  {strings.sendLocation}
-                </Text>
-              </TouchableOpacity>
-            </Animated.View>
+              </View>
+            </TouchableOpacity>
           ) : null}
-          <TouchableOpacity
-            style={styles.chatOptionStyle}
-            onPress={() => setshowExtra(!showExtra)}
-            activeOpacity={0.8}>
-            <Image
-              style={{
-                height: moderateScale(16),
-                width: moderateScale(18),
-                tintColor: theme.colors.florsentTheme,
-                transform: [{rotate: showExtra ? '270deg' : '90deg'}],
-              }}
-              source={imagesPath.backnew}
-            />
-            {/* <Text style={styles.txtStyle}>
-              {'Options'}
-            </Text> */}
-          </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.chatOptionStyle}
-            onPress={() => {
-              // Clear draft when message is sent
-              if (chatId) {
-                clearChatDraft(chatId);
-                setLastSavedDraft('');
-              }
-              onSend();
-            }}
-            activeOpacity={0.8}>
-            <Image
-              style={{
-                height: moderateScale(18),
-                width: moderateScale(18),
-                tintColor: theme.colors.florsentTheme,
-              }}
-              source={imagesPath.ic_sent}
-            />
-            {/* <Text style={styles.txtStyle}>
-              {'Send'}
-            </Text> */}
-          </TouchableOpacity>
+          {isRecording ? (
+            <View style={styles.recordingPanel}>
+              <Animated.View
+                style={[
+                  styles.recordingDotOuter,
+                  {transform: [{scale: recordPulseAnim}]},
+                ]}>
+                <View style={styles.recordingDotInner} />
+              </Animated.View>
+              <Text style={styles.recordingTimer}>
+                {formatRecordTime(recordSeconds)}
+              </Text>
+              <Text style={styles.recordingHint}>Release to send</Text>
+            </View>
+          ) : settingUpLiveLocation ? (
+            <View style={styles.liveLocationBanner}>
+              <ActivityIndicator
+                size="small"
+                color={theme.colors.themecolor2}
+                style={{marginRight: moderateScale(8)}}
+              />
+              <Text style={styles.liveLocationText}>
+                Setting up live location...
+              </Text>
+            </View>
+          ) : (
+            <View style={styles.textInputWrapper}>
+              <TextInput
+                placeholder={hasActiveReply ? 'Reply' : 'Message'}
+                style={[
+                  styles.messageInput,
+                  {
+                    minHeight: minInputHeight,
+                    maxHeight: maxInputHeight,
+                  },
+                ]}
+                multiline
+                onContentSizeChange={onMessageInputSizeChange}
+                onEndEditing={onEndEditing}
+                value={textValue}
+                onChangeText={onChangeText}
+                keyboardType="default"
+                secureTextEntry={false}
+                placeholderTextColor={theme.colors.blackOpacity50}
+              />
+            </View>
+          )}
+
+          {!settingUpLiveLocation ? (
+            <View style={styles.chatActionsRow}>
+              {hasText && !isRecording ? (
+                <TouchableOpacity
+                  style={styles.sendBtn}
+                  onPress={() => {
+                    if (chatId) {
+                      clearChatDraft(chatId);
+                      setLastSavedDraft('');
+                    }
+                    onSend();
+                  }}
+                  activeOpacity={0.8}>
+                  <Image
+                    style={styles.sendBtnIcon}
+                    source={imagesPath.ic_sent}
+                  />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  style={[
+                    styles.chatOptionStyle,
+                    isRecording && styles.recordingMicActive,
+                  ]}
+                  onLongPress={onPressRecording}
+                  onPressOut={onPressRecordingOut}
+                  delayLongPress={200}
+                  activeOpacity={0.7}>
+                  <Image
+                    style={[
+                      styles.chatOptionIconStyle,
+                      isRecording && styles.recordingMicIconActive,
+                    ]}
+                    source={imagesPath.ic_microphone}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
+          ) : null}
         </View>
 
         {!!currentLoc?.lat ? (
@@ -1946,12 +2016,12 @@ export const ChatInputComponent: FC<ChatInputComponentProps> = React.memo(
                   style={{
                     position: 'absolute',
                     flexDirection: 'row',
-                    bottom: moderateScaleVertical(50),
+                    bottom: Math.max(insets.bottom, moderateScaleVertical(16)),
                     left: 0,
                     right: 0,
                     alignSelf: 'center',
                     justifyContent: 'space-between',
-                    paddingHorizontal: moderateScale(5),
+                    paddingHorizontal: moderateScale(8),
                     paddingVertical: moderateScale(10),
                   }}>
                   <TouchableOpacity
@@ -2276,21 +2346,39 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
       );
     };
 
+    const headerBackground = theme.colors.white;
+    const zegoCallButtonProps = {
+      width: moderateScale(38),
+      height: moderateScale(38),
+      backgroundColor: 'transparent',
+      borderRadius: moderateScale(10),
+      borderWidth: 1,
+      borderColor: theme.colors.activeTintColor,
+      resourceID: 'In-app Chat',
+    };
+
     return (
-      (
-        <SafeAreaView
+      <View style={{backgroundColor: headerBackground}}>
+        <StatusBar
+          backgroundColor={headerBackground}
+          barStyle="light-content"
+          translucent={Platform.OS === 'android'}
+        />
+        <View
           style={{
             flexDirection: 'row',
+            alignItems: 'center',
             justifyContent: 'space-between',
-            paddingTop: moderateScale(20),
-            paddingBottom: Platform.OS === 'ios' ? moderateScale(-20) : moderateScale(10),
+            paddingTop: insets.top + moderateScale(8),
+            paddingBottom: moderateScale(10),
             paddingHorizontal: moderateScale(16),
-            backgroundColor: theme.colors.blackOpacity10,
+            backgroundColor: headerBackground,
             borderBottomWidth: 0.5,
+            borderBottomColor: theme.colors.blackOpacity10,
           }}>
-          <TouchableOpacity 
-          onPress={onBack}
-          style={{...styles.boxView}}>
+          <TouchableOpacity
+            onPress={onBack}
+            style={{...styles.boxView}}>
             <Image source={imagesPath.ic_back} style={styles.imgStyle} />
           </TouchableOpacity>
           <View
@@ -2298,7 +2386,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
               flex: 1,
               flexDirection: 'row',
               alignItems: 'center',
-              paddingHorizontal: moderateScale(12),
+              minWidth: 0,
+              paddingHorizontal: moderateScale(8),
             }}>
             <TouchableOpacity
               activeOpacity={0.9}
@@ -2307,6 +2396,7 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                 flex: 1,
                 flexDirection: 'row',
                 alignItems: 'center',
+                minWidth: 0,
               }}>
               {/* <FastImage
               source={{ uri: profileImage }}
@@ -2336,17 +2426,16 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                 }}
               />
 
-              <View style={{width: '80%'}}>
-                {name === '24/7 Live\nChat Room' ? (
+              <View style={{flex: 1, minWidth: 0}}>
+                {name === '24/7 Live\nChat Room' || name?.includes('24/7 Live') ? (
                   <Text
                     style={{
                       ...commonStyles.font_16_SemiBold,
-                      textTransform: 'capitalize',
                       color: theme.colors.florsentTheme,
                     }}
-                    numberOfLines={4}>
+                    numberOfLines={2}>
                     <Text style={{color: theme.colors.yellow}}>24/7</Text>
-                    {' Live\nChat Room'}
+                    {' Live Chat Room'}
                   </Text>
                 ) : (
                   <Text
@@ -2355,7 +2444,7 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                       textTransform: 'capitalize',
                       color: theme.colors.florsentTheme,
                     }}
-                    numberOfLines={4}>
+                    numberOfLines={2}>
                     {name}
                   </Text>
                 )}
@@ -2374,7 +2463,7 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
             </TouchableOpacity>
           </View>
           {roomType != 2 ? (
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
               {userData?.subscription?.subscription_id === 2 ? (
                 <View style={{flexDirection: 'row'}}>
                   {subscriptionId === 1 ? (
@@ -2398,9 +2487,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                         },
                       ]}
                       isVideoCall={false}
-                      resourceID={'In-app Chat'}
                       icon={imagesPath.contact}
-                      backgroundColor="transparent"
+                      {...zegoCallButtonProps}
                     />
                   ) : subscriptionId === 2 ? (
                     !isBlocked ? (
@@ -2412,9 +2500,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                           },
                         ]}
                         isVideoCall={false}
-                        resourceID={'In-app Chat'}
                         icon={imagesPath.contact}
-                        backgroundColor="transparent"
+                        {...zegoCallButtonProps}
                       />
                     ) : (
                       <ZegoSendCallInvitationButton
@@ -2425,9 +2512,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                           },
                         ]}
                         isVideoCall={false}
-                        resourceID={'In-app Chat'}
                         icon={imagesPath.contact}
-                        backgroundColor="transparent"
+                        {...zegoCallButtonProps}
                       />
                     )
                   ) : (
@@ -2439,9 +2525,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                         },
                       ]}
                       isVideoCall={false}
-                      resourceID={'In-app Chat'}
                       icon={imagesPath.contact}
-                      backgroundColor="transparent"
+                      {...zegoCallButtonProps}
                     />
                     // <TouchableOpacity
                     //   onPress={alertMessageOther}
@@ -2478,8 +2563,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                         },
                       ]}
                       isVideoCall={true}
-                      resourceID={'In-app Chat'}
-                      icon={imagesPath.ic_video_call_black}
+                      icon={imagesPath.ic_video_call}
+                      {...zegoCallButtonProps}
                     />
                   ) : subscriptionId === 2 ? (
                     !isBlocked ? (
@@ -2491,8 +2576,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                           },
                         ]}
                         isVideoCall={true}
-                        resourceID={'In-app Chat'}
-                        icon={imagesPath.ic_video_call_black}
+                        icon={imagesPath.ic_video_call}
+                        {...zegoCallButtonProps}
                       />
                     ) : (
                       <ZegoSendCallInvitationButton
@@ -2503,23 +2588,11 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                           },
                         ]}
                         isVideoCall={true}
-                        resourceID={'In-app Chat'}
-                        icon={imagesPath.ic_video_call_black}
+                        icon={imagesPath.ic_video_call}
+                        {...zegoCallButtonProps}
                       />
                     )
                   ) : (
-                    // <TouchableOpacity
-                    //   onPress={alertMessageVideoOther}
-                    //   style={{
-                    //     backgroundColor: colors.s,
-                    //     height: moderateScale(40),
-                    //     width: moderateScale(40),
-                    //     borderRadius: moderateScale(40 / 2),
-                    //     justifyContent: 'center',
-                    //     alignItems: 'center',
-                    //   }}>
-                    //   <Image source={imagesPath.ic_video_call_black} />
-                    // </TouchableOpacity>
                     <ZegoSendCallInvitationButton
                       invitees={[
                         {
@@ -2528,8 +2601,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                         },
                       ]}
                       isVideoCall={true}
-                      resourceID={'In-app Chat'}
-                      icon={imagesPath.ic_video_call_black}
+                      icon={imagesPath.ic_video_call}
+                      {...zegoCallButtonProps}
                     />
                   )}
                 </View>
@@ -2545,8 +2618,8 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                   <View style={{width: moderateScale(6)}} />
                   <TouchableOpacity
                     onPress={onPressAlertVideo}
-                    style={styles.alertStyle}>
-                    <Image source={imagesPath.ic_video_call_black} style={styles.imgStyle}/>
+                    style={styles.boxView}>
+                    <Image source={imagesPath.ic_video_call} style={styles.videoIcon} />
                   </TouchableOpacity>
                 </View>
               ) : (
@@ -2561,7 +2634,7 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
                   <TouchableOpacity
                     onPress={onPressAlertVideo}
                     style={styles.boxView}>
-                    <Image source={imagesPath.ic_video_call_black} style={styles.videoIcon} />
+                    <Image source={imagesPath.ic_video_call} style={styles.videoIcon} />
                   </TouchableOpacity>
                 </View>
               )}
@@ -2577,39 +2650,37 @@ export const ChatHeaderComponent: FC<ChatHeaderComponentProps> = React.memo(
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate(navigationString.View_Member_Group, {
-                  roomMemberData: roomData,
+                  roomMemberData: {
+                    ...roomData,
+                    members: roomData?.members || memberImg || [],
+                  },
                 })
               }
-              style={{
-                flexDirection: 'row',
-                backgroundColor: theme.colors.lightGray,
-                borderRadius: moderateScale(60),
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: moderateScale(7),
-              }}>
+              style={styles.groupMembersPill}
+              activeOpacity={0.85}>
               {memberImg?.slice(0, 3).map((item, index) => (
                 <FastImage
-                  key={index} // Make sure to add a unique key for each item
-                  source={{uri: item?.user?.profile_image}}
-                  style={{
-                    borderWidth: 2,
-                    borderColor: theme.colors.white,
-                    borderRadius: moderateScale(20),
-                    right: index === 0 ? 0 : moderateScale(6 * index + 2),
-                    zIndex: -index,
-                    height: moderateScale(30),
-                    width: moderateScale(30),
-                  }}
+                  key={String(item?.user?.id || index)}
+                  source={
+                    item?.user?.profile_image
+                      ? {uri: item?.user?.profile_image}
+                      : imagesPath.profileimage
+                  }
+                  style={[
+                    styles.groupMemberAvatar,
+                    index > 0 && {marginLeft: moderateScale(-8)},
+                  ]}
                 />
               ))}
               {memberImg?.length > 3 ? (
-                <Text style={styles.memberText}>+{memberImg?.length - 3}</Text>
+                <Text style={styles.groupMemberCount}>
+                  +{memberImg?.length - 3}
+                </Text>
               ) : null}
             </TouchableOpacity>
           )}
-        </SafeAreaView>
-      )
+        </View>
+      </View>
     );
   },
 );
@@ -2638,6 +2709,29 @@ const getStyles = (theme: any) => {
         padding: moderateScale(8),
         marginBottom: moderateScale(0),
       },
+      voiceMessageRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        minWidth: moderateScale(140),
+        paddingVertical: moderateScale(2),
+      },
+      voicePlayButton: {
+        height: moderateScale(32),
+        width: moderateScale(32),
+        borderRadius: moderateScale(16),
+        borderWidth: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: moderateScale(10),
+      },
+      voicePlayIcon: {
+        height: moderateScale(14),
+        width: moderateScale(14),
+      },
+      voiceMessageLabel: {
+        ...commonStyles.font_12_SemiBold,
+        flex: 1,
+      },
       swipeWrapper: {
         position: 'relative',
         justifyContent: 'center',
@@ -2664,21 +2758,42 @@ const getStyles = (theme: any) => {
       },
       replyMessageLabel: {
         ...commonStyles.font_10_SemiBold,
-        color: theme.colors.themecolor2,
       },
       replyMessageText: {
         ...commonStyles.font_12_regular,
-        color: theme.colors.black,
         marginTop: moderateScale(2),
       },
       timeText: {
         ...commonStyles.font_8_medium,
-        color: theme.colors.black,
+        color: theme.colors.blackOpacity70,
         marginLeft: moderateScale(30),
       },
       memberText: {
         ...commonStyles.font_12_bold,
-        color: theme.colors.black,
+        color: theme.colors.florsentTheme,
+      },
+      groupMembersPill: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: theme.colors.lightGray,
+        borderRadius: moderateScale(20),
+        paddingHorizontal: moderateScale(6),
+        paddingVertical: moderateScale(4),
+        borderWidth: 1,
+        borderColor: theme.colors.blackOpacity20,
+        maxWidth: moderateScale(110),
+      },
+      groupMemberAvatar: {
+        height: moderateScale(28),
+        width: moderateScale(28),
+        borderRadius: moderateScale(14),
+        borderWidth: 2,
+        borderColor: theme.colors.primaryWhite,
+      },
+      groupMemberCount: {
+        ...commonStyles.font_12_SemiBold,
+        color: theme.colors.florsentTheme,
+        marginLeft: moderateScale(4),
       },
 
       centeredView: {
@@ -2760,10 +2875,201 @@ const getStyles = (theme: any) => {
       chatOptionStyle:{
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: theme.colors.black,
-        padding: moderateScale(10),
-        borderRadius: moderateScale(8),
-      }
+        height: moderateScale(38),
+        width: moderateScale(38),
+        borderRadius: moderateScale(19),
+      },
+      inputToolbarWrapper: {
+        width: '100%',
+        paddingHorizontal: moderateScale(12),
+        paddingTop: 0,
+      },
+      inputBarContainer: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        width: '100%',
+        backgroundColor: theme.colors.lightGray,
+        borderRadius: moderateScale(28),
+        minHeight: moderateScale(52),
+        paddingLeft: moderateScale(6),
+        paddingRight: moderateScale(6),
+        paddingVertical: moderateScale(4),
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: theme.colors.blackOpacity20,
+        shadowColor: theme.colors.black,
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.08,
+        shadowRadius: 8,
+        elevation: 4,
+      },
+      textInputWrapper: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: moderateScale(4),
+      },
+      messageInput: {
+        paddingVertical: moderateScale(10),
+        width: '100%',
+        fontSize: moderateScale(16),
+        color: theme.colors.black,
+        textAlignVertical: 'center',
+        lineHeight: moderateScale(22),
+      },
+      attachIconCircle: {
+        height: moderateScale(32),
+        width: moderateScale(32),
+        borderRadius: moderateScale(16),
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      attachPlusText: {
+        fontSize: moderateScale(28),
+        lineHeight: moderateScale(30),
+        color: theme.colors.florsentTheme,
+        fontWeight: '400',
+        includeFontPadding: false,
+        textAlign: 'center',
+        marginTop: Platform.OS === 'ios' ? -2 : -4,
+      },
+      attachBtnActive: {
+        backgroundColor: theme.colors.florsentTheme + '22',
+      },
+      sendBtn: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: moderateScale(38),
+        width: moderateScale(38),
+        borderRadius: moderateScale(19),
+        backgroundColor: theme.colors.florsentTheme,
+      },
+      sendBtnIcon: {
+        height: moderateScale(18),
+        width: moderateScale(18),
+        tintColor: theme.colors.primaryWhite,
+      },
+      attachmentGrid: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
+        backgroundColor: theme.colors.lightGray,
+        borderRadius: moderateScale(16),
+        paddingVertical: moderateScale(14),
+        paddingHorizontal: moderateScale(8),
+        marginBottom: moderateScale(10),
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: theme.colors.blackOpacity20,
+        shadowColor: theme.colors.black,
+        shadowOffset: {width: 0, height: 1},
+        shadowOpacity: 0.06,
+        shadowRadius: 6,
+        elevation: 2,
+      },
+      attachmentIconCircle: {
+        height: moderateScale(52),
+        width: moderateScale(52),
+        borderRadius: moderateScale(26),
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: moderateScale(6),
+      },
+      attachmentIconImage: {
+        height: moderateScale(24),
+        width: moderateScale(24),
+        tintColor: theme.colors.activeTintColor,
+        resizeMode: 'contain',
+      },
+      attachmentLabel: {
+        ...commonStyles.font_10_regular,
+        color: theme.colors.blackOpacity70,
+        textAlign: 'center',
+      },
+      liveLocationBanner: {
+        borderColor: theme.colors.themecolor2,
+        borderWidth: 1,
+        flex: 1,
+        borderRadius: moderateScale(20),
+        alignItems: 'center',
+        flexDirection: 'row',
+        backgroundColor: theme.colors.themecolor2 + '10',
+        paddingVertical: moderateScale(12),
+        paddingHorizontal: moderateScale(12),
+        marginHorizontal: moderateScale(4),
+      },
+      liveLocationText: {
+        ...commonStyles.font_12_SemiBold,
+        color: theme.colors.florsentTheme,
+      },
+      recordingCancelBtn: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: moderateScale(38),
+        width: moderateScale(38),
+        borderRadius: moderateScale(19),
+      },
+      recordingCancelIcon: {
+        height: moderateScale(16),
+        width: moderateScale(16),
+        tintColor: theme.colors.red_09,
+      },
+      chatActionsRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      recordingPanel: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: theme.colors.red_09 + '12',
+        borderRadius: moderateScale(20),
+        paddingVertical: moderateScale(10),
+        paddingHorizontal: moderateScale(12),
+        marginHorizontal: moderateScale(4),
+      },
+      recordingDotOuter: {
+        height: moderateScale(14),
+        width: moderateScale(14),
+        borderRadius: moderateScale(7),
+        backgroundColor: theme.colors.red_09 + '30',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: moderateScale(8),
+      },
+      recordingDotInner: {
+        height: moderateScale(8),
+        width: moderateScale(8),
+        borderRadius: moderateScale(4),
+        backgroundColor: theme.colors.red_09,
+      },
+      recordingTimer: {
+        ...commonStyles.font_14_SemiBold,
+        color: theme.colors.black,
+        minWidth: moderateScale(36),
+        marginRight: moderateScale(8),
+      },
+      recordingHint: {
+        ...commonStyles.font_12_regular,
+        color: theme.colors.blackOpacity70,
+        flex: 1,
+      },
+      recordingMicActive: {
+        backgroundColor: theme.colors.red_09,
+        transform: [{scale: 1.1}],
+      },
+      recordingMicIconActive: {
+        tintColor: theme.colors.primaryWhite,
+      },
+      chatOptionIconStyle: {
+        height: moderateScale(20),
+        width: moderateScale(20),
+        tintColor: theme.colors.florsentTheme,
+      },
+      attachmentOptionStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: moderateScale(4),
+        paddingVertical: moderateScale(2),
+        minWidth: moderateScale(68),
+      },
     })
 
   );

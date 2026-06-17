@@ -1,6 +1,6 @@
 // import liraries
 import moment from 'moment';
-import React, {useCallback, useLayoutEffect, useState} from 'react';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -12,19 +12,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useSelector} from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useSelector } from 'react-redux';
 
 import AddMediaImageView from '../../Components/AddMediaImageView';
 import ButtonComp from '../../Components/ButtonComp';
 import DobComp from '../../Components/DobComp';
 import GradientText from '../../Components/GradientText';
 import HeaderComp from '../../Components/HeaderComp';
-import {Loader} from '../../Components/Loader';
+import { Loader } from '../../Components/Loader';
 import TextInputComp from '../../Components/TextInputComp';
 import UploadPicView from '../../Components/UploadPicView';
 import WrapperContainer from '../../Components/WrapperContainer';
-import {CountriesAndStates} from '../../constants/CountriesAndStates';
+import { CountriesAndStates } from '../../constants/CountriesAndStates';
 import imagesPath from '../../constants/imagesPath';
 import strings from '../../constants/Languages';
 import navigationString from '../../constants/navigationString';
@@ -36,19 +36,19 @@ import {
   deleteGalleryImageApi,
   uploadProfilePicApi,
 } from '../../redux/reduxActions/homeActions';
-import {updateProfileApi} from '../../redux/reduxActions/profileActions';
+import { updateProfileApi } from '../../redux/reduxActions/profileActions';
 import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
-import {moderateScale, textScale, width} from '../../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale, width } from '../../styles/responsiveSize';
 import {
   ApiError,
   selectSingleImage,
   showError,
   showSuccess,
 } from '../../utils/helperFunctions';
-import {requestCameraPermission} from '../../utils/miscellaneous';
-import {stableKeyExtractor} from '../../utils/stableKeyExtractor';
-import {checkIsEmpty, checkLength} from '../../utils/validations';
+import { requestCameraPermission } from '../../utils/miscellaneous';
+import { stableKeyExtractor } from '../../utils/stableKeyExtractor';
+import { checkIsEmpty, checkLength } from '../../utils/validations';
 import SelectTextInputComp from '../../Components/SelectTextInputComp';
 import {
   BODY_TYPE,
@@ -67,18 +67,18 @@ import {
   ACCEPT_NSFW_PICS,
   EXPECTATIONS
 } from '../../utils/staticData';
-import {enableFreeze} from 'react-native-screens';
+import { enableFreeze } from 'react-native-screens';
 import SingleSlider from '../../Components/SingleSlider';
-import {setItem} from '../../utils/utils';
+import { setItem } from '../../utils/utils';
 import { useTheme } from '../../theme/ThemeProvider';
 import { getCommonStyles, hitSlopProp } from '../../styles/commonStyles';
 enableFreeze();
 // create a component
 const CreateProfile = props => {
-  const {theme, isDark} = useTheme();
+  const { theme, isDark } = useTheme();
   const commonStyles = getCommonStyles(theme);
   const styles = getStyles(theme, commonStyles, isDark);
-  const {navigation} = props;
+  const { navigation } = props;
   const [imageObject, setImageObject] = useState();
   const userData = useSelector(state => state?.authReducers?.userData || {});
   const [churchSuggestions, setChurchSuggestions] = useState([]);
@@ -118,7 +118,7 @@ const CreateProfile = props => {
       typeof userData?.married_status === 'number'
         ? userData?.married_status
         : RELATIONSHIP_STATUS.findIndex(x => x === userData?.married_status) +
-            1 || 1,
+        1 || 1,
     name:
       typeof userData?.married_status === 'number'
         ? RELATIONSHIP_STATUS[userData?.married_status - 1 || 1]
@@ -128,64 +128,64 @@ const CreateProfile = props => {
   const regexPattern = /^[a-zA-Z0-9]*$/;
 
   const [maritalStatus, setMaritalStatus] = useState([
-    {id: 1, name: RELATIONSHIP_STATUS[0]},
-    {id: 2, name: RELATIONSHIP_STATUS[1]},
-    {id: 3, name: RELATIONSHIP_STATUS[2]},
-    {id: 4, name: RELATIONSHIP_STATUS[3]},
-    {id: 5, name: RELATIONSHIP_STATUS[4]},
-    {id: 6, name: RELATIONSHIP_STATUS[5]},
-    {id: 7, name: RELATIONSHIP_STATUS[6]},
-    {id: 8, name: RELATIONSHIP_STATUS[7]},
-    {id: 9, name: RELATIONSHIP_STATUS[8]},
+    { id: 1, name: RELATIONSHIP_STATUS[0] },
+    { id: 2, name: RELATIONSHIP_STATUS[1] },
+    { id: 3, name: RELATIONSHIP_STATUS[2] },
+    { id: 4, name: RELATIONSHIP_STATUS[3] },
+    { id: 5, name: RELATIONSHIP_STATUS[4] },
+    { id: 6, name: RELATIONSHIP_STATUS[5] },
+    { id: 7, name: RELATIONSHIP_STATUS[6] },
+    { id: 8, name: RELATIONSHIP_STATUS[7] },
+    { id: 9, name: RELATIONSHIP_STATUS[8] },
   ]);
   const [HIV_Status, setHIV_Status] = useState([
-    {id: 1, name: HIV_STATUS[0]},
-    {id: 2, name: HIV_STATUS[1]},
-    {id: 3, name: HIV_STATUS[2]},
+    { id: 1, name: HIV_STATUS[0] },
+    { id: 2, name: HIV_STATUS[1] },
+    { id: 3, name: HIV_STATUS[2] },
   ]);
 
   const [NSFWValue, setNSFWValue] = useState(userData?.nsfw)
   const [NSFW, setNSFW] = useState([
-    {id: 1, name: ACCEPT_NSFW_PICS[0]},
-    {id: 2, name: ACCEPT_NSFW_PICS[1]},
-    {id: 3, name: ACCEPT_NSFW_PICS[2]},
-    {id: 4, name: ACCEPT_NSFW_PICS[3]},
+    { id: 1, name: ACCEPT_NSFW_PICS[0] },
+    { id: 2, name: ACCEPT_NSFW_PICS[1] },
+    { id: 3, name: ACCEPT_NSFW_PICS[2] },
+    { id: 4, name: ACCEPT_NSFW_PICS[3] },
   ]);
 
   const [ExpectationsValue, setExpectationsValue] = useState(userData.expectations)
   const [Expectations, setExpectations] = useState([
-    {id: 1, name: EXPECTATIONS[0]},
-    {id: 2, name: EXPECTATIONS[1]},
-    {id: 3, name: EXPECTATIONS[2]},
-    {id: 4, name: EXPECTATIONS[3]},
-    {id: 5, name: EXPECTATIONS[4]},
-    {id: 6, name: EXPECTATIONS[5]},
-    {id: 7, name: EXPECTATIONS[6]},
-    {id: 8, name: EXPECTATIONS[7]},
+    { id: 1, name: EXPECTATIONS[0] },
+    { id: 2, name: EXPECTATIONS[1] },
+    { id: 3, name: EXPECTATIONS[2] },
+    { id: 4, name: EXPECTATIONS[3] },
+    { id: 5, name: EXPECTATIONS[4] },
+    { id: 6, name: EXPECTATIONS[5] },
+    { id: 7, name: EXPECTATIONS[6] },
+    { id: 8, name: EXPECTATIONS[7] },
   ]);
 
   const [tribes, setTribes] = useState(() => {
     const tribesArray = [
-      {id: 1, name: TRIBES[0]},
-      {id: 2, name: TRIBES[1]},
-      {id: 3, name: TRIBES[2]},
-      {id: 4, name: TRIBES[3]},
-      {id: 5, name: TRIBES[4]},
-      {id: 6, name: TRIBES[5]},
-      {id: 7, name: TRIBES[6]},
-      {id: 8, name: TRIBES[7]},
-      {id: 9, name: TRIBES[8]},
-      {id: 10, name: TRIBES[9]},
-      {id: 11, name: TRIBES[10]},
-      {id: 12, name: TRIBES[11]},
-      {id: 13, name: TRIBES[12]},
-      {id: 14, name: TRIBES[13]},
-      {id: 15, name: TRIBES[14]},
-      {id: 16, name: TRIBES[15]},
-      {id: 17, name: TRIBES[16]},
-      {id: 18, name: TRIBES[17]},
+      { id: 1, name: TRIBES[0] },
+      { id: 2, name: TRIBES[1] },
+      { id: 3, name: TRIBES[2] },
+      { id: 4, name: TRIBES[3] },
+      { id: 5, name: TRIBES[4] },
+      { id: 6, name: TRIBES[5] },
+      { id: 7, name: TRIBES[6] },
+      { id: 8, name: TRIBES[7] },
+      { id: 9, name: TRIBES[8] },
+      { id: 10, name: TRIBES[9] },
+      { id: 11, name: TRIBES[10] },
+      { id: 12, name: TRIBES[11] },
+      { id: 13, name: TRIBES[12] },
+      { id: 14, name: TRIBES[13] },
+      { id: 15, name: TRIBES[14] },
+      { id: 16, name: TRIBES[15] },
+      { id: 17, name: TRIBES[16] },
+      { id: 18, name: TRIBES[17] },
     ];
-    
+
     // Mark selected tribes
     if (userData?.tribes) {
       const selectedTribes = Array.isArray(userData.tribes) ? userData.tribes : [userData.tribes];
@@ -193,42 +193,42 @@ const CreateProfile = props => {
         tribe.isSelected = selectedTribes.includes(tribe.name);
       });
     }
-    
+
     return tribesArray;
   });
 
   const [vaccinations_Status, setVaccinationsStatus] = useState([
-    {id: 1, name: VACCINATIONS[0]},
-    {id: 2, name: VACCINATIONS[1]},
+    { id: 1, name: VACCINATIONS[0] },
+    { id: 2, name: VACCINATIONS[1] },
   ]);
 
   const [positionType, setpositionType] = useState([
-    {img: imagesPath.upward, name: ENCOUNTR_POSITION[0]},
-    {img: imagesPath.verstop, name: ENCOUNTR_POSITION[1]},
-    {img: imagesPath.verticalSwipeIcon, name: ENCOUNTR_POSITION[2]},
-    {img: imagesPath.tiltedBottomArrow, name: ENCOUNTR_POSITION[3]},
-    {img: imagesPath.bottom, name: ENCOUNTR_POSITION[4]},
-    {img: imagesPath.horizontalSwipeIcon, name: ENCOUNTR_POSITION[5]},
-    {img: imagesPath.bottom, name: ENCOUNTR_POSITION[6]},
-    {img: imagesPath.bottom, name: ENCOUNTR_POSITION[7]},
-    {img: imagesPath.bottom, name: ENCOUNTR_POSITION[8]},
-    {img: imagesPath.bottom, name: ENCOUNTR_POSITION[9]},
+    { img: imagesPath.upward, name: ENCOUNTR_POSITION[0] },
+    { img: imagesPath.verstop, name: ENCOUNTR_POSITION[1] },
+    { img: imagesPath.verticalSwipeIcon, name: ENCOUNTR_POSITION[2] },
+    { img: imagesPath.tiltedBottomArrow, name: ENCOUNTR_POSITION[3] },
+    { img: imagesPath.bottom, name: ENCOUNTR_POSITION[4] },
+    { img: imagesPath.horizontalSwipeIcon, name: ENCOUNTR_POSITION[5] },
+    { img: imagesPath.bottom, name: ENCOUNTR_POSITION[6] },
+    { img: imagesPath.bottom, name: ENCOUNTR_POSITION[7] },
+    { img: imagesPath.bottom, name: ENCOUNTR_POSITION[8] },
+    { img: imagesPath.bottom, name: ENCOUNTR_POSITION[9] },
   ]);
   const [photoData, setphotoData] = useState([
-    {img: imagesPath.photonew, name: HAS_PHOTOS[0], value: 'has_photo'},
-    {img: imagesPath.albumIcon, name: HAS_PHOTOS[1], value: 'has_album'},
+    { img: imagesPath.photonew, name: HAS_PHOTOS[0], value: 'has_photo' },
+    { img: imagesPath.albumIcon, name: HAS_PHOTOS[1], value: 'has_album' },
   ]);
 
-  const [isChildren, setIsChildren] = useState([{name: 'Yes'}, {name: 'No'}]);
+  const [isChildren, setIsChildren] = useState([{ name: 'Yes' }, { name: 'No' }]);
 
   const [bodyType, setBodyType] = useState([
-    {name: BODY_TYPE[0]},
-    {name: BODY_TYPE[1]},
-    {name: BODY_TYPE[2]},
-    {name: BODY_TYPE[3]},
-    {name: BODY_TYPE[4]},
-    {name: BODY_TYPE[5]},
-    {name: BODY_TYPE[6]},
+    { name: BODY_TYPE[0] },
+    { name: BODY_TYPE[1] },
+    { name: BODY_TYPE[2] },
+    { name: BODY_TYPE[3] },
+    { name: BODY_TYPE[4] },
+    { name: BODY_TYPE[5] },
+    { name: BODY_TYPE[6] },
   ]);
   const [bodyTypeValue, setBodyTypeValue] = useState({
     name: userData?.body_type,
@@ -239,7 +239,7 @@ const CreateProfile = props => {
   const [meetUpValue, setMeetUpValue] = useState(userData?.meet_at);
   const [tribeValue, setTribeValue] = useState(() => {
     if (!userData?.tribes) return [];
-    
+
     if (Array.isArray(userData.tribes)) {
       return userData.tribes;
     } else {
@@ -252,28 +252,28 @@ const CreateProfile = props => {
   const [vaccinationsValue, setVaccinationsValue] = useState(
     userData?.vaccination,
   );
-  
+
 
 
 
 
 
   const [lookingFor, setLookingFor] = useState([
-    {name: LOOKING_FOR[0]},
-    {name: LOOKING_FOR[1]},
-    {name: LOOKING_FOR[2]},
-    {name: LOOKING_FOR[3]},
-    {name: LOOKING_FOR[4]},
-    {name: LOOKING_FOR[5]},
-    {name: LOOKING_FOR[6]},
+    { name: LOOKING_FOR[0] },
+    { name: LOOKING_FOR[1] },
+    { name: LOOKING_FOR[2] },
+    { name: LOOKING_FOR[3] },
+    { name: LOOKING_FOR[4] },
+    { name: LOOKING_FOR[5] },
+    { name: LOOKING_FOR[6] },
   ]);
   const [meetUpStates, setMeetUpStates] = useState([
-    {name: MEET_AT[0]},
-    {name: MEET_AT[1]},
-    {name: MEET_AT[2]},
-    {name: MEET_AT[3]},
-    {name: MEET_AT[4]},
-    {name: MEET_AT[5]},
+    { name: MEET_AT[0] },
+    { name: MEET_AT[1] },
+    { name: MEET_AT[2] },
+    { name: MEET_AT[3] },
+    { name: MEET_AT[4] },
+    { name: MEET_AT[5] },
   ]);
 
   const [searching, setSearching] = useState({
@@ -296,7 +296,7 @@ const CreateProfile = props => {
 
 
   const renderGalleryImages = useCallback(
-    ({item, index}) => {
+    ({ item, index }) => {
       if (index > 3) {
         return;
       }
@@ -427,15 +427,15 @@ const CreateProfile = props => {
       height: String(maxHeight),
       weight,
       married_status: maritalStatusValue?.id || maritalStatusValue,
-      hiv_status: hivValue?.name ||hivValue,
+      hiv_status: hivValue?.name || hivValue,
       last_tested: lastTestedDate,
       remind_me_to_get_tested: remindTestedDate,
-      vaccination: vaccinationsValue?.name ||vaccinationsValue,
-      nsfw:NSFWValue?.name||NSFWValue,
-      expectations:ExpectationsValue?.name||ExpectationsValue
+      vaccination: vaccinationsValue?.name || vaccinationsValue,
+      nsfw: NSFWValue?.name || NSFWValue,
+      expectations: ExpectationsValue?.name || ExpectationsValue
     };
 
-    
+
 
     updateProfileApi(apiData)
       .then(res => {
@@ -464,40 +464,39 @@ const CreateProfile = props => {
           onPress: _selectImage,
         },
       ],
-      {cancelable: true},
+      { cancelable: true },
     );
   };
 
   return (
-    
-    
-      <WrapperContainer paddingAvailable={false} isSafeAreaAvailable={Platform.OS == 'ios'}>
-        <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+    <WrapperContainer isSafeAreaAvailable={true}>
+      <View style={{ flex: 1 }}>
+        <KeyboardAwareScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flex: 1 }}>
           <HeaderComp
-            viewStyle={styles.headerStyle}
+            viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
             leftIcon={imagesPath.ic_back}
             onPressBack={() => navigation.goBack()}
           />
-        <View style={styles.rowAlignedStyle}>
-          <GradientText
-            text={strings.editProfile}
-            textStyle={styles.txtStyle}
-            start={{ x: 0, y: 0.4 }}
-            end={{ x: 0.4, y: 0.5 }}
-          />
-          <ButtonComp
-            btnText={strings.save}
-            onPressBtn={_onSave}
-            btnView={{
-              marginRight: moderateScale(20),
-            }}
-            btnStyle={{
-              alignSelf: 'center',
-              justifyContent: 'center',
-              width: width / 2.5,
-            }}
-          />
-        </View>
+          <View style={styles.rowAlignedStyle}>
+            <GradientText
+              text={strings.editProfile}
+              textStyle={styles.txtStyle}
+              start={{ x: 0, y: 0.4 }}
+              end={{ x: 0.4, y: 0.5 }}
+            />
+            <ButtonComp
+              btnText={strings.save}
+              onPressBtn={_onSave}
+              btnView={{
+                marginRight: moderateScale(20),
+              }}
+              btnStyle={{
+                alignSelf: 'center',
+                justifyContent: 'center',
+                width: width / 2.5,
+              }}
+            />
+          </View>
           <FlatList
             keyboardShouldPersistTaps={'always'}
             showsHorizontalScrollIndicator={false}
@@ -538,7 +537,7 @@ const CreateProfile = props => {
                   sliderValue={maxHeight}
                   setSliderValueFromChild={val => setMaxHeight(val)}
                   sliderWidth={width - moderateScale(100)}
-                  textHeaderStyle={{paddingHorizontal: moderateScale(4)}}
+                  textHeaderStyle={{ paddingHorizontal: moderateScale(4) }}
                 />
 
                 <TouchableOpacity
@@ -557,7 +556,7 @@ const CreateProfile = props => {
                     justifyContent: 'center',
                   }}
                   activeOpacity={0.8}
-                  onPress={() => {}}>
+                  onPress={() => { }}>
                   <Text
                     style={{
                       ...commonStyles.font_14_medium,
@@ -606,7 +605,7 @@ const CreateProfile = props => {
                     justifyContent: 'center',
                   }}
                   activeOpacity={0.8}
-                  onPress={() => {}}>
+                  onPress={() => { }}>
                   <Text
                     style={{
                       ...commonStyles.font_14_medium,
@@ -684,38 +683,38 @@ const CreateProfile = props => {
                   setFlatListFromChild={data => setHIV_Status(data)}
                   setValueFromChild={val => setHivValue(val)}
                 />
-                
+
                 <SelectTextInputComp
                   title={'Tribes'}
                   value={
                     tribeValue && tribeValue.length > 0
-                      ? (Array.isArray(tribeValue) 
-                          ? tribeValue.map(tribe => {
-                              if (typeof tribe === 'string') {
-                                // Clean up the string by removing brackets, quotes, slashes, and backslashes
-                                return tribe
-                                  .replace(/[\[\]"]/g, '') // Remove brackets and quotes
-                                  .replace(/[\/\\]/g, '') // Remove forward and backward slashes
-                                  .replace(/\|/g, ', ') // Replace pipe with comma and space
-                                  .replace(/,+/g, ', ') // Replace multiple commas with single comma
-                                  .replace(/^,\s*/, '') // Remove leading comma and space
-                                  .replace(/,\s*$/, '') // Remove trailing comma and space
-                                  .trim(); // Remove extra whitespace
-                              } else if (tribe && typeof tribe === 'object' && tribe.name) {
-                                return tribe.name;
-                              }
-                              return '';
-                            }).filter(tribe => tribe !== '').join(', ')
-                          : typeof tribeValue === 'string' 
-                            ? tribeValue
-                                .replace(/[\[\]"]/g, '') // Remove brackets and quotes
-                                .replace(/[\/\\]/g, '') // Remove forward and backward slashes
-                                .replace(/\|/g, ', ') // Replace pipe with comma and space
-                                .replace(/,+/g, ', ') // Replace multiple commas with single comma
-                                .replace(/^,\s*/, '') // Remove leading comma and space
-                                .replace(/,\s*$/, '') // Remove trailing comma and space
-                                .trim() // Remove extra whitespace
-                            : tribeValue.name || 'Select Tribes')
+                      ? (Array.isArray(tribeValue)
+                        ? tribeValue.map(tribe => {
+                          if (typeof tribe === 'string') {
+                            // Clean up the string by removing brackets, quotes, slashes, and backslashes
+                            return tribe
+                              .replace(/[\[\]"]/g, '') // Remove brackets and quotes
+                              .replace(/[\/\\]/g, '') // Remove forward and backward slashes
+                              .replace(/\|/g, ', ') // Replace pipe with comma and space
+                              .replace(/,+/g, ', ') // Replace multiple commas with single comma
+                              .replace(/^,\s*/, '') // Remove leading comma and space
+                              .replace(/,\s*$/, '') // Remove trailing comma and space
+                              .trim(); // Remove extra whitespace
+                          } else if (tribe && typeof tribe === 'object' && tribe.name) {
+                            return tribe.name;
+                          }
+                          return '';
+                        }).filter(tribe => tribe !== '').join(', ')
+                        : typeof tribeValue === 'string'
+                          ? tribeValue
+                            .replace(/[\[\]"]/g, '') // Remove brackets and quotes
+                            .replace(/[\/\\]/g, '') // Remove forward and backward slashes
+                            .replace(/\|/g, ', ') // Replace pipe with comma and space
+                            .replace(/,+/g, ', ') // Replace multiple commas with single comma
+                            .replace(/^,\s*/, '') // Remove leading comma and space
+                            .replace(/,\s*$/, '') // Remove trailing comma and space
+                            .trim() // Remove extra whitespace
+                          : tribeValue.name || 'Select Tribes')
                       : 'Select Tribes'
                   }
                   bottomSheetHeader={'Tribes'}
@@ -803,7 +802,7 @@ const CreateProfile = props => {
                     justifyContent: 'center',
                   }}
                   activeOpacity={0.8}
-                  onPress={() => {}}>
+                  onPress={() => { }}>
                   <Text
                     style={{
                       ...commonStyles.font_14_medium,
@@ -852,7 +851,7 @@ const CreateProfile = props => {
                     justifyContent: 'center',
                   }}
                   activeOpacity={0.8}
-                  onPress={() => {}}>
+                  onPress={() => { }}>
                   <Text
                     style={{
                       ...commonStyles.font_14_medium,
@@ -901,7 +900,7 @@ const CreateProfile = props => {
                     justifyContent: 'center',
                   }}
                   activeOpacity={0.8}
-                  onPress={() => {}}>
+                  onPress={() => { }}>
                   <Text
                     style={{
                       ...commonStyles.font_14_medium,
@@ -913,7 +912,7 @@ const CreateProfile = props => {
                       color: theme.colors.blackOpacity40,
                       backgroundColor: theme.colors.white,
                     }}>
-                   {strings.LINKEDIN_LINK}
+                    {strings.LINKEDIN_LINK}
                   </Text>
                   <TextInput
                     style={{
@@ -950,7 +949,7 @@ const CreateProfile = props => {
                     justifyContent: 'center',
                   }}
                   activeOpacity={0.8}
-                  onPress={() => {}}>
+                  onPress={() => { }}>
                   <Text
                     style={{
                       ...commonStyles.font_14_medium,
@@ -1033,11 +1032,12 @@ const CreateProfile = props => {
             keyExtractor={stableKeyExtractor}
             style={styles.flatListStyle}
             columnWrapperStyle={styles.flatListWrapperStyle}
-            contentContainerStyle={{paddingBottom: moderateScale(60)}}
+            contentContainerStyle={{ paddingBottom: moderateScale(60) }}
           />
           <Loader isLoading={isLoading} />
         </KeyboardAwareScrollView>
-      </WrapperContainer>
+      </View>
+    </WrapperContainer>
   );
 };
 
@@ -1158,7 +1158,7 @@ const getStyles = (theme, commonStyles, isDark) => StyleSheet.create({
   },
   rowAlignedStyle: {
     flexDirection: 'row',
-    alignItems: 'center', 
+    alignItems: 'center',
     justifyContent: 'space-between',
   }
 });

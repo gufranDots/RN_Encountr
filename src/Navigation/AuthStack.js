@@ -41,10 +41,6 @@ const AuthStack = () => {
         name={navigationString.OTPSCREEN}
         component={ScreenName.OtpScreen}
       />
-      {/* <Stack.Screen
-        name={navigationString.OTPSCREEN}
-        component={ScreenName.OtpScreen}
-      /> */}
       <Stack.Screen
         name={navigationString.LOGINSCREEN}
         component={ScreenName.loginScreen}

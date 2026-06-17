@@ -170,24 +170,25 @@ export const getUserProfile = () => {
   return new Promise((resolve, reject) => {
     apiGet(GET_PROFILE)
       .then(res => {
-        getUserData().then(response => {
-          // if(userData?.subscription === null){
-          //   userData = {...userData, subscription: {
-          //     subscription_id: 1,
-          //     swipes_left: '9',
-          //     likes_left: '3',
-          //     subscription_type: '1 month'
-          //   }}
-          // }
+        getUserData()
+          .then(response => {
+            const userData = {
+              ...response,
+              ...res?.data,
+              token: response?.token,
+              photos: res?.data?.photos?.length
+                ? res.data.photos
+                : response?.photos,
+            };
 
-          let userData = res?.data
-          userData.token = response.token
-          // console.log(userData, 'responsesadasdasdasdasdasd34234');
-          setUserData(userData).then(() => {
-            saveUserDataToStore(userData);
-          });
-        });
-        resolve(res);
+            setUserData(userData)
+              .then(() => {
+                saveUserDataToStore(userData);
+                resolve({...res, data: userData});
+              })
+              .catch(reject);
+          })
+          .catch(reject);
       })
       .catch(error => {
         reject(error);
@@ -284,9 +285,14 @@ export const loginApi = (apiPayload: object) => {
         console.log(userData, 'userdata ==>>>>>>>>>')
 
         setUserData(userData).then(() => {
-          resolve(res);
-
           saveUserDataToStore(userData);
+          getUserProfile()
+            .then(profileRes => {
+              resolve(profileRes || res);
+            })
+            .catch(() => {
+              resolve(res);
+            });
         }).catch(error => {
           reject(error);
         });

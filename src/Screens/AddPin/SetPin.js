@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Keyboard} from 'react-native';
+import {View, Text, StyleSheet, Keyboard, Platform} from 'react-native';
 import React, {useRef} from 'react';
 import {WrapperContainer} from '../../Components';
 import HeaderComp from '../../Components/HeaderComp';
@@ -9,6 +9,7 @@ import {
   scale,
   textScale,
   verticalScale,
+  moderateScaleVertical,
 } from '../../styles/responsiveSize';
 import fontFamily from '../../styles/fontFamily';
 import {OtpInput} from 'react-native-otp-entry';
@@ -95,6 +96,7 @@ const SetPin = ({navigation, route}) => {
   return (
     <WrapperContainer isSafeAreaAvailable={true}>
       <HeaderComp
+        viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         leftIcon={imagesPath.ic_back}
         onPressBack={() => navigation?.replace(navigationString.DrawerStack)}
         centerText={strings.set_pin}

@@ -8,6 +8,7 @@ import {
   Easing,
   FlatList,
   Image,
+  Keyboard,
   Platform,
   Pressable,
   ScrollView,
@@ -82,6 +83,7 @@ import {stableKeyExtractor} from '../../utils/stableKeyExtractor';
 import {configureZegoCloud} from '../../utils/zegoConfigureFile';
 import SoundPlayer from 'react-native-sound-player';
 import CustomImage from '../../Components/CustomImage';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import { useTheme } from '../../theme/ThemeProvider';
 import { getCommonStyles } from '../../styles/commonStyles';
 import { DeleteMsg } from '../../constants/Enum';
@@ -93,6 +95,9 @@ const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const ChatScreen2 = props => {
   const {theme} = useTheme();
+  const insets = useSafeAreaInsets();
+  const keyboardBottomInset = Platform.OS === 'ios' ? insets.bottom : 0;
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const commonStyles = getCommonStyles(theme);
   const styles = getStyles(theme, commonStyles)
   const {navigation, route} = props;
@@ -152,6 +157,23 @@ const ChatScreen2 = props => {
     });
     return () => {
       backHandler.remove();
+    };
+  }, []);
+
+  useEffect(() => {
+    const showEvent =
+      Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const hideEvent =
+      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+    const showSub = Keyboard.addListener(showEvent, () =>
+      setIsKeyboardVisible(true),
+    );
+    const hideSub = Keyboard.addListener(hideEvent, () =>
+      setIsKeyboardVisible(false),
+    );
+    return () => {
+      showSub.remove();
+      hideSub.remove();
     };
   }, []);
 
@@ -1105,15 +1127,18 @@ const ChatScreen2 = props => {
 
   const renderInputToolbar = props => {
     return (
-      <View style={{alignItems: 'center',}}>
+      <View
+        style={{
+          alignItems: 'center',
+          paddingBottom: isKeyboardVisible ? 0 : keyboardBottomInset,
+        }}>
         <View
           style={{
             alignItems: 'center',
-            position: 'absolute',
             width: '90%',
-            bottom: moderateScale(20),
             height: moderateScale(50),
             justifyContent: 'center',
+            marginBottom: moderateScale(4),
           }}>
           {messages.length == 0 &&
           prevData?.is_blocked != 1 &&
@@ -1404,9 +1429,12 @@ const ChatScreen2 = props => {
   };
 
   return (    
-    <WrapperContainer paddingAvailable={false}>
+    <WrapperContainer
+      paddingAvailable={false}
+      statusBarAvailable={false}
+      mainViewStyle={{backgroundColor: theme.colors.white}}>
       {chatHeader()}
-      <View style={styles.chatContainer}>
+      <SafeAreaView edges={['left', 'right']} style={styles.chatContainer}>
         <GiftedChat
           onSend={messages => onSend(messages, 'text')}
           renderMessage={renderMessages}
@@ -1415,6 +1443,9 @@ const ChatScreen2 = props => {
           keyboardShouldPersistTaps={'always'}
           renderInputToolbar={renderInputToolbar}
           wrapInSafeArea={false}
+          bottomOffset={
+            isKeyboardVisible ? keyboardBottomInset : 0
+          }
           user={{_id: userData?.id}}
           loadEarlier={hasMoreData}
           onLoadEarlier={_onLoadEarlier}
@@ -1422,7 +1453,7 @@ const ChatScreen2 = props => {
           renderAvatarOnTop={true}
           isTyping={isTyping}
         />
-      </View>
+      </SafeAreaView>
 
       <Modal isVisible={actionModal} style={{margin: 0}}>
         <View
@@ -1728,9 +1759,9 @@ const ChatScreen2 = props => {
 
 const getStyles = (theme, commonStyles) => StyleSheet.create({
   chatContainer: {
-    flex:1,
-    paddingBottom: moderateScale(28),
-    backgroundColor: theme.colors.lightGray,
+    flex: 1,
+    paddingBottom: 0,
+    backgroundColor: theme.colors.white,
   },
   container: {
     flex: 1,

@@ -29,7 +29,7 @@ import { deleteAccountApi } from '../../redux/reduxActions/homeActions';
 import {
   changeNotificationApi
 } from '../../redux/reduxActions/profileActions';
-import {getCommonStyles} from '../../styles/commonStyles';
+import { getCommonStyles } from '../../styles/commonStyles';
 import fontFamily from '../../styles/fontFamily';
 import {
   moderateScale,
@@ -49,7 +49,7 @@ enableFreeze();
 const zendesk_accountKey = '4YpR9UJZSI6YZDl1DwWk1hPSkiwrxlkF';
 const zendesk_app_id = '3429e6a2c41850217020abb5131b9ae7b44472e414178ddf';
 const SettingScreen = ({ navigation }) => {
-  const {theme} = useTheme();
+  const { theme } = useTheme();
   const commonStyles = getCommonStyles(theme);
   const styles = getStyles(theme, commonStyles);
   const userData = useSelector(state => state?.authReducers?.userData || {});
@@ -280,130 +280,132 @@ const SettingScreen = ({ navigation }) => {
 
   return (
     <WrapperContainer isSafeAreaAvailable={true}>
-      <HeaderComp
-        leftIcon={imagesPath.ic_back}
-        onPressBack={() => navigation.goBack()}
-        centerText={strings.Settings}
-        centertextstyle={{ fontSize: textScale(18), fontFamily: fontFamily.bold }}
-      />
+      <View style={{ flex: 1 }}>
+        <HeaderComp
+          viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
+          leftIcon={imagesPath.ic_back}
+          onPressBack={() => navigation.goBack()}
+          centerText={strings.Settings}
+          centertextstyle={{ fontSize: textScale(18), fontFamily: fontFamily.bold }}
+        />
 
-      <Text
-        style={{
-          marginTop: moderateScaleVertical(22),
-          marginBottom: moderateScaleVertical(8),
-          ...commonStyles.font_12_SemiBold,
-          color: theme.colors.blackOpacity50,
-        }}>
-        {strings.account}
-      </Text>
+        <Text
+          style={{
+            marginTop: moderateScaleVertical(22),
+            marginBottom: moderateScaleVertical(8),
+            ...commonStyles.font_12_SemiBold,
+            color: theme.colors.blackOpacity50,
+          }}>
+          {strings.account}
+        </Text>
 
-      <View style={styles.mainView}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <TouchableBtn
-            imagesrc={imagesPath.ic_subscription}
-            text={strings.Subscription}
-            onPressBtn={onPressSubscription}
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderTopLeftRadius: moderateScale(12),
-              borderRadius: 0,
-              borderTopRightRadius: moderateScale(12),
-            }}
-            rightimg={imagesPath.ic_right_icon}
-          />
-          <View
-            style={{
-              height: 0.7,
-              marginHorizontal: moderateScale(16),
-              backgroundColor: theme.colors.grey,
-            }}
-          />
+        <View style={styles.mainView}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <TouchableBtn
+              imagesrc={imagesPath.ic_subscription}
+              text={strings.Subscription}
+              onPressBtn={onPressSubscription}
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderTopLeftRadius: moderateScale(12),
+                borderRadius: 0,
+                borderTopRightRadius: moderateScale(12),
+              }}
+              rightimg={imagesPath.ic_right_icon}
+            />
+            <View
+              style={{
+                height: 0.7,
+                marginHorizontal: moderateScale(16),
+                backgroundColor: theme.colors.grey,
+              }}
+            />
 
-          <TouchableBtn
-            imagesrc={imagesPath.ic_subscription}
-            text={"Profile Permissions"}
-            onPressBtn={onPressProfilePermissions}
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderRadius: 0,
-            }}
-            rightimg={imagesPath.ic_right_icon}
-          />
+            <TouchableBtn
+              imagesrc={imagesPath.ic_subscription}
+              text={"Profile Permissions"}
+              onPressBtn={onPressProfilePermissions}
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderRadius: 0,
+              }}
+              rightimg={imagesPath.ic_right_icon}
+            />
 
-          <View
-            style={{
-              height: 0.7,
-              marginHorizontal: moderateScale(16),
-              backgroundColor: theme.colors.grey,
-            }}
-          />
+            <View
+              style={{
+                height: 0.7,
+                marginHorizontal: moderateScale(16),
+                backgroundColor: theme.colors.grey,
+              }}
+            />
 
-          <TouchableBtn
-            imagesrc={imagesPath.contact}
-            text={strings.Contactus}
-            rightimg={imagesPath.ic_right_icon}
-            onPressBtn={() => { navigation.navigate(navigationString.ADMIN_CONTACT) }}
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderRadius: moderateScale(0),
-            }}
+            <TouchableBtn
+              imagesrc={imagesPath.contact}
+              text={strings.Contactus}
+              rightimg={imagesPath.ic_right_icon}
+              onPressBtn={() => { navigation.navigate(navigationString.ADMIN_CONTACT) }}
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderRadius: moderateScale(0),
+              }}
 
-          />
-          <View
-            style={{
-              height: 0.7,
-              marginHorizontal: moderateScale(16),
-              backgroundColor: theme.colors.grey,
-            }}
-          />
+            />
+            <View
+              style={{
+                height: 0.7,
+                marginHorizontal: moderateScale(16),
+                backgroundColor: theme.colors.grey,
+              }}
+            />
 
-          <TouchableBtn
-            rightimg={imagesPath.ic_right_icon}
-            imagesrc={imagesPath.psh_notifications}
-            text={strings.changePassword}
-            onPressBtn={() =>
-              navigation.navigate(navigationString.CHANGE_PASSWORD)
-            }
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderRadius: moderateScale(0),
-            }}
-          />
-          <View
-            style={{
-              height: 0.7,
-              marginHorizontal: moderateScale(16),
-              backgroundColor: theme.colors.grey,
-            }}
-          />
+            <TouchableBtn
+              rightimg={imagesPath.ic_right_icon}
+              imagesrc={imagesPath.psh_notifications}
+              text={strings.changePassword}
+              onPressBtn={() =>
+                navigation.navigate(navigationString.CHANGE_PASSWORD)
+              }
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderRadius: moderateScale(0),
+              }}
+            />
+            <View
+              style={{
+                height: 0.7,
+                marginHorizontal: moderateScale(16),
+                backgroundColor: theme.colors.grey,
+              }}
+            />
 
-          <TouchableBtn
-            rightimg={imagesPath.ic_right_icon}
-            imagesrc={imagesPath.ic_user_blocked}
-            text={strings.blockedUsers}
-            iconStyle={{
-              height: moderateScale(22),
-              width: moderateScale(22),
-            }}
-            onPressBtn={() =>
-              navigation.navigate(navigationString.BLOCKED_USERS)
-            }
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderRadius: moderateScale(0),
-            }}
-          />
-          <View
-            style={{
-              height: 0.7,
-              marginHorizontal: moderateScale(16),
-              backgroundColor: theme.colors.grey,
-            }}
-          />
+            <TouchableBtn
+              rightimg={imagesPath.ic_right_icon}
+              imagesrc={imagesPath.ic_user_blocked}
+              text={strings.blockedUsers}
+              iconStyle={{
+                height: moderateScale(22),
+                width: moderateScale(22),
+              }}
+              onPressBtn={() =>
+                navigation.navigate(navigationString.BLOCKED_USERS)
+              }
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderRadius: moderateScale(0),
+              }}
+            />
+            <View
+              style={{
+                height: 0.7,
+                marginHorizontal: moderateScale(16),
+                backgroundColor: theme.colors.grey,
+              }}
+            />
 
-          {/* Add Pin Lock */}
+            {/* Add Pin Lock */}
 
-          {/* <TouchableBtn
+            {/* <TouchableBtn
             rightimg={imagesPath.ic_right_icon}
             imagesrc={imagesPath.lockIcon}
             text={strings.set_pin}
@@ -419,8 +421,8 @@ const SettingScreen = ({ navigation }) => {
               borderRadius: moderateScale(0),
             }}
           /> */}
-          
-          {/* <View
+
+            {/* <View
             style={{
               height: 0.7,
               marginHorizontal: moderateScale(16),
@@ -428,55 +430,56 @@ const SettingScreen = ({ navigation }) => {
             }}
           /> */}
 
-          <TouchableBtn
-            rightimg={imagesPath.ic_right_icon}
-            imagesrc={imagesPath.delete_ic}
-            text={strings.DeleteAccount}
-            onPressBtn={_deleteAccount}
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderRadius: moderateScale(0),
-            }}
-          />
-          <View
-            style={{
-              height: 0.7,
-              marginHorizontal: moderateScale(16),
-              backgroundColor: theme.colors.grey,
-            }}
-          />
+            <TouchableBtn
+              rightimg={imagesPath.ic_right_icon}
+              imagesrc={imagesPath.delete_ic}
+              text={strings.DeleteAccount}
+              onPressBtn={_deleteAccount}
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderRadius: moderateScale(0),
+              }}
+            />
+            <View
+              style={{
+                height: 0.7,
+                marginHorizontal: moderateScale(16),
+                backgroundColor: theme.colors.grey,
+              }}
+            />
 
-          <TouchableBtn
-            rightimg={imagesPath.ic_right_icon}
-            imagesrc={imagesPath.stop}
-            iconStyle={{ width: 25, height: 25 }}
-            text={'Cancel Subscription'}
-            onPressBtn={_CancelSub}
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderRadius: moderateScale(0),
-              borderBottomLeftRadius: moderateScale(12),
-              borderBottomRightRadius: moderateScale(12),
-            }}
-          />
-          <View
-            style={{
-              marginHorizontal: moderateScale(16),
-              backgroundColor: theme.colors.grey,
-              marginTop: moderateScale(30),
-            }}
-          />
-          <TouchableBtn
-            imagesrc={imagesPath.log_out}
-            text={strings.LogOut}
-            onPressBtn={_logout}
-            mainContStyle={{
-              marginTop: moderateScale(0),
-              borderRadius: moderateScale(12),
-            }}
-          />
-        </ScrollView>
+            <TouchableBtn
+              rightimg={imagesPath.ic_right_icon}
+              imagesrc={imagesPath.stop}
+              iconStyle={{ width: 25, height: 25 }}
+              text={'Cancel Subscription'}
+              onPressBtn={_CancelSub}
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderRadius: moderateScale(0),
+                borderBottomLeftRadius: moderateScale(12),
+                borderBottomRightRadius: moderateScale(12),
+              }}
+            />
+            <View
+              style={{
+                marginHorizontal: moderateScale(16),
+                backgroundColor: theme.colors.grey,
+                marginTop: moderateScale(30),
+              }}
+            />
+            <TouchableBtn
+              imagesrc={imagesPath.log_out}
+              text={strings.LogOut}
+              onPressBtn={_logout}
+              mainContStyle={{
+                marginTop: moderateScale(0),
+                borderRadius: moderateScale(12),
+              }}
+            />
+          </ScrollView>
 
+        </View>
       </View>
       <Loader isLoading={isLoading} />
     </WrapperContainer>

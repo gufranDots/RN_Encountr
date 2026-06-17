@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 
+import { useTheme } from '../../theme/ThemeProvider';
 // constants
 import imagesPath from '../../constants/imagesPath';
 import strings from '../../constants/Languages';
@@ -132,10 +133,10 @@ const SetPreferencesAuth = ({ navigation, route }) => {
 
   const _increase = () => {
    
-    if (maxDistance === 0) {
-      showError('Please select your maximum distance preferences');
-      return;
-    }
+    // if (maxDistance === 0) {
+    //   showError('Please select your maximum distance preferences');
+    //   return;
+    // }
     _callApiFnc();
   };
 
@@ -454,11 +455,11 @@ const SetPreferencesAuth = ({ navigation, route }) => {
   };
 
   return (
-    <WrapperContainer paddingAvailable={false}>
+    <WrapperContainer isSafeAreaAvailable={true}>
       <HeaderComp
         leftIcon={imagesPath.ic_back}
         onPressBack={_decrease}
-        viewStyle={{ marginHorizontal: moderateScale(16) }}
+        viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
       />
 
       {/* <View
@@ -514,8 +515,8 @@ const SetPreferencesAuth = ({ navigation, route }) => {
         <ButtonComp
           btnText={strings.set_preferances}
           onPressBtn={_increase}
-          // btnView={{backgroundColor: colors.black}}
-          txtStyle={{ color: theme.colors.white }}
+          btnView={{backgroundColor: theme.colors.greenTheme}}
+          txtStyle={{ color: theme.colors.primaryTxt }}
         />
       </View>
       <Loader isLoading={loading} />

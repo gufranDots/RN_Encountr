@@ -14,7 +14,7 @@ import imagesPath from '../../constants/imagesPath';
 import strings from '../../constants/Languages';
 import navigationString from '../../constants/navigationString';
 import colors from '../../styles/colors';
-import { moderateScale } from '../../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSize';
 import { Loader } from '../../Components/Loader';
 import { enableFreeze } from 'react-native-screens';
 import { showError } from '../../utils/helperFunctions';
@@ -72,8 +72,9 @@ const ForgotScreen = props => {
   // };
 
   return (
-    <WrapperContainer>
+    <WrapperContainer isSafeAreaAvailable={true}>
       <HeaderComp
+      viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         leftIcon={imagesPath.ic_back}
         onPressBack={() => navigation.goBack()}
       />

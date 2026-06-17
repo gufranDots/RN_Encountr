@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Keyboard, Platform, StyleSheet, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
 import ButtonComp from '../../Components/ButtonComp'
 import GradientText from '../../Components/GradientText'
 import HeaderComp from '../../Components/HeaderComp'
@@ -13,7 +12,7 @@ import strings from '../../constants/Languages'
 import navigationString from '../../constants/navigationString'
 import { forgotPasswordSendOtp, getLoginDetailsSendOtp, verifyOtpForgotPassword, verifyOtpGetLoginDetails } from '../../redux/reduxActions/authActions'
 import colors from '../../styles/colors'
-import { moderateScale } from '../../styles/responsiveSize'
+import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize'
 import { ApiError, showError, showSuccess } from '../../utils/helperFunctions'
 import { checkIsEmpty, checkLength, chekPhoneNumberValidations } from '../../utils/validations'
 import { enableFreeze } from 'react-native-screens'
@@ -64,8 +63,9 @@ console.log(ParamDataa,'Paramdataaaa');
 
 
   return (
-        <WrapperContainer paddingAvailable={moderateScale(24)} isSafeAreaAvailable={true}>
+        <WrapperContainer isSafeAreaAvailable={true}>
             <HeaderComp
+            viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
                 leftIcon={imagesPath.ic_back}
                 onPressBack={() => navigation.goBack()}
             />

@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Platform
 } from 'react-native'
 import { useSelector } from 'react-redux'
 import AddMediaImageView from '../../Components/AddMediaImageView'
@@ -24,7 +25,7 @@ import {
   deleteGalleryImageApi,
   uploadProfileMediaApi
 } from '../../redux/reduxActions/homeActions'
-import { height, moderateScale, width } from '../../styles/responsiveSize'
+import { height, moderateScale, moderateScaleVertical, width } from '../../styles/responsiveSize'
 import {
   ApiError,
   selectMultipleImageFromGallery,
@@ -261,9 +262,9 @@ const AllGalleryImages = props => {
   }
 
   return (
-    <WrapperContainer paddingAvailable={false} isSafeAreaAvailable={true}>
+    <WrapperContainer  isSafeAreaAvailable={true}>
       <HeaderComp
-        viewStyle={{ paddingHorizontal: moderateScale(20) }}
+        viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         leftIcon={imagesPath.ic_back}
         onPressBack={() => navigation.goBack()}
       />

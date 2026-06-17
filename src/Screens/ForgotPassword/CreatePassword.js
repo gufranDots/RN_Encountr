@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Keyboard, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {CommonActions} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import ButtonComp from '../../Components/ButtonComp';
@@ -80,7 +81,12 @@ const CreatePassword = props => {
     createForgotPasswordApi(apiData)
       .then(res => {
         showSuccess(res?.message);
-        navigation.navigate(navigationString.LOGINSCREEN);
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: navigationString.LOGINSCREEN}],
+          }),
+        );
         setLoading(false);
       })
       .catch(error => {
@@ -90,10 +96,19 @@ const CreatePassword = props => {
   };
 
   return (
-    <WrapperContainer>
+    <WrapperContainer
+      isSafeAreaAvailable={true}
+      paddingAvailable={moderateScale(24)}>
       <HeaderComp
         leftIcon={imagesPath.ic_back}
-        onPressBack={() => navigation.navigate(navigationString.LOGINSCREEN)}
+        onPressBack={() =>
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{name: navigationString.LOGINSCREEN}],
+            }),
+          )
+        }
       />
       <KeyboardAwareScrollView
         keyboardShouldPersistTaps={'always'}

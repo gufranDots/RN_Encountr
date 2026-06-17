@@ -7,12 +7,14 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Platform,
+  StatusBar,
 } from 'react-native';
 import { WrapperContainer } from '../../Components';
 import colors from '../../styles/colors';
 import imagesPath from '../../constants/imagesPath';
 import Modal from 'react-native-modal';
-import { moderateScale, textScale, width } from '../../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale, width } from '../../styles/responsiveSize';
 import { FlatList } from 'react-native-gesture-handler';
 import CustomImage from '../../Components/CustomImage';
 import fontFamily from '../../styles/fontFamily';
@@ -22,24 +24,22 @@ import {
   exitGroupApi,
   muteUnmuteNotificationApi,
   resetGroupList,
-  saveUserGroupListingToStore,
 } from '../../redux/reduxActions/chatActions';
 import { Loader } from '../../Components/Loader';
 import { showError, showSuccess } from '../../utils/helperFunctions';
 import { useSelector } from 'react-redux';
 import FastImage from '../../utils/FastImageCompat';
-import LinearGradient from 'react-native-linear-gradient';
-import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder';
 import moment from 'moment';
 import HomeComponent from '../../Components/HomeComponent';
 import MemberComponent from '../../Components/MemberComponent';
 import { useTheme } from '../../theme/ThemeProvider';
-import { getCommonStyles } from '../../styles/commonStyles';
-const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
+import { getCommonStyles, hitSlopProp } from '../../styles/commonStyles';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // create a component
 const ViewMemberGroup = ({ navigation, route }) => {
   const {theme} = useTheme();
+  const insets = useSafeAreaInsets();
   const commonStyles= getCommonStyles(theme);
   const styles = getStyles(theme, commonStyles)
   const numColumns = 3;
@@ -54,21 +54,19 @@ const ViewMemberGroup = ({ navigation, route }) => {
   var groupId = route?.params?.roomMemberData?.id;
   var adminId = route?.params?.roomMemberData?.admin_id;
   let notify_muted_by = route?.params?.roomMemberData?.notify_muted_by;
-  const [profileImgLoader, setProfieImgLoader] = useState(true);
 
   useEffect(() => {
-    setMemberData(route?.params?.roomMemberData?.members);
-    console.log("hguhu", route?.params?.roomMemberData?.members);
+    const members = route?.params?.roomMemberData?.members || [];
+    setMemberData(members);
 
-    const groDAta = route?.params?.roomMemberData?.members
+    const result =
+      members.find(
+        item =>
+          item?.user_id === userData?.id || item?.user?.id === userData?.id,
+      ) || {};
 
-    const result = groDAta.find(item => item?.user_id === userData?.id);
-    console.log("bhai result", result);
-    setMyItemData(result)
-
-
-
-  }, [memberData]);
+    setMyItemData(result);
+  }, [route?.params?.roomMemberData, userData?.id]);
 
   const viewProfile = item => {
     const FindAdminId = item?.user?.id;
@@ -80,86 +78,6 @@ const ViewMemberGroup = ({ navigation, route }) => {
         room_typr: 2,
       });
     }
-  };
-
-  const renderItem = ({ item, index }) => {
-    const FindAdminId = item?.user?.id;
-
-
-    saveUserGroupListingToStore(modifiedUserData);
-    return (
-      <View>
-        <TouchableOpacity
-          disabled={userData?.id == FindAdminId ? true : false}
-          onPress={() => viewProfile(item)}
-          onLongPress={() => { adminId == userData?.id ? onPressDeleteUser(FindAdminId) : null }}
-          style={styles.item}>
-          {item?.user?.profile_image ? (
-            <View>
-              <Image
-                onLoad={() => setProfieImgLoader(true)}
-                onLoadStart={() => {
-                  setProfieImgLoader(true);
-                }}
-                onLoadEnd={() => {
-                  setProfieImgLoader(false);
-                }}
-                source={{ uri: item?.user?.profile_image }}
-                style={styles.image}
-              />
-            </View>
-          ) : (
-            <View>
-              <FastImage source={imagesPath?.ic_people} style={styles.image} />
-            </View>
-          )}
-
-          {adminId === FindAdminId ? (
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 12,
-                position: 'absolute',
-                width: moderateScale(45),
-                height: moderateScale(15),
-                backgroundColor: 'white',
-                top: 5,
-                right: 8,
-              }}>
-              <Text style={[styles.adminText]}>Admin</Text>
-            </View>
-          ) : null}
-
-          {item?.user?.first_name ? (
-            <Text style={styles.itemText}>
-              {item?.user?.first_name.charAt(0).toUpperCase() +
-                item.user.first_name.slice(1)}
-              {userData?.id === FindAdminId ? ' (me)' : null}
-            </Text>
-          ) : (
-            <Text style={styles.itemText}>
-              {item?.user?.user_name.charAt(0).toUpperCase() +
-                item?.user?.user_name.slice(1)}
-            </Text>
-          )}
-        </TouchableOpacity>
-
-        {profileImgLoader && (
-          <ShimmerPlaceholder
-            style={{
-              width: '100%',
-              height: '100%',
-              position: 'absolute',
-              borderColor: theme.colors.greenTheme,
-              borderWidth: 0.2,
-            }}
-            autoRun={true}
-          // visible={!profileImgLoader}
-          ></ShimmerPlaceholder>
-        )}
-      </View>
-    );
   };
 
   const onAddMemberPress = () => {
@@ -318,121 +236,87 @@ const ViewMemberGroup = ({ navigation, route }) => {
 
   return (
     <WrapperContainer
-      statusbarcolorr={theme.colors.themecolor2}
-      mainViewStyle={{ backgroundColor: theme.colors.themecolor2 }}
-      isSafeAreaAvailable={true}>
+      paddingAvailable={false}
+      statusBarAvailable={false}
+      mainViewStyle={{ backgroundColor: theme.colors.white }}
+      isSafeAreaAvailable={false}>
       <View style={{ flex: 1 }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <View
-            style={{
-              backgroundColor: theme.colors.Grey32,
-              borderRadius: moderateScale(50),
-              flexDirection: 'row',
-              alignItems: 'center',
-              paddingHorizontal: moderateScale(10),
-              paddingVertical: moderateScale(5),
-            }}>
-            <CustomImage
-              source={{ uri: groupData?.group_image }}
-              imgLoaderStyle={styles.itemImage}
-              style={styles.itemImage}
-            />
-            <Text
-              style={{
-                marginLeft: moderateScale(4),
-                fontSize: textScale(12),
-                color: theme.colors.white,
-                fontFamily: fontFamily.bold,
-              }}>
-              {' '}
-              {groupData?.group_name && groupData.group_name.length > 19
-                ? `${groupData.group_name.substring(0, 19)}...`
-                : groupData.group_name}
-            </Text>
-          </View>
-
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{backgroundColor: theme.colors.white}}>
+          <StatusBar
+            backgroundColor={theme.colors.white}
+            barStyle="light-content"
+            translucent={Platform.OS === 'android'}
+          />
+          <View style={[styles.headerRow, {paddingTop: insets.top + moderateScale(8)}]}>
             <TouchableOpacity
-              onPress={() => onPressMuteAndUnmuteNotification()}
-              style={{
-                backgroundColor: theme.colors.Grey32,
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: moderateScale(35),
-                height: moderateScale(35),
-                borderRadius: moderateScale(20),
-                marginRight: moderateScale(2),
-              }}>
-         
-              <FastImage
-                // tintColor={colors.white}
-                resizeMode="contain"
-                style={{ width: moderateScale(22), height: moderateScale(22) }}
-                source={myItemData?.is_notify == "1" ? imagesPath.volume : imagesPath.mute}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setModalVisible(!modalVisible)}
-              style={{
-                backgroundColor: theme.colors.Grey32,
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: moderateScale(35),
-                height: moderateScale(35),
-                borderRadius: moderateScale(20),
-                marginHorizontal: moderateScale(2),
-              }}>
-              <Image
-                style={{
-                  tintColor: theme.colors.white,
-                  height: moderateScale(22),
-                  width: moderateScale(22),
-                }}
-                resizeMode="contain"
-                source={imagesPath.ic_dot}
-              />
+              onPress={() => navigation.goBack()}
+              style={styles.boxView}
+              hitSlop={hitSlopProp}>
+              <Image source={imagesPath.ic_back} style={styles.headerIcon} />
             </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => viewChat()}
-              style={{
-                marginLeft: moderateScale(2),
-                backgroundColor: theme.colors.Grey32,
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: moderateScale(35),
-                height: moderateScale(35),
-                borderRadius: moderateScale(20),
-                marginRight: moderateScale(2),
-              }}>
-              <Image
-                style={{ tintColor: theme.colors.white, width: moderateScale(15), height: moderateScale(15) }}
-                source={imagesPath.crossnew}
+            <View style={styles.headerCenter}>
+              <CustomImage
+                source={{ uri: groupData?.group_image }}
+                imgLoaderStyle={styles.itemImage}
+                style={styles.itemImage}
               />
-            </TouchableOpacity>
+              <Text
+                numberOfLines={2}
+                style={styles.headerTitle}>
+                {groupData?.group_name || 'Group'}
+              </Text>
+            </View>
+
+            <View style={styles.headerActions}>
+              <TouchableOpacity
+                onPress={onPressMuteAndUnmuteNotification}
+                style={styles.boxView}>
+                <FastImage
+                  resizeMode="contain"
+                  style={styles.headerActionIcon}
+                  source={myItemData?.is_notify == "1" ? imagesPath.volume : imagesPath.mute}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setModalVisible(!modalVisible)}
+                style={[styles.boxView, {marginHorizontal: moderateScale(6)}]}>
+                <Image
+                  style={styles.headerIcon}
+                  resizeMode="contain"
+                  source={imagesPath.ic_dot}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={viewChat} style={styles.boxView}>
+                <Image
+                  style={[styles.headerIcon, {width: moderateScale(14), height: moderateScale(14)}]}
+                  source={imagesPath.crossnew}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
 
         <View
           style={{
+            flex: 1,
             justifyContent: 'center',
-            borderWidth: 3,
-            borderColor: theme.colors.white,
+            borderWidth: 1,
+            borderColor: theme.colors.blackOpacity20,
             borderRadius: moderateScale(10),
-            marginTop: moderateScale(20),
-            marginBottom: moderateScale(150),
+            marginTop: moderateScale(12),
+            marginHorizontal: moderateScale(12),
+            marginBottom: moderateScale(12),
+            overflow: 'hidden',
           }}>
           <FlatList
             showsVerticalScrollIndicator={false}
             horizontal={false}
             data={memberData}
-            // renderItem={renderItem}
             renderItem={renderProfileListItem}
-            keyExtractor={item => item.id}
+            keyExtractor={(item, index) =>
+              String(item?.id || item?.user?.id || item?.user_id || index)
+            }
             numColumns={numColumns}
 
             extraData={memberData || []}
@@ -618,6 +502,50 @@ const ViewMemberGroup = ({ navigation, route }) => {
 };
 
 const getStyles = (theme, commonStyles) => StyleSheet.create({
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: moderateScale(10),
+    paddingHorizontal: moderateScale(16),
+    borderBottomWidth: 0.5,
+    borderBottomColor: theme.colors.blackOpacity10,
+  },
+  boxView: {
+    borderColor: theme.colors.activeTintColor,
+    height: moderateScale(38),
+    width: moderateScale(38),
+    borderRadius: moderateScale(10),
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerIcon: {
+    height: moderateScale(16),
+    width: moderateScale(16),
+    tintColor: theme.colors.activeTintColor,
+  },
+  headerActionIcon: {
+    width: moderateScale(18),
+    height: moderateScale(18),
+  },
+  headerCenter: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    minWidth: 0,
+    paddingHorizontal: moderateScale(8),
+  },
+  headerTitle: {
+    flex: 1,
+    marginLeft: moderateScale(8),
+    ...commonStyles.font_16_SemiBold,
+    color: theme.colors.florsentTheme,
+  },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     marginTop: 20,
@@ -649,10 +577,10 @@ const getStyles = (theme, commonStyles) => StyleSheet.create({
   },
   itemImage: {
     borderWidth: 2,
-    borderColor: theme.colors.white,
+    borderColor: theme.colors.primaryWhite,
     borderRadius: moderateScale(20),
-    height: moderateScale(30),
-    width: moderateScale(30),
+    height: moderateScale(36),
+    width: moderateScale(36),
   },
   btnViewSty: {
     width: '100%',

@@ -18,6 +18,7 @@ import {
   saveProfileSetupDoneToStore,
   saveUserDataToStore,
 } from './src/redux/reduxActions/authActions';
+import { isUserProfileComplete } from './src/utils/profileCompletion';
 import {
   getChatCount,
   saveChatCounter,
@@ -43,6 +44,7 @@ import Splash from './src/Screens/Splash/Splash';
 import {configureZegoCloud} from './src/utils/zegoConfigureFile';
 import NetworkDebugger from './src/Components/NetworkDebugger';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { hideSplash } from 'react-native-splash-view'
 import { setTheme } from './src/redux/reduxReducers/themeReducers';
 import { ThemeProvider, useTheme } from './src/theme/ThemeProvider';
@@ -136,7 +138,7 @@ const AppContent: FC = () => {
           user_name: res?.first_name || res?.full_name,
         });
       }
-      if (res?.filters && res?.photos?.length > 0) {
+      if (isUserProfileComplete(res)) {
         saveProfileSetupDoneToStore(true);
       } else {
         saveProfileSetupDoneToStore(false);
@@ -331,13 +333,15 @@ const AppContent: FC = () => {
 
 const App: FC = () => {
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
-      <ThemeProvider>
-        <Provider store={store}>
-          <AppContent />
-        </Provider>
-      </ThemeProvider>
-    </GestureHandlerRootView>
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <ThemeProvider>
+          <Provider store={store}>
+            <AppContent />
+          </Provider>
+        </ThemeProvider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 };
 

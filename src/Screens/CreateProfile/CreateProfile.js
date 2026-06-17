@@ -38,7 +38,7 @@ import {
   sendOtpApi,
 } from '../../redux/reduxActions/authActions';
 import colors from '../../styles/colors';
-import {moderateScale, width} from '../../styles/responsiveSize';
+import {moderateScale, moderateScaleVertical, width} from '../../styles/responsiveSize';
 import {
   ApiError,
   selectSingleImage,
@@ -358,10 +358,10 @@ const CreateProfile = ({navigation, route, ...props}) => {
   //* ******************   Main Body of the Component  **************************
 
   return (
-    <WrapperContainer paddingAvailable={moderateScale(24)} isSafeAreaAvailable>
-      <View style={{flex: 1}}>
+    <WrapperContainer  isSafeAreaAvailable={true}>
         <View style={{flex: 1}}>
           <HeaderComp
+            viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
             // rightText="Skip"
             leftIcon={imagesPath.ic_back}
             onPressBack={() =>
@@ -369,6 +369,10 @@ const CreateProfile = ({navigation, route, ...props}) => {
             }
           />
           <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            enableOnAndroid
+            extraScrollHeight={Platform.OS === 'android' ? moderateScaleVertical(24) : 0}
+            keyboardDismissMode="on-drag"
             bounces={false}
             keyboardShouldPersistTaps={'always'}
             showsVerticalScrollIndicator={false}
@@ -535,7 +539,6 @@ const CreateProfile = ({navigation, route, ...props}) => {
               btnView={styles.btnStyle}
             />
           </KeyboardAwareScrollView>
-        </View>
        
       </View>
       <Loader isLoading={isLoading} />
@@ -547,6 +550,7 @@ const CreateProfile = ({navigation, route, ...props}) => {
 const getStyles = (theme, commonStyles, isDark) => StyleSheet.create({
   container: {
     flexGrow: 1,
+    paddingBottom: moderateScaleVertical(24),
   },
   txtStyle: {
     ...commonStyles.font_34_bold,

@@ -1,0 +1,28 @@
+diff --git a/node_modules/react-native-sound-player/android/src/main/java/com/johnsonsu/rnsoundplayer/RNSoundPlayerModule.java b/node_modules/react-native-sound-player/android/src/main/java/com/johnsonsu/rnsoundplayer/RNSoundPlayerModule.java
+index 1111111..2222222 100644
+--- a/node_modules/react-native-sound-player/android/src/main/java/com/johnsonsu/rnsoundplayer/RNSoundPlayerModule.java
++++ b/node_modules/react-native-sound-player/android/src/main/java/com/johnsonsu/rnsoundplayer/RNSoundPlayerModule.java
+@@ -112,9 +112,22 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule implements L
+   }
+ 
+   @ReactMethod
+   public void stop() throws IllegalStateException {
+     if (this.mediaPlayer != null) {
+-      this.mediaPlayer.stop();
++      try {
++        if (this.mediaPlayer.isPlaying()) {
++          this.mediaPlayer.stop();
++        }
++      } catch (Exception e) {
++        // Ignore invalid state while stopping playback.
++      }
++      try {
++        this.mediaPlayer.reset();
++        this.mediaPlayer.release();
++      } catch (Exception e) {
++        // Ignore cleanup errors.
++      }
++      this.mediaPlayer = null;
+     }
+   }
+ 

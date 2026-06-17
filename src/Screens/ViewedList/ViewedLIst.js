@@ -178,14 +178,16 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
   };
 
   return (
-    <WrapperContainer isSafeAreaAvailable={Platform.OS == 'ios'}>
+    <WrapperContainer isSafeAreaAvailable={true}>
+      <View style={{ flex: 1 }}>
       <HomeHeader
+      viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         leftIcon={imagesPath.backnew}
         onPressBack={() => navigation.goBack()}
         centerText={strings.UserViewedYourProfile}
         centertextstyle={{
           fontSize: textScale(20),
-          marginLeft: moderateScale(10),
+          marginLeft: moderateScale(30),
         }}
       />
       <View style={styles.countMainView}>
@@ -220,6 +222,7 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
           />
         )}
         <Loader isLoading={isLoading} />
+        </View>
     </WrapperContainer>
   );
 };

@@ -63,7 +63,12 @@ import {
 import InfoBubble from '../../Components/InfoBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../../theme/ThemeProvider';
-import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import {
+  createVoicePlayer,
+  resetVoicePlayer,
+  startVoiceMessage,
+  stopVoiceMessage,
+} from '../../utils/voiceMessagePlayer';
 import LinearGradient from 'react-native-linear-gradient';
 
 enableFreeze();
@@ -101,15 +106,7 @@ const ProfileScreen = props => {
   const hasVoiceMessage = voiceMessageUrl.length > 0;
 
   const _stopVoiceMessage = useCallback(async () => {
-    const player = audioPlayerRef.current;
-    if (player) {
-      try {
-        await player.stopPlayer();
-      } catch (e) { }
-      try {
-        player.removePlayBackListener();
-      } catch (e) { }
-    }
+    await stopVoiceMessage(audioPlayerRef.current);
     isVoicePlayingRef.current = false;
     setIsVoicePlaying(false);
   }, []);
@@ -122,18 +119,22 @@ const ProfileScreen = props => {
     }
     try {
       if (!audioPlayerRef.current) {
-        audioPlayerRef.current = new AudioRecorderPlayer();
+        audioPlayerRef.current = createVoicePlayer();
       }
       const player = audioPlayerRef.current;
       isVoicePlayingRef.current = true;
       setIsVoicePlaying(true);
-      await player.startPlayer(voiceMessageUrl);
+      await startVoiceMessage(player, voiceMessageUrl);
       player.addPlayBackListener(e => {
-        if (e?.duration > 0 && e?.currentPosition >= e?.duration) {
+        if (
+          e?.isFinished ||
+          (e?.duration > 0 && e?.currentPosition >= e?.duration)
+        ) {
           _stopVoiceMessage();
         }
       });
     } catch (err) {
+      resetVoicePlayer(audioPlayerRef);
       isVoicePlayingRef.current = false;
       setIsVoicePlaying(false);
       showError(err?.message || 'Unable to play voice message');
@@ -142,15 +143,7 @@ const ProfileScreen = props => {
 
   useEffect(() => {
     return () => {
-      const player = audioPlayerRef.current;
-      if (player) {
-        try {
-          player.stopPlayer();
-        } catch (e) { }
-        try {
-          player.removePlayBackListener();
-        } catch (e) { }
-      }
+      stopVoiceMessage(audioPlayerRef.current);
       isVoicePlayingRef.current = false;
     };
   }, []);

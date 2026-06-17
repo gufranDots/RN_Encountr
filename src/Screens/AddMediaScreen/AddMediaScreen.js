@@ -51,8 +51,8 @@ const AddMediaScreen = ({ navigation }) => {
 
 
   useLayoutEffect(() => {
-    if (Array.isArray(userData?.photos) && userData && userData?.photos.length > 1) {
-      navigation.navigate(navigationString.SET_PREFERENCES_AUTH)
+    if (Array.isArray(userData?.photos) && userData?.photos.length > 0) {
+      navigation.navigate(navigationString.VOICE_DROP)
     }
   }, [isFocused])
 

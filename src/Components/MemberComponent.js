@@ -28,11 +28,13 @@ const MemberComponent = (props) => {
       <FastImage
         source={item?.user?.profile_image ? { uri: item?.user?.profile_image } : imagesPath.profileimage}
         style={{ flex: 1 }}
-        onLoad={() => setLoading(true)}
         onLoadStart={() => {
           setLoading(true)
         }}
         onLoadEnd={() => {
+          setLoading(false)
+        }}
+        onError={() => {
           setLoading(false)
         }}
       >
@@ -83,16 +85,12 @@ const MemberComponent = (props) => {
           </View>
         ) : null}
       </FastImage>
-      {loading && (
-
+      {loading && item?.user?.profile_image ? (
         <ShimmerPlaceholder
-          style={{ width: '100%', height: '100%', position: 'absolute', borderColor: theme.colors.greenTheme, borderWidth: .2 }}
+          style={enCounterHomestyles.shimmerOverlay}
           autoRun={true}
-        // visible={profileImgLoader}
-        >
-
-        </ShimmerPlaceholder>
-      )}
+        />
+      ) : null}
     </View>
   )
 
@@ -122,7 +120,9 @@ const getStyles = (theme, commonStyles) => StyleSheet.create({
   },
   userImgStyle: {
     flex: 0.3333,
-    height: height / 6.8
+    height: height / 6.8,
+    position: 'relative',
+    overflow: 'hidden',
   },
   userDetailContainer: {
     flex: 1,
@@ -262,6 +262,11 @@ const getStyles = (theme, commonStyles) => StyleSheet.create({
     fontSize: textScale(10),
     color: theme.colors.primaryWhite,
     fontFamily: fontFamily.bold,
+  },
+  shimmerOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    borderColor: theme.colors.greenTheme,
+    borderWidth: 0.2,
   },
 
 })

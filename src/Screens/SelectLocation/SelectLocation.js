@@ -131,9 +131,10 @@ const SelectLocation = props => {
   }
 
   return (
-    <WrapperContainer>
+    <WrapperContainer isSafeAreaAvailable={true}>
+      <View style={{ flex: 1 }}>
       <HeaderComp
-        onPressBack={() => navigation.goBack()}
+        onPressBack={() => navigation.goBack()} 
         leftIcon={imagesPath.ic_back}
         onPressRightText={() =>
           navigation.navigate(navigationString.SETTINGSCREEN)
@@ -178,6 +179,7 @@ const SelectLocation = props => {
         />
       </View>
       <Loader isLoading={isLoading} />
+      </View>
     </WrapperContainer>
   )
 }

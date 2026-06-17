@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, ActivityIndicator, Image } from 'react-native'
+import { StyleSheet, Text, View, FlatList, ActivityIndicator, Image, Platform } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { WrapperContainer } from '../../Components'
 import HeaderComp from '../../Components/HeaderComp'
@@ -6,7 +6,7 @@ import imagesPath from '../../constants/imagesPath'
 import strings from '../../constants/Languages'
 import { getMySentRequests } from '../../redux/reduxActions/authActions'
 import { ApiError, showError } from '../../utils/helperFunctions'
-import { moderateScale, width } from '../../styles/responsiveSize'
+import { moderateScale, moderateScaleVertical, width } from '../../styles/responsiveSize'
 import { stableKeyExtractor } from '../../utils/stableKeyExtractor'
 
 const TapsHistory = ({navigation}: {navigation: any}) => {
@@ -97,6 +97,7 @@ const TapsHistory = ({navigation}: {navigation: any}) => {
     contentContainerStyle={{ flexGrow: 1 }}
     statusbarcolorr={'#fff'}>
     <HeaderComp
+        viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         {...({
             leftIcon: imagesPath.ic_back,
             onPressBack: () => navigation.goBack(),

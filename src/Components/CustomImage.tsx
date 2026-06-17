@@ -1,17 +1,16 @@
-import React, {FC, useState} from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import React, {FC, useEffect, useMemo, useState} from 'react';
+import {View, StyleSheet, Platform, StyleProp, ViewStyle, ImageStyle} from 'react-native';
 import CustomLoader from './CustomLoader';
 import FastImage from '../utils/FastImageCompat';
-import { ImageEnum } from '../constants';
-import { moderateScale, scale } from '../styles/responsiveSize';
+import { moderateScale } from '../styles/responsiveSize';
 import { useTheme } from '../theme/ThemeProvider';
 import { getCommonStyles } from '../styles/commonStyles';
 
 interface CustomImageProps {
   source: object | number;
-  style?: object;
-  imgLoaderStyle?: object;
-  imgLoaderSize?: object;
+  style?: StyleProp<ImageStyle>;
+  imgLoaderStyle?: StyleProp<ViewStyle>;
+  imgLoaderSize?: number | 'small' | 'large';
 }
 
 const CustomImage: FC<CustomImageProps> = props => {
@@ -19,25 +18,78 @@ const CustomImage: FC<CustomImageProps> = props => {
   const commonStyles = getCommonStyles(theme);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const containerStyle = useMemo(
+    () =>
+      StyleSheet.flatten([
+        commonStyles.drawerRoundUserIcon,
+        props?.style,
+        props?.imgLoaderStyle,
+      ]),
+    [commonStyles.drawerRoundUserIcon, props?.style, props?.imgLoaderStyle],
+  );
+
+  const sourceUri =
+    props?.source &&
+    typeof props.source === 'object' &&
+    'uri' in props.source
+      ? (props.source as {uri?: string}).uri
+      : null;
+
+  useEffect(() => {
+    if (!sourceUri) {
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+  }, [sourceUri]);
+
   return (
-    <View style={{alignSelf:'center'}}>
+    <View style={[containerStyle, styles.container]}>
       <FastImage
         source={props?.source}
-        style={[commonStyles.drawerRoundUserIcon, props?.style]}
+        style={styles.image}
         onLoadStart={() => {
-          setLoading(true);
+          if (sourceUri) {
+            setLoading(true);
+          }
         }}
         onLoadEnd={() => {
           setLoading(false);
         }}
+        onError={() => {
+          setLoading(false);
+        }}
       />
-      {loading && (
+      {loading && sourceUri ? (
         <CustomLoader
-          loaderContainer={[commonStyles.drawerRoundUserIcon, props?.imgLoaderStyle]}
-          loaderSize={props?.imgLoaderSize ? props?.imgLoaderSize: Platform.OS == 'android' ? moderateScale(30): 'small'}
+          loaderContainer={styles.loaderOverlay}
+          loaderSize={
+            props?.imgLoaderSize
+              ? props.imgLoaderSize
+              : Platform.OS === 'android'
+              ? moderateScale(30)
+              : 'small'
+          }
         />
-      )}
+      ) : null}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  loaderOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
 export default CustomImage;

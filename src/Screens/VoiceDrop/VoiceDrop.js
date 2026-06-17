@@ -10,7 +10,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import AudioRecorderPlayer, {
+  AVEncoderAudioQualityIOSType,
+  AVEncodingOption,
+  AudioEncoderAndroidType,
+  AudioSourceAndroidType,
+  OutputFormatAndroidType,
+} from 'react-native-audio-recorder-player';
+import RNFetchBlob from 'rn-fetch-blob';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {enableFreeze} from 'react-native-screens';
@@ -30,6 +37,27 @@ import {ApiError, showError, showSuccess} from '../../utils/helperFunctions';
 enableFreeze();
 
 const MAX_RECORD_SECONDS = 30;
+
+const IOS_AUDIO_SET = {
+  AVEncoderAudioQualityKeyIOS: AVEncoderAudioQualityIOSType.high,
+  AVNumberOfChannelsKeyIOS: 1,
+  AVSampleRateKeyIOS: 44100,
+  AVFormatIDKeyIOS: AVEncodingOption.aac,
+};
+
+const ANDROID_AUDIO_SET = {
+  AudioEncoderAndroid: AudioEncoderAndroidType.AAC,
+  AudioSourceAndroid: AudioSourceAndroidType.MIC,
+  OutputFormatAndroid: OutputFormatAndroidType.MPEG_4,
+};
+
+const buildRecordPath = () => {
+  const fileName = `voice_message_${Date.now()}.m4a`;
+  if (Platform.OS === 'android') {
+    return `${RNFetchBlob.fs.dirs.CacheDir}/${fileName}`;
+  }
+  return fileName;
+};
 
 const VoiceDrop = ({navigation, route}) => {
   const {theme, isDark} = useTheme();
@@ -100,7 +128,11 @@ const VoiceDrop = ({navigation, route}) => {
     }
     try {
       const player = audioRecorderPlayerRef.current;
-      const result = await player.startRecorder();
+      const recordPath = buildRecordPath();
+      const result = await player.startRecorder(
+        recordPath,
+        Platform.OS === 'ios' ? IOS_AUDIO_SET : ANDROID_AUDIO_SET,
+      );
       player.addRecordBackListener(e => {
         const seconds = Math.floor(e.currentPosition / 1000);
         setRecordSeconds(seconds);

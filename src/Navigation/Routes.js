@@ -10,6 +10,7 @@ import ProfileSetupStack from './ProfileSetupStack';
 import OnBoardStack from './OnBoardStack';
 import colors from '../styles/colors';
 import NavigationService from './NavigationService';
+import { isUserProfileComplete } from '../utils/profileCompletion';
 
 
 const Stack = createNativeStackNavigator();
@@ -17,17 +18,28 @@ const Stack = createNativeStackNavigator();
 function Routes() {
   const userData = useSelector(state => state?.authReducers?.userData || {});
   const onBoard = useSelector(state => state?.authReducers?.onBoard);
- 
+
+  const hasToken = Boolean(userData?.token);
+  const isProfileComplete = isUserProfileComplete(userData);
+
+  let navigatorKey = 'auth';
+  if (hasToken) {
+    navigatorKey = isProfileComplete ? 'main' : 'setup';
+  } else if (onBoard) {
+    navigatorKey = 'onboard';
+  }
+
   return (
     <NavigationContainer
       ref={ref => NavigationService.setTopLevelNavigator(ref)}
     >
       <ZegoCallInvitationDialog />
       <Stack.Navigator
+        key={navigatorKey}
         backBehavior="initialRoute"
         screenOptions={{headerShown: false}}>
-        {userData?.token
-          ? !userData?.filters
+        {hasToken
+          ? !isProfileComplete
             ? ProfileSetupStack()
             : MainStack(userData)
           : onBoard

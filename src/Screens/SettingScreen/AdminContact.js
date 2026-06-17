@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Platform, StyleSheet, Text, View } from 'react-native';
 import { WrapperContainer } from '../../Components';
 import HeaderComp from '../../Components/HeaderComp';
 import imagesPath from '../../constants/imagesPath';
-import { moderateScale, textScale } from '../../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import strings from '../../constants/Languages';
 import fontFamily from '../../styles/fontFamily';
 import { getSupportData } from '../../redux/reduxActions/homeActions';
@@ -40,6 +40,7 @@ const AdminContact = ({ navigation }) => {
   return (
     <WrapperContainer isSafeAreaAvailable={true}>
       <HeaderComp
+        viewStyle={{ marginTop: Platform.OS === 'android' ? moderateScaleVertical(25) : 0 }}
         leftIcon={imagesPath.ic_back}
         onPressBack={() => navigation.goBack()}
         centerText={strings.Contactus}

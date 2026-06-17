@@ -1,0 +1,19 @@
+diff --git a/node_modules/zego-zpns-react-native/ios/RCTZPNsSwizzler.m b/node_modules/zego-zpns-react-native/ios/RCTZPNsSwizzler.m
+index f243662..f9eb37f 100644
+--- a/node_modules/zego-zpns-react-native/ios/RCTZPNsSwizzler.m
++++ b/node_modules/zego-zpns-react-native/ios/RCTZPNsSwizzler.m
+@@ -44,9 +44,12 @@ + (void)hookMethod:(SEL)oldSEL andDef:(SEL)defaultSEL andNew:(SEL)newSEL {
+   class_addMethod(oldClass, oldSEL, class_getMethodImplementation(newClass, defaultSEL), nil);
+ 
+   Method oldMethod = class_getInstanceMethod(oldClass, oldSEL);
+-  assert(oldMethod);
+   Method newMethod = class_getInstanceMethod(oldClass, newSEL);
+-  assert(newMethod);
++  // Guard for Swift AppDelegate / iOS 26
++  if (!oldMethod || !newMethod) {
++    return;
++  }
++
+   method_exchangeImplementations(oldMethod, newMethod);
+ }
+ 

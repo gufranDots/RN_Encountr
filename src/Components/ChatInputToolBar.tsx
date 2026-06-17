@@ -1,10 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import strings from '../constants/Languages';
 import colors from '../styles/colors';
 import { getCommonStyles, hitSlopProp } from '../styles/commonStyles';
 import { ChatInputComponent } from './ChatComponents';
 import { useTheme } from '../theme/ThemeProvider';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { moderateScale } from '../styles/responsiveSize';
 
 interface ChatInputToolBarType {
     sender_id: any
@@ -18,6 +20,7 @@ interface ChatInputToolBarType {
     onPressVoice: () => void
     onStartRecAudio: () => void
     onStopRecAudio: () => void
+    onCancelRecAudio?: () => void
     onSendImage: () => void
     onSendCameraImage: () => void
     disabled: boolean
@@ -57,6 +60,7 @@ const ChatInputToolBar: FC<ChatInputToolBarType> = ({
     textValue,
     onStartRecAudio,
     onStopRecAudio,
+    onCancelRecAudio,
     onSendImage,
     onSendCameraImage,
     disabled,
@@ -75,38 +79,43 @@ const ChatInputToolBar: FC<ChatInputToolBarType> = ({
     hasActiveReply = false,
 }) => {
     const { theme } = useTheme();
-    const commonStyles = getCommonStyles(theme);    
+    const insets = useSafeAreaInsets();
+    const commonStyles = getCommonStyles(theme);
+    const blockedViewStyle = {
+        justifyContent: 'center' as const,
+        alignItems: 'center' as const,
+        width: '100%' as const,
+        paddingHorizontal: moderateScale(16),
+        marginBottom: Math.max(insets.bottom, moderateScale(16)),
+        paddingBottom: moderateScale(8),
+    };
     return (
         isBlocked
             ? <TouchableOpacity
-                style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
+                style={blockedViewStyle}
                 onPress={AskToBlockUnblock}
                 hitSlop={hitSlopProp}
                 activeOpacity={0.8}
             >
                 <Text style={{
                     ...commonStyles.font_18_regular,
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    color: theme.colors.black,
                 }}>{strings.youHaveBlockedThisUser + '\n'}
                     <Text style={{
                         ...commonStyles.font_18_SemiBold,
                         textAlign: 'center',
-                        color: theme.colors.themecolor2
+                        color: theme.colors.florsentTheme,
                     }}>{' ' + strings.tap + ' '}</Text>
                     {strings.toUnblock}</Text>
             </TouchableOpacity>
             : areYouBlocked
-                ? <View style={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
+                ? <View style={blockedViewStyle}>
                     <Text style={{
                         ...commonStyles.font_18_regular,
                         width: '90%',
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        color: theme.colors.black,
                     }}>{strings.youHaveBeenBlockedThisUser}</Text>
                 </View>
 
@@ -118,6 +127,7 @@ const ChatInputToolBar: FC<ChatInputToolBarType> = ({
                 textValue={textValue}
                 onStartRecAudio={onStartRecAudio}
                 onStopRecAudio={onStopRecAudio}
+                onCancelRecAudio={onCancelRecAudio}
                 onSendImage={onSendImage}
                 onSendCameraImage={onSendCameraImage}
                 onEndEditing={onEndEditing}

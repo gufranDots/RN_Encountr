@@ -57,9 +57,13 @@ const WrapperContainer = ({
       }}>
       {statusBarAvailable ? (
         <StatusBar
-        backgroundColor={statusbarcolorr?statusbarcolorr:theme.colors.white}
-          barStyle={!isWhiteStatusBar || isDark ? 'light-content' : 'dark-content'}
-          // barStyle={isDark ? 'light-content' : 'dark-content'}
+          backgroundColor={
+            statusbarcolorr ? statusbarcolorr : theme.colors.white
+          }
+          barStyle={
+            !isWhiteStatusBar || isDark ? 'light-content' : 'dark-content'
+          }
+          translucent={Platform.OS === 'android'}
           showHideTransition={'none'}
           hidden={false}
         />
